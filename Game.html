@@ -1,0 +1,266 @@
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="http://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+	<style>
+	.bord {
+
+		width: 400px;
+		height: 400px;
+		border-width: 5px;
+		border-color: #755752;
+		background-color: yellow;
+	}
+	.position {
+
+		width: 50px;
+		height: 50px;
+		cursor: default;
+		float:left;
+		background-color: yellow;
+	}
+
+	</style>
+	<script>
+
+	function start() {
+		var bord=[[1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1]];
+
+		for(var i=1;i<=8;i++){
+			for(var j=1;j<=8;j++){
+				if(i%2==0&&j%2==0)
+					$("#"+i+j).css("background-color", "black");
+				if(i%2!=0&&j%2!=0)
+					$("#"+i+j).css("background-color", "black");
+				if (i%2==0&&j%2!=0||i==4||i==5) 
+					$("#"+ i + j+"player").hide();
+				if (j%2==0&&i%2!=0||i==4||i==5) 
+					$("#"+ i + j+"player").hide();
+			}
+		}
+
+
+		$( init );
+
+		function init() {
+			$('#makeMeDraggable').draggable();
+		}
+
+	}
+
+
+	$( document ).ready(start);
+	</script> 
+
+</head>
+
+<body>
+	<div class="bord">
+		<div id="11" class="position">
+			<div id="makeMeDraggable">
+			<img id="11player" src="player1.png">
+		</div>
+		</div>
+		<div id="12" class="position">
+			<img id="12player" src="player1.png">
+		</div>
+		<div id="13" class="position">
+			<img id="13player" src="player1.png">
+		</div>
+		<div id="14" class="position">
+			<img id="14player" src="player1.png">
+		</div>
+		<div id="15" class="position">
+			<img id="15player" src="player1.png">
+		</div>
+		<div id="16" class="position">
+			<img id="16player" src="player1.png">
+		</div>
+		<div id="17" class="position">
+			<img id="17player" src="player1.png">
+		</div>
+		<div id="18" class="position">
+			<img id="18player" src="player1.png">
+		</div>
+		<br>
+		<div id="21" class="position">
+			<img id="21player" src="player1.png">
+		</div>
+		<div id="22" class="position">
+			<img  id="22player" src="player1.png">
+		</div>
+		<div id="23" class="position">
+			<img id="23player" src="player1.png">
+		</div>
+		<div id="24" class="position">
+			<img id="24player" src="player1.png">
+		</div>
+		<div id="25" class="position">
+			<img id="25player" src="player1.png">
+		</div>
+		<div id="26" class="position">
+			<img id="26player" src="player1.png">
+		</div>
+		<div id="27" class="position">
+			<img id="27player" src="player1.png">
+		</div>
+		<div id="28" class="position">
+			<img id="28player" src="player1.png">
+		</div>
+		<br>
+		<div id="31" class="position">
+			<img id="31player" src="player1.png">
+		</div>
+		<div id="32" class="position">
+			<img id="32player" src="player1.png">
+		</div>
+		<div id="33" class="position">
+			<img id="33player" src="player1.png">
+		</div>
+		<div id="34" class="position">
+			<img id="34player" src="player1.png">
+		</div>
+		<div id="35" class="position">
+			<img id="35player" src="player1.png">
+		</div>
+		<div id="36" class="position">
+			<img id="36player" src="player1.png">
+		</div>
+		<div id="37" class="position">
+			<img id="37player" src="player1.png">
+		</div>
+		<div id="38" class="position">
+			<img id="38player" src="player1.png">
+		</div>
+		<br>
+		<div id="41" class="position">
+			<img id="41player" src="player1.png">
+		</div>
+		<div id="42" class="position">
+			<img id="42player" src="player1.png">
+		</div>
+		<div id="43" class="position">
+			<img id="43player" src="player1.png">
+		</div>
+		<div id="44" class="position">
+			<img id="44player" src="player1.png">
+		</div>
+		<div id="45" class="position">
+			<img id="45player" src="player1.png">
+		</div>
+		<div id="46" class="position">
+			<img id="46player" src="player1.png">
+		</div>
+		<div id="47" class="position">
+			<img id="47player" src="player1.png">
+		</div>
+		<div id="48" class="position">
+			<img id="48player" src="player1.png">
+		</div>
+		<br>
+		<div id="51" class="position">
+			<img id="51player" src="player2.png">
+		</div>
+		<div id="52" class="position">
+			<img id="52player" src="player2.png">
+		</div>
+		<div id="53" class="position">
+			<img id="53player" src="player2.png">
+		</div>
+		<div id="54" class="position">
+			<img id="54player" src="player2.png">
+		</div>
+		<div id="55" class="position">
+			<img id="55player" src="player2.png">
+		</div>
+		<div id="56" class="position">
+			<img id="56player" src="player2.png">
+		</div>
+		<div id="57" class="position">
+			<img id="57player" src="player2.png">
+		</div>
+		<div id="58" class="position">
+			<img id="58player" src="player2.png">
+		</div>
+		<br>
+		<div id="61" class="position">
+			<img id="61player" src="player2.png">
+		</div>
+		<div id="62" class="position">
+			<img id="62player" src="player2.png">
+		</div>
+		<div id="63" class="position">
+			<img id="63player" src="player2.png">
+		</div>
+		<div id="64" class="position">
+			<img id="64player" src="player2.png">
+		</div>
+		<div id="65" class="position">
+			<img id="65player" src="player2.png">
+		</div>
+		<div id="66" class="position">
+			<img id="66player" src="player2.png">
+		</div>
+		<div id="67" class="position">
+			<img id="67player" src="player2.png">
+		</div>
+		<div id="68" class="position">
+			<img id="68player" src="player2.png">
+		</div>
+		<br>
+		<div id="71" class="position">
+			<img id="71player" src="player2.png">
+		</div>
+		<div id="72" class="position">
+			<img id="72player" src="player2.png">
+		</div>
+		<div id="73" class="position">
+			<img id="73player" src="player2.png">
+		</div>
+		<div id="74" class="position">
+			<img id="74player" src="player2.png">
+		</div>
+		<div id="75" class="position">
+			<img id="75player" src="player2.png">
+		</div>
+		<div id="76" class="position">
+			<img id="76player" src="player2.png">
+		</div>
+		<div id="77" class="position">
+			<img id="77player" src="player2.png">
+		</div>
+		<div id="78" class="position">
+			<img id="78player" src="player2.png">
+		</div>
+		<br>
+		<div id="81" class="position">
+			<img id="81player" src="player2.png">
+		</div>
+		<div id="82" class="position">
+			<img id="82player" src="player2.png">
+		</div>
+		<div id="83" class="position">
+			<img id="83player" src="player2.png">
+		</div>
+		<div id="84" class="position">
+			<img id="84player" src="player2.png">
+		</div>
+		<div id="85" class="position">
+			<img id="85player" src="player2.png">
+		</div>
+		<div id="86" class="position">
+			<img id="86player" src="player2.png">
+		</div>
+		<div id="87" class="position">
+			<img id="87player" src="player2.png">
+		</div>
+		<div id="88" class="position">
+			<img id="88player" src="player2.png">
+		</div>
+		<br>
+	</div>
+</body>
+
+</html>
