@@ -1,0 +1,27 @@
+Board Class:
+
+Position
+Valid
+IsPeaceThere
+Player
+
+If Statments:
+(FOR HUMAN PLAYER)
+
+* checkColor_table(Valid+Position)
+* ChecjIsPeaceThere(IsPeaceThere)
+* Check_Peace_Side(Player)
+* Check_Move_Or_Eat()
+* Check_Free_Space(For Drag ON Or OFF)
+* Move
+* Eat
+* Turn_over?(Can Eat Again)
+* Next_player
+
+If Statments:
+(FOR AI)
+
+FIND_ALL_LEGAL_MOVES( BOARD ) Returns: array ALL_LEGAL_MOVES
+FIND_BEST_MOVE( BOARD, ALL_LEGAL_MOVES ) Returns: array MY_MOVE
+DO_MOVE( BOARD, MY_MOVE ) Throws: error ILLEGAL_MOVE Updates: MY_BOARD
+repeat from start for each turn
