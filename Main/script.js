@@ -1,3 +1,6 @@
+var playerScore = 0;
+var AIScore = 0;
+
 function start() {
 		var board=[
 				[0, 0, 0, 0, 0, 0, 0, 0],
@@ -22,15 +25,28 @@ function start() {
 					$("#"+ i + j+"player").hide();
 			}
 		}
-
-
 		$( init );
 		
-
 		function init() {
 			$('.makeMeDraggable').draggable();
 		}
-
 	}
+	
+//This function updates the scoreboard game finish.
+//Human Player = 1
+//AI = 2	
+function UpdateScoreBoard(winner){
+	switch(winner){
+		case 1: 
+			x=Document.getElementById("playerScore");
+			x.innerHTML  = playerScore++;
+			break;
+		case 2:
+			x=Document.getElementById("AIScore");
+			x.innerHTML  = AIScore++;
+		default:
+        	break;
+	}
+}	
 
 	$( document ).ready(start);
