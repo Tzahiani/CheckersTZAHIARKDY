@@ -6,7 +6,7 @@
 	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 	<script src="http://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
 	<style>
-	.bord {
+	.board {
 
 		width: 400px;
 		height: 400px;
@@ -27,7 +27,7 @@
 	<script>
 
 	function start() {
-		var bord=[
+		var board=[
 				[0, 0, 0, 0, 0, 0, 0, 0],
 				[0, 0, 0, 0, 0, 0, 0, 0],
 				[0, 0, 0, 0, 0, 0, 0, 0],
@@ -60,6 +60,21 @@
 		}
 
 	}
+	
+	// This Function Updates the Score Bord After Each Game.
+	// NOT Finish dont use yet.
+	function updateScore(score,player){
+	switch(player)  {
+    case 1 : 
+        $('#PlayerScore').text(score);
+        break;
+    case 2 :
+        $('#AIscore').text(score);
+        break;
+    default :
+        console.log('did notrecive player number');
+	}
+}
 
 
 	$( document ).ready(start);
@@ -68,7 +83,7 @@
 </head>
 
 <body>
-	<div class="bord">
+	<div class="board">
 		<div id="11" class="position">
 			<div class="makeMeDraggable">
 			<img id="11player" src="player1.png">
@@ -276,6 +291,11 @@
 		</div>
 		<br>
 	</div>
+	<!--ScoreBoard-->
+	<div id="scoreboard">
+		 <span id="PlayerScore"></span>
+    		 <span id="AIscore"></span>
+</div>
 </body>
 
 </html>
