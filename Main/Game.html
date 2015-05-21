@@ -3,83 +3,10 @@
 <head>
 	<title>Tzahi And Arkady Checkers</title>
 	<meta charset="utf-8">
+	<link rel="stylesheet" href="style.css"/>
 	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 	<script src="http://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
-	<style>
-	.board {
-
-		width: 400px;
-		height: 400px;
-		border-width: 5px;
-		border-color: #755752;
-		background-color: yellow;
-	}
-	.position {
-
-		width: 50px;
-		height: 50px;
-		cursor: default;
-		float:left;
-		background-color: yellow;
-	}
-
-	</style>
-	<script>
-
-	function start() {
-		var board=[
-				[0, 0, 0, 0, 0, 0, 0, 0],
-				[0, 0, 0, 0, 0, 0, 0, 0],
-				[0, 0, 0, 0, 0, 0, 0, 0],
-				[0, 0, 0, 0, 0, 0, 0, 0],
-				[0, 0, 0, 0, 0, 0, 0, 0],
-				[0, 0, 0, 0, 0, 0, 0, 0],
-				[0, 0, 0, 0, 0, 0, 0, 0],
-				[0, 0, 0, 0, 0, 0, 0, 0],
-			];
-
-		for(var i=1;i<=8;i++){
-			for(var j=1;j<=8;j++){
-				if(i%2==0&&j%2==0)
-					$("#"+i+j).css("background-color", "black");
-				if(i%2!=0&&j%2!=0)
-					$("#"+i+j).css("background-color", "black");
-				if (i%2==0&&j%2!=0||i==4||i==5) 
-					$("#"+ i + j+"player").hide();
-				if (j%2==0&&i%2!=0||i==4||i==5) 
-					$("#"+ i + j+"player").hide();
-			}
-		}
-
-
-		$( init );
-		
-
-		function init() {
-			$('.makeMeDraggable').draggable();
-		}
-
-	}
-	
-	// This Function Updates the Score Bord After Each Game.
-	// NOT Finish dont use yet.
-	function updateScore(score,player){
-	switch(player)  {
-    case 1 : 
-        $('#PlayerScore').text(score);
-        break;
-    case 2 :
-        $('#AIscore').text(score);
-        break;
-    default :
-        console.log('did notrecive player number');
-	}
-}
-
-
-	$( document ).ready(start);
-	</script> 
-
+	<script src='script.js'></script> 
 </head>
 
 <body>
@@ -292,10 +219,21 @@
 		<br>
 	</div>
 	<!--ScoreBoard-->
-	<div id="scoreboard">
-		 <span id="PlayerScore"></span>
-    		 <span id="AIscore"></span>
-</div>
+	<div id="ScoreBoard"align="center">
+		<TABLE border="1" bordercolor="red">
+		<TR>
+			<TD colspan="3" bgcolor="red">Score Board</TD>
+		</TR>
+		<TR bgcolor="purple">
+			<TH>Player</TH>
+			<TH>AI</TH>
+		</TR>
+		<TR bgcolor="pink">
+				<TD id = "playerScore">0</TD>
+				<TD id = "AIScore">0</TD>
+
+		</TR>
+	</div>
 </body>
 
 </html>
