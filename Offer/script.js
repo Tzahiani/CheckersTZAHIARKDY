@@ -4,7 +4,7 @@ var AIScore = 0;
 var whiteEat=0;
 var blackEat=0;
 turn=0;
-var baord;
+var board;
 
 function matrix( rows, cols){
 
@@ -21,18 +21,11 @@ function matrix( rows, cols){
 
       for(var j=0; j < cols; j++){
         // Initializes:
-        arr[i][j] = undefined;
+        arr[i][j] = $('#'+i+j);
       }
   }
 
 return arr;
-}
-
-function board(){
-
-	for(var x=0;x<8;x++)
-		for(var y=0;y<8;y++)
-			board[x][y]=$('#'+x+y);
 }
 	
 function UpdateScoreBoard(winner){
@@ -51,7 +44,6 @@ function UpdateScoreBoard(winner){
 
 function start(){
 	board = matrix(8,8)
-	board();
 }
 
 	$( document ).ready(start);
