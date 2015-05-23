@@ -47,9 +47,18 @@ function print(){
 		for(var j=0;j<8;j++)
 			console.log(board[i][j]);
 	}
-function start(){
-		board = matrix(8,8);
-		print();              
-	}
+function init() {
+	$('img').draggable();
+}
 
-	$( document ).ready(start);
+function CheckIfOk(){
+    console.log("If you see this then i try to drag some thing.");
+}
+                
+$(document).ready(function(){
+    
+        board = matrix(8,8);
+	print();
+        init();
+        
+  });
