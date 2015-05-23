@@ -4,13 +4,13 @@ var AIScore = 0;
 var whiteEat=0;
 var blackEat=0;
 turn=0;
-var bord(8,8);
+var baord[8][8];
 
-function bord(){
+function board(){
 
 	for(var x=0;x<8;x++)
 		for(var y=0;y<8;y++)
-			bord[x][y]=$('#'+x+y);
+			board[x][y]=$('#'+x+y);
 }
 	
 function UpdateScoreBoard(winner){
@@ -28,7 +28,7 @@ function UpdateScoreBoard(winner){
 }	
 
 function start(){
-	bord();
+	board();
 }
 
 	$( document ).ready(start);
