@@ -1,0 +1,187 @@
+<html>
+<head>
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<style>
+td {
+	padding: 20px;
+	border: 1px solid #dfe3ee;
+	background: #fff;
+}
+
+#container {
+	width: 100%;	
+}
+
+table {
+	padding: 5px;
+	background: #3b5998;
+	margin: 0 auto;
+}
+
+h1 {
+	text-align: center;
+	color: #8b9dc3;
+}
+</style>
+
+<script>
+	var board;
+	var firstImagePosition = -1;
+	var secondImagePosition =  -1;
+	var img1,img2;
+	var foundPairs = 0;
+
+	function randomizeArray() {
+		var arr = Array(16);
+		for(var i = 1; i <= 8; i++) {
+			var pos;
+
+			for(var j = 0; j < 2; j++) {
+				do{
+					pos = Math.floor(Math.random() * 16);
+				}
+				while(typeof arr[pos] != 'undefined');
+				arr[pos] = i;
+			}
+		}
+
+		console.log(arr);
+		return arr;
+	}
+
+	function handleImageClick() {
+		var img = $(this); // this is the object that got the click
+							// the image in this case
+		if(img.attr('src') != 'placeholder.png') {
+			return;
+		}
+
+		var pos = img.data('position')
+		img.attr("src",board[pos] + ".png");
+
+		if(firstImagePosition == -1) {
+			firstImagePosition = pos;
+			img1 = img;
+			return;
+		}
+
+		if(secondImagePosition == -1) {
+			if(board[firstImagePosition]  == board[pos]) { 
+				foundPairs++;
+				if(foundPairs == 8) {
+					$('h1').text("You Win!");
+				}
+				firstImagePosition = -1;
+				secondImagePosition = -1;	
+			}
+			else {
+				secondImagePosition = pos;
+				img2 = img;
+			}
+			return;
+		}
+
+		// If we got here, it means this is a third click!
+		img1.attr("src","placeholder.png");
+		img2.attr("src","placeholder.png");
+
+		img1 = img;
+		firstImagePosition = pos;
+		secondImagePosition = -1;
+		
+	}
+	
+
+	function initMemoryGame() {
+		board = randomizeArray();
+
+		$('img').click(handleImageClick);
+
+	}
+
+	$(document).ready(initMemoryGame);
+
+</script>
+</head>
+
+<body>
+
+	<h1>Memory Game</h1>
+	<div id='container'>
+	<table>
+		<tr>
+			<td>
+				<img data-position="0" src="placeholder.png">
+			</td>
+
+			<td>
+				<img data-position="1" src="placeholder.png">
+			</td>
+
+			<td>
+				<img data-position="2" src="placeholder.png">
+			</td>
+
+			<td>
+				<img data-position="3" src="placeholder.png">
+			</td>		
+		</tr>
+
+		<tr>
+			<td>
+				<img data-position="4" src="placeholder.png">
+			</td>
+
+			<td>
+				<img data-position="5" src="placeholder.png">
+			</td>
+
+			<td>
+				<img data-position="6" src="placeholder.png">
+			</td>
+
+			<td>
+				<img data-position="7" src="placeholder.png">
+			</td>		
+		</tr>
+
+		<tr>
+			<td>
+				<img data-position="8" src="placeholder.png">
+			</td>
+
+			<td>
+				<img data-position="9" src="placeholder.png">
+			</td>
+
+			<td>
+				<img data-position="10" src="placeholder.png">
+			</td>
+
+			<td>
+				<img data-position="11" src="placeholder.png">
+			</td>		
+		</tr>
+
+		<tr>
+			<td>
+				<img data-position="12" src="placeholder.png">
+			</td>
+
+			<td>
+				<img data-position="13" src="placeholder.png">
+			</td>
+
+			<td>
+				<img data-position="14" src="placeholder.png">
+			</td>
+
+			<td>
+				<img data-position="15" src="placeholder.png">
+			</td>		
+		</tr>
+	</table>
+</div>
+</body>
+</html>
