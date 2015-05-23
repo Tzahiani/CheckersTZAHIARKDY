@@ -1,55 +1,11 @@
 <html>
 <head>
-
+	<title>Tzahi And Arkady Checkers</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="style.css"/>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
-
-	<style type="text/css">
-	td{
-		border: 1px solid black;
-		height: 50px;
-		width: 50px;
-		padding: 0;
-	}
-
-	table{
-		margin: 25 auto;
-		border: 2px solid #0099FF;
-	}
-
-	.black{
-
-		background-color: black;
-	}
-	</style>
-
-	<script type="text/javascript">
-
-	var whiteEat=0;
-	var blackEat=0;
-	turn=0;
-
-	function move(){
-		
-		var img =$(this);
-
-		img.draggable();
-		img.droppable({
-			drop: function( event, ui ) {
-				$( this ).addClass( "ui-state-highlight" ).find( "td" ).html( "Dropped!" );
-			}
-		
-		}
-
-
-		function start(){
-			$('img').click(move);
-
-		}
-
-
-		$(document).ready(start);
-		</script>
+	<script src='script.js'></script> 
 
 	</head>
 	<body>
