@@ -47,9 +47,9 @@ function print(){
 		for(var j=0;j<8;j++)
 			console.log(board[i][j]);
 	}
-	function start(){
-		board = matrix(8,8)
-		print();
+function start(){
+		board = matrix(8,8);
+		print();              
 	}
 
 	$( document ).ready(start);
