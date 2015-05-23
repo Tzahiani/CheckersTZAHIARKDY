@@ -4,6 +4,8 @@ var whiteEat=0;
 var blackEat=0;
 turn=0;
 
+var bord(8,8);
+
 	function move(){
 		
 		var img =$(this);
