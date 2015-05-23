@@ -5,32 +5,9 @@ var whiteEat=0;
 var blackEat=0;
 turn=0;
 
-<<<<<<< HEAD
+
 var bord(8,8);
-=======
-
->>>>>>> origin/master
-
-	function move(){
-		
-		var img =$(this);
-
-		img.draggable();
-		img.droppable({
-			drop: function( event, ui ) {
-				$( this ).addClass( "ui-state-highlight" ).find( "td" ).html( "Dropped!" );
-			}
-		
-		}
-
-
-		function start(){
-			$('img').click(move);
-
-		}	
-//This function updates the scoreboard game finish.
-//Human Player = 1
-//AI = 2	
+	
 function UpdateScoreBoard(winner){
 	switch(winner){
 		case 1: 
