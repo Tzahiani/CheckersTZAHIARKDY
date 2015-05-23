@@ -4,13 +4,12 @@
 	<title>Tzahi And Arkady Checkers</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="style.css"/>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="http://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
 	<script src='script.js'></script> 
-
 	</head>
 	<body>
-		<table>
+            <table ondragstart="CheckIfOk()">
 			<tr>
 				<td class="white" id = "00"><img data-player="0" src=""></td>
 				<td class="black" id = "01"><img data-player="1" src="1.png"></td>
@@ -92,6 +91,5 @@
 				<td class="white" id = "77"><img data-player="0" src=""></td>
 			</tr>
 		</table>
-
 	</body>
-	</html>
+</html>
