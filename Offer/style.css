@@ -1,16 +1,28 @@
-td{
-		border: 1px solid black;
-		height: 50px;
-		width: 50px;
-		padding: 0;
-	}
+td {
+    border: 1px solid black;
+    height: 50px;
+    width: 50px;
+    padding: 0;
+}
 
-	table{
-		margin: 25 auto;
-		border: 2px solid #0099FF;
-	}
+table {
+    margin: 25px auto;
+    border: 2px solid #0099FF;
+    width: 211px;
+}
 
-	.black{
+.black {
+    background-color: black;
+}
 
-		background-color: black;
-	}
+#ScoreBoard {
+    text-align: center;
+    color: black;
+    margin-right:auto;
+}
+
+#ScoreTitle {
+    text-align: center;
+    color: red;
+}
+
