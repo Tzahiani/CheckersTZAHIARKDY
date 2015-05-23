@@ -1,8 +1,11 @@
+
 var playerScore = 0;
 var AIScore = 0;
 var whiteEat=0;
 var blackEat=0;
 turn=0;
+
+
 
 	function move(){
 		
