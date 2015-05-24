@@ -4,7 +4,7 @@
   <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
   <script type="text/javascript">
 
-  function init(){
+  function DragAndDropByLocation(){
   $(".item").draggable({
 
     // Find original position of dragged image.
@@ -12,7 +12,7 @@
 
       // Show start dragged position of image.
       var Startpos = $(this).position();
-      $("div#start").text("START: \nLeft: "+ Startpos.left + "\nTop: " + Startpos.top);
+      console.log("START: \nLeft: "+ parseInt(Startpos.left) + "\nTop: " + parseInt(Startpos.top));
     },
 
     // Find position where image is dropped.
@@ -20,12 +20,12 @@
 
       // Show dropped position.
       var Stoppos = $(this).position();
-      $("div#stop").text("STOP: \nLeft: "+ parseInt(Stoppos.left) + "\nTop: " + parseInt(Stoppos.top));
+      console.log("STOP: \nLeft: "+ parseInt(Stoppos.left) + "\nTop: " + parseInt(Stoppos.top));
     }
   });
   }
 
-  $(document).ready(init);
+  $(document).ready(DragAndDropByLocation);
   </script>
 </head>
 <body>
