@@ -31,12 +31,12 @@ function matrix(rows, cols) {
 function UpdateScoreBoard(winner) {
     switch (winner) {
         case 1:
-            x = Document.getElementById("playerScore");
-            x.innerHTML = playerScore++;
+            playerScore++;
+            document.getElementById('playerScore').firstChild.data = playerScore;
             break;
         case 2:
-            x = Document.getElementById("AIScore");
-            x.innerHTML = AIScore++;
+            AIScore++;
+            document.getElementById('AISscore').firstChild.data = AIScore;
         default:
             break;
     }
@@ -51,8 +51,21 @@ function init() {
     $('img').draggable();
 }
 
-function CheckIfOk() {
-    console.log("If you see this then i try to drag some thing.");
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+    var temp = $(this);
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    console.log(data);
+    temp.attr('src', data);
+    
 }
 
 $(document).ready(function () {
@@ -60,5 +73,7 @@ $(document).ready(function () {
     board = matrix(8, 8);
     print();
     init();
-
+    UpdateScoreBoard(1);
+    UpdateScoreBoard(1);
+    UpdateScoreBoard(2);
 });
