@@ -5,6 +5,8 @@ var blackEat = 0;
 turn = 0;
 var board;
 
+
+//This function MAPS the board to JavaScript Code.
 function matrix(rows, cols) {
 
     var arr = [];
@@ -27,6 +29,10 @@ function matrix(rows, cols) {
     return arr;
 }
 
+//This function updates the Score Board.
+//Add +1 to the score after each game.
+// 1 - Human
+// 2 - Computer
 function UpdateScoreBoard(winner) {
     switch (winner) {
         case 1:
@@ -35,12 +41,17 @@ function UpdateScoreBoard(winner) {
             break;
         case 2:
             AIScore++;
-            document.getElementById('AISscore').firstChild.data = AIScore;
+            document.getElementById('AISscore').firstChild.data = AIScore; 
         default:
             break;
     }
 }
 
+
+// This Function Updates the Score Board With the winner
+// 1 - Human
+// 2 - Computer
+// 0 - Reset to "Score Board"
 function GameFinish(winner) {
     switch (winner) {
         case 0:
