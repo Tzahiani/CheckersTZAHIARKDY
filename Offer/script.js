@@ -1,8 +1,5 @@
-﻿var playerScore = 0;
+var playerScore = 0;
 var AIScore = 0;
-var whiteEat = 0;
-var blackEat = 0;
-turn = 0;
 var board;
 
 
@@ -47,7 +44,6 @@ function UpdateScoreBoard(winner) {
     }
 }
 
-
 // This Function Updates the Score Board With the winner
 // 1 - Human
 // 2 - Computer
@@ -90,17 +86,11 @@ function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
     console.log(data);
-    temp.attr('src', data);
-
+    ev.target.appendChild(document.getElementById(data));
 }
 
 $(document).ready(function () {
-
     board = matrix(8, 8);
     print();
     init();
-    UpdateScoreBoard(1);
-    UpdateScoreBoard(1);
-    UpdateScoreBoard(2);
-    GameFinish(5);
 });
