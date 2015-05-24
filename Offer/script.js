@@ -1,5 +1,4 @@
-
-var playerScore = 0;
+﻿var playerScore = 0;
 var AIScore = 0;
 var whiteEat = 0;
 var blackEat = 0;
@@ -41,6 +40,22 @@ function UpdateScoreBoard(winner) {
             break;
     }
 }
+
+function GameFinish(winner) {
+    switch (winner) {
+        case 0:
+            document.getElementById('ScoreTitle').firstChild.data = "Score Board";
+        case 1:
+            document.getElementById('ScoreTitle').firstChild.data = "You Win";
+            break;
+        case 2:
+            document.getElementById('ScoreTitle').firstChild.data = "Computer Wins";
+            break;
+        default:
+            break;
+    }
+}
+
 function print() {
 
     for (var i = 0; i < 8; i++)
@@ -65,7 +80,7 @@ function drop(ev) {
     var data = ev.dataTransfer.getData("text");
     console.log(data);
     temp.attr('src', data);
-    
+
 }
 
 $(document).ready(function () {
@@ -76,4 +91,5 @@ $(document).ready(function () {
     UpdateScoreBoard(1);
     UpdateScoreBoard(1);
     UpdateScoreBoard(2);
+    GameFinish(5);
 });
