@@ -27,6 +27,27 @@ function matrix(rows, cols) {
 
     return arr;
 }
+function DragAndDropByLocation(){
+
+  $('img').draggable({
+
+    // Find original position of dragged image.
+    start: function(event, ui) {
+
+      // Show start dragged position of image.
+      var Startpos = $(this).position();
+      console.log("START: \nLeft: "+ parseInt(Startpos.left) + "\nTop: " + parseInt(Startpos.top));
+    },
+
+    // Find position where image is dropped.
+    stop: function(event, ui) {
+
+      // Show dropped position.
+      var Stoppos = $(this).position();
+      console.log("STOP: \nLeft: "+ parseInt(Stoppos.left) + "\nTop: " + parseInt(Stoppos.top));
+    }
+  });
+}
 
 function UpdateScoreBoard(winner) {
     switch (winner) {
@@ -48,7 +69,7 @@ function print() {
             console.log(board[i][j]);
 }
 function init() {
-    $('img').draggable();
+    DragAndDropByLocation();
 }
 
 function CheckIfOk() {
