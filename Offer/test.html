@@ -1,50 +1,42 @@
-<html lang="en">
+<html>
 <head>
-  <meta charset="utf-8">
-  <title>jQuery UI Droppable - Default functionality</title>
-  <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
   <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+  <script type="text/javascript">
 
-  <style>
-  #draggable { 
-    width: 100px; 
-    height: 100px; 
-    padding: 0.5em; 
-    float: left; 
-    margin: 10px 10px 10px 0; 
-  }
-  #droppable { 
-    width: 150px; 
-    height: 150px; 
-    padding: 0.5em; 
-    float: left; 
-    margin: 10px; 
-  }
-  </style>
-  <script>
-  $(function() {
-    $( "#draggable" ).draggable();
-    $( "#droppable" ).droppable({
-      drop: function( event, ui ) {
-        $( this )
-          .addClass( "ui-state-highlight" )
-          .find( "p" ).html( "Dropped!" );
-      }
-    });
+  function init(){
+  $(".item").draggable({
+
+    // Find original position of dragged image.
+    start: function(event, ui) {
+
+      // Show start dragged position of image.
+      var Startpos = $(this).position();
+      $("div#start").text("START: \nLeft: "+ Startpos.left + "\nTop: " + Startpos.top);
+    },
+
+    // Find position where image is dropped.
+    stop: function(event, ui) {
+
+      // Show dropped position.
+      var Stoppos = $(this).position();
+      $("div#stop").text("STOP: \nLeft: "+ parseInt(Stoppos.left) + "\nTop: " + parseInt(Stoppos.top));
+    }
   });
+  }
+
+  $(document).ready(init);
   </script>
 </head>
 <body>
- 
-<div id="draggable" class="ui-widget-content">
-  <p>Drag me to my target</p>
-</div>
- 
-<div id="droppable" class="ui-widget-header">
-  <p>Drop here</p>
-</div>
- 
- 
+
+  <div id="container">
+    <img id="productid_1" src="1.png" class="item" alt="" title="" />
+    <img id="productid_2" src="1.png" class="item" alt="" title="" />
+    <img id="productid_3" src="1.png" class="item" alt="" title="" />
+  </div>
+
+  <div id="start">Waiting for dragging the image get started...</div>
+  <div id="stop">Waiting image getting dropped...</div>
 </body>
 </html>
