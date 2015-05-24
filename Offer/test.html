@@ -8,6 +8,7 @@
   tr{border:1px solid;}
   td{border:1px solid;height:50px;width: 50px; }
   .black{background-color: black;}
+  img{height: 49px;width: 49px;}
   </style>
   <script>
   function allowDrop(ev) {
@@ -19,7 +20,7 @@
   }
 
   function drop(ev) {
-    if(document.getElementsByClassName("black")){
+    if(".black"){
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
     ev.target.appendChild(document.getElementById(data));
@@ -32,9 +33,10 @@
   <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
     <table>
       <tr>
-        <td class="black">
+        <td class="black" >
           <img src="1.png" draggable="true" ondragstart="drag(event)" id="drag1" width="88" height="31">
         </td>
+        <td>
           <div class="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
         </td>
         <td class="black">
