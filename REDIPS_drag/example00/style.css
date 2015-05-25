@@ -6,6 +6,7 @@ Oct, 2010.
 
 */
 
+
 body{
 	font-family: arial;
 	margin: 0px; /* for IE6 / IE7 */
@@ -28,6 +29,7 @@ div#redips-drag table {
 div#redips-drag td{
 	border: 1px solid navy;
 	height: 50px;
+	width: 50px;
 	text-align: center;
 	font-size: 10pt;
 	padding: 2px;
@@ -37,8 +39,8 @@ div#redips-drag td{
 .redips-drag {
 	margin: auto;
 	text-align: center;
-	width: 87px;
-	height: 35px;
+	width: 49px;
+	height: 49px;
 	line-height: 35px;
 	border: 2px solid SteelBlue;
 	background-color: white;
