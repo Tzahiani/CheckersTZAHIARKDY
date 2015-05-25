@@ -8,11 +8,11 @@ Player
 If Statments:
 (FOR HUMAN PLAYER)
 
-* checkColor_table(Valid+Position)
-* ChecjIsPeaceThere(IsPeaceThere)
+* checkColor_table(Valid+Position) - Auto From Drop Function
+* ChecjIsPeaceThere(IsPeaceThere) - Arkady(Return true/false)
+* CheckIfLigal(Pos) - Tzahi(Return True\False)
 * Check_Peace_Side(Player)
 * Check_Move_Or_Eat()
-* Check_Free_Space(For Drag ON Or OFF)
 * Move
 * Eat
 * Turn_over?(Can Eat Again)
