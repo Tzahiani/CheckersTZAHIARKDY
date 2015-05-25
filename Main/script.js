@@ -38,7 +38,7 @@ function UpdateScoreBoard(winner) {
             break;
         case 2:
             AIScore++;
-            document.getElementById('AISscore').firstChild.data = AIScore; 
+            document.getElementById('AISscore').firstChild.data = AIScore;
         default:
             break;
     }
@@ -82,11 +82,13 @@ function drag(ev) {
 }
 
 function drop(ev) {
-    var temp = $(this);
     ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
-    console.log(data);
-    $(ev.target).append($('#' + data).find('img'));
+    var TD_FROM = ev.dataTransfer.getData("text");
+    var TD_TO = $(ev.target).attr('id');
+    $(ev.target).append($('#' + TD_FROM).find('img'));
+    console.log("This where i am FROM " + TD_FROM);
+    console.log("This where i am NOW " + TD_TO);
+
 }
 
 $(document).ready(function () {

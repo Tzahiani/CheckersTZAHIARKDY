@@ -18,11 +18,10 @@ table {
 #ScoreBoard {
     text-align: center;
     color: black;
-    margin-right:auto;
+    margin-right: auto;
 }
 
 #ScoreTitle {
     text-align: center;
     color: red;
 }
-
