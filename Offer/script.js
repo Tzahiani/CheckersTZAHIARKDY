@@ -78,7 +78,7 @@ function allowDrop(ev) {
 }
 
 function drag(ev) {
-    ev.dataTransfer.setData("text", ev.target.id);
+    ev.dataTransfer.setData("text", $(ev.target).parent().attr('id'));
 }
 
 function drop(ev) {
@@ -86,7 +86,7 @@ function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
     console.log(data);
-    ev.target.appendChild(document.getElementById(data));
+    $(evt.target).append($('#' + data).find('img'));
 }
 
 $(document).ready(function () {
