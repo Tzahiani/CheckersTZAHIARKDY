@@ -86,7 +86,7 @@ function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
     console.log(data);
-    $(evt.target).append($('#' + data).find('img'));
+    $(ev.target).append($('#' + data).find('img'));
 }
 
 $(document).ready(function () {
