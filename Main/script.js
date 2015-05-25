@@ -1,7 +1,8 @@
 var playerScore = 0;
 var AIScore = 0;
 var board;
-
+var xFrom,yFrom;
+var xTo,yTo;
 
 //This function MAPS the board to JavaScript Code.
 function matrix(rows, cols) {
@@ -62,14 +63,17 @@ function GameFinish(winner) {
             break;
     }
 }
-
-function moveXY(num){
-    var x,y;
-
-    x = parseInt(num) % 10;
-    y = Math.floor((parseInt(num)) / 10);
-    console.log(x);
-    console.log(y);
+//This function divides the coordinates of points
+function moveXY(from,to){
+    
+    xFrom = parseInt(from) % 10;
+    yFrom = Math.floor((parseInt(from)) / 10);
+    xTo = parseInt(to) % 10;
+    yTo = Math.floor((parseInt(to)) / 10);
+    console.log(xFrom);
+    console.log(yFrom);
+    console.log(xTo);
+    console.log(yTo);
 }
 
 
@@ -91,15 +95,24 @@ function drag(ev) {
     ev.dataTransfer.setData("text", $(ev.target).parent().attr('id'));
 }
 
+//This function check if the move of Human is illegal
+function humanMove(ev,TD_FROM,TD_TO){
+    moveXY(TD_FROM,TD_TO);
+
+    if((xFrom+1==xTo && yFrom-1==yTo) || (xFrom-1==xTo && yFrom-1==yTo))
+    {
+
+        $(ev.target).append($('#' + TD_FROM).find('img'));
+        console.log("This where i am FROM " + TD_FROM);
+        console.log("This where i am NOW " + TD_TO);
+    }
+}
+
 function drop(ev) {
     ev.preventDefault();
     var TD_FROM = ev.dataTransfer.getData("text");
     var TD_TO = $(ev.target).attr('id');
-    $(ev.target).append($('#' + TD_FROM).find('img'));
-    console.log("This where i am FROM " + TD_FROM);
-    console.log("This where i am NOW " + TD_TO);
-    moveXY(TD_TO);
-
+    humanMove(ev,TD_FROM,TD_TO);
 }
 
 $(document).ready(function () {
