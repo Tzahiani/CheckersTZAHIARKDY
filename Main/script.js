@@ -63,6 +63,16 @@ function GameFinish(winner) {
     }
 }
 
+function moveXY(num){
+    var x,y;
+
+    x = parseInt(num) % 10;
+    y = Math.floor((parseInt(num)) / 10);
+    console.log(x);
+    console.log(y);
+}
+
+
 function print() {
 
     for (var i = 0; i < 8; i++)
@@ -88,6 +98,7 @@ function drop(ev) {
     $(ev.target).append($('#' + TD_FROM).find('img'));
     console.log("This where i am FROM " + TD_FROM);
     console.log("This where i am NOW " + TD_TO);
+    moveXY(TD_TO);
 
 }
 
