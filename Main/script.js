@@ -103,18 +103,18 @@ function CheckIsPeaceThere() {
 
     if ((board[yTo][xTo] == 2) || (board[xTo][yTo] == 1)) {
         console.log("has Image");
-        return true;
+        return false;
     }
     else {
         console.log("Its Empty Image");
-        return false;
+        return true;
     }
 }
 
 //This function Updates the Board with Taken Blocks.
 function UpdateStatus() {
-    board[xFrom][yFrom] = 0;
-    board[xTo][yTo] = 2;
+    board[yFrom][xFrom] = 0;
+    board[yTo][xTo] = 2;
     console.log("Status Updated");
 }
 
@@ -150,7 +150,7 @@ function drop(ev) {
     var TD_TO = $(ev.target).attr('id');
     moveXY(TD_FROM, TD_TO);
     if (humanMove()) {
-        if (!CheckIsPeaceThere()) {
+        if (CheckIsPeaceThere()) {
             $(ev.target).append($('#' + TD_FROM).find('img'));
             UpdateStatus();
         }
