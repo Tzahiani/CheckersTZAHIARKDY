@@ -62,6 +62,7 @@ function GameFinish(winner) {
             break;
     }
 }
+
 //This function divides the coordinates of points
 function moveXY(from,to){
 
@@ -69,55 +70,76 @@ function moveXY(from,to){
     yFrom = Math.floor((parseInt(from)) / 10);
     xTo = parseInt(to) % 10;
     yTo = Math.floor((parseInt(to)) / 10);
-    console.log(xFrom);
-    console.log(yFrom);
-    console.log(xTo);
-    console.log(yTo);
+   // console.log( "X-From: " + xFrom);
+   // console.log("Y-From: " + yFrom);
+   // console.log("X-To: " + xTo);
+   // console.log("Y-To " + yTo);
 }
 
+//This function check if the move of Human is illegal
+function humanMove(ev, TD_FROM, TD_TO) {
+    moveXY(TD_FROM, TD_TO);
 
+    if ((xFrom + 1 == xTo && yFrom - 1 == yTo) || (xFrom - 1 == xTo && yFrom - 1 == yTo)) {
+        return true;
+    }
+    return false;
+}
+
+function ChecjkIsPeaceThere(TD_TO) {
+      var hasImg = document.getElementById(TD_TO);
+       if(hasImg){
+        console.log("Has Image");
+        return false;
+    }
+    else {
+        console.log(hasImg);
+        console.log("Its Empty Image");
+        return true;
+    }
+}
+
+//This function print all the object in the board.
 function print() {
 
     for (var i = 0; i < 8; i++)
         for (var j = 0; j < 8; j++)
             console.log(board[i][j]);
 }
+
+//this function makes all the pieces draggeble.
 function init() {
     $('img').draggable();
 }
 
+//this function allows to drop in the cell
 function allowDrop(ev) {
     ev.preventDefault();
 }
 
+//this function makes the dtag start and take the img with it.
 function drag(ev) {
     ev.dataTransfer.setData("text", $(ev.target).parent().attr('id'));
 }
 
-//This function check if the move of Human is illegal
-function humanMove(ev,TD_FROM,TD_TO){
-    moveXY(TD_FROM,TD_TO);
-
-    if((xFrom+1==xTo && yFrom-1==yTo) || (xFrom-1==xTo && yFrom-1==yTo))
-    {
-        return true;
-    }
-    return false;
-}
-
+//this function make the drop in the new cell.
 function drop(ev) {
     ev.preventDefault();
     var TD_FROM = ev.dataTransfer.getData("text");
     var TD_TO = $(ev.target).attr('id');
 
-    if(humanMove(ev,TD_FROM,TD_TO))
-    {
-        $(ev.target).append($('#' + TD_FROM).find('img'));
-        console.log("This where i am FROM " + TD_FROM);
-        console.log("This where i am NOW " + TD_TO);
-    }
+    //if(humanMove(ev,TD_FROM,TD_TO))
+    //{
+        if (CheckIsPeaceThere(TD_TO)) {
+            $(ev.target).append($('#' + TD_FROM).find('img'));
+            console.log("This where i am FROM " + TD_FROM);
+            console.log("This where i am NOW " + TD_TO);
+        }
+        //console.log("Illigal Move Check Your Drop")
+   //}
 }
 
+//this is the MAIN function.
 $(document).ready(function () {
     board = matrix(8, 8);
     print();
