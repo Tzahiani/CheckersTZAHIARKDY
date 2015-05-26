@@ -1,8 +1,7 @@
 var playerScore = 0;
 var AIScore = 0;
 var board;
-var xFrom,yFrom;
-var xTo,yTo;
+
 
 //This function MAPS the board to JavaScript Code.
 function matrix(rows, cols) {
@@ -65,7 +64,7 @@ function GameFinish(winner) {
 }
 //This function divides the coordinates of points
 function moveXY(from,to){
-    
+
     xFrom = parseInt(from) % 10;
     yFrom = Math.floor((parseInt(from)) / 10);
     xTo = parseInt(to) % 10;
@@ -101,18 +100,22 @@ function humanMove(ev,TD_FROM,TD_TO){
 
     if((xFrom+1==xTo && yFrom-1==yTo) || (xFrom-1==xTo && yFrom-1==yTo))
     {
-
-        $(ev.target).append($('#' + TD_FROM).find('img'));
-        console.log("This where i am FROM " + TD_FROM);
-        console.log("This where i am NOW " + TD_TO);
+        return true;
     }
+    return false;
 }
 
 function drop(ev) {
     ev.preventDefault();
     var TD_FROM = ev.dataTransfer.getData("text");
     var TD_TO = $(ev.target).attr('id');
-    humanMove(ev,TD_FROM,TD_TO);
+
+    if(humanMove(ev,TD_FROM,TD_TO))
+    {
+        $(ev.target).append($('#' + TD_FROM).find('img'));
+        console.log("This where i am FROM " + TD_FROM);
+        console.log("This where i am NOW " + TD_TO);
+    }
 }
 
 $(document).ready(function () {
