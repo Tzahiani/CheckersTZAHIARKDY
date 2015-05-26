@@ -64,40 +64,44 @@ function GameFinish(winner) {
 }
 
 //This function divides the coordinates of points
-function moveXY(from,to){
+function moveXY(from, to) {
 
     xFrom = parseInt(from) % 10;
     yFrom = Math.floor((parseInt(from)) / 10);
     xTo = parseInt(to) % 10;
     yTo = Math.floor((parseInt(to)) / 10);
-   // console.log( "X-From: " + xFrom);
-   // console.log("Y-From: " + yFrom);
-   // console.log("X-To: " + xTo);
-   // console.log("Y-To " + yTo);
+    console.log("X-From: " + xFrom);
+    console.log("Y-From: " + yFrom);
+    console.log("X-To: " + xTo);
+    console.log("Y-To " + yTo);
 }
 
 //This function check if the move of Human is illegal
-function humanMove(ev, TD_FROM, TD_TO) {
-    moveXY(TD_FROM, TD_TO);
+function humanMove() {
 
     if ((xFrom + 1 == xTo && yFrom - 1 == yTo) || (xFrom - 1 == xTo && yFrom - 1 == yTo)) {
         return true;
-    }else if((xFrom + 2 == xTo && yFrom - 2 == yTo) || (xFrom - 2 == xTo && yFrom - 2 == yTo)){
-        return true;
-    }return false;
+    } 
+    return false;
 }
 
-function CheckIsPeaceThere(TD_TO) {
-      var hasImg = $('#' + TD_TO).children().attr('img');
-       if(hasImg){
-        console.log(hasImg);
+function CheckIsPeaceThere() {
+
+    if (board[xTo][yTo] == 2) {
+        console.log("has Image");
         return false;
     }
     else {
-        console.log(hasImg);
         console.log("Its Empty Image");
         return true;
     }
+}
+
+//This function Updates the Board with Taken Blocks.
+function UpdateStatus() {
+    board[xFrom][yFrom] = 0;
+    board[xTo][yTo] = 2;
+    console.log("Status Updated");
 }
 
 //This function print all the object in the board.
@@ -106,6 +110,7 @@ function print() {
     for (var i = 0; i < 8; i++)
         for (var j = 0; j < 8; j++)
             console.log(board[i][j]);
+    console, log("Print Finish");
 }
 
 //this function makes all the pieces draggeble.
@@ -129,16 +134,17 @@ function drop(ev) {
     ev.preventDefault();
     var TD_FROM = ev.dataTransfer.getData("text");
     var TD_TO = $(ev.target).attr('id');
-
-    if(humanMove(ev,TD_FROM,TD_TO))
-    {
-       //if (CheckIsPeaceThere(TD_TO)) {
-           $(ev.target).append($('#' + TD_FROM).find('img'));
-           console.log("This where i am FROM " + TD_FROM);
-          console.log("This where i am NOW " + TD_TO);
-       //}
-        //console.log("Illigal Move Check Your Drop")
-  }
+    moveXY(TD_FROM, TD_TO);
+    if (humanMove()) {
+        if (CheckIsPeaceThere()) {
+            $(ev.target).append($('#' + TD_FROM).find('img'));
+            UpdateStatus();
+        }
+        else
+            console.log("Illigal Move Block Taken");
+    }
+    else
+        console.log("Illigal Move Check Your Drop");
 }
 
 //this is the MAIN function.
