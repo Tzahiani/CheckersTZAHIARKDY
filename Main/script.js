@@ -82,14 +82,15 @@ function humanMove(ev, TD_FROM, TD_TO) {
 
     if ((xFrom + 1 == xTo && yFrom - 1 == yTo) || (xFrom - 1 == xTo && yFrom - 1 == yTo)) {
         return true;
-    }
-    return false;
+    }else if((xFrom + 2 == xTo && yFrom - 2 == yTo) || (xFrom - 2 == xTo && yFrom - 2 == yTo)){
+        return true;
+    }return false;
 }
 
-function ChecjkIsPeaceThere(TD_TO) {
-      var hasImg = document.getElementById(TD_TO);
+function CheckIsPeaceThere(TD_TO) {
+      var hasImg = $('#' + TD_TO).children().attr('img');
        if(hasImg){
-        console.log("Has Image");
+        console.log(hasImg);
         return false;
     }
     else {
@@ -115,6 +116,7 @@ function init() {
 //this function allows to drop in the cell
 function allowDrop(ev) {
     ev.preventDefault();
+
 }
 
 //this function makes the dtag start and take the img with it.
@@ -128,15 +130,15 @@ function drop(ev) {
     var TD_FROM = ev.dataTransfer.getData("text");
     var TD_TO = $(ev.target).attr('id');
 
-    //if(humanMove(ev,TD_FROM,TD_TO))
-    //{
-        if (CheckIsPeaceThere(TD_TO)) {
-            $(ev.target).append($('#' + TD_FROM).find('img'));
-            console.log("This where i am FROM " + TD_FROM);
-            console.log("This where i am NOW " + TD_TO);
-        }
+    if(humanMove(ev,TD_FROM,TD_TO))
+    {
+       //if (CheckIsPeaceThere(TD_TO)) {
+           $(ev.target).append($('#' + TD_FROM).find('img'));
+           console.log("This where i am FROM " + TD_FROM);
+          console.log("This where i am NOW " + TD_TO);
+       //}
         //console.log("Illigal Move Check Your Drop")
-   //}
+  }
 }
 
 //this is the MAIN function.
