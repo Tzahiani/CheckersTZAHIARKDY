@@ -101,7 +101,7 @@ function humanMove() {
 
 function CheckIsPeaceThere() {
 
-    if ((board[xTo][yTo] == 2) || (board[xTo][yTo] == 1)) {
+    if ((board[yTo][xTo] == 2) || (board[xTo][yTo] == 1)) {
         console.log("has Image");
         return true;
     }
@@ -124,7 +124,7 @@ function print() {
     for (var i = 0; i < 8; i++)
         for (var j = 0; j < 8; j++)
             console.log(board[i][j]);
-    console, log("Print Finish");
+    console.log("Print Finish");
 }
 
 //this function makes all the pieces draggeble.
@@ -164,6 +164,6 @@ function drop(ev) {
 //this is the MAIN function.
 $(document).ready(function () {
     board = matrix(8, 8);
-    print();
+    //print();
     init();
 });
