@@ -101,13 +101,13 @@ function humanMove() {
 
 function CheckIsPeaceThere() {
 
-    if (board[xTo][yTo] == 2) {
+    if ((board[xTo][yTo] == 2) || (board[xTo][yTo] == 1)) {
         console.log("has Image");
-        return false;
+        return true;
     }
     else {
         console.log("Its Empty Image");
-        return true;
+        return false;
     }
 }
 
@@ -150,7 +150,7 @@ function drop(ev) {
     var TD_TO = $(ev.target).attr('id');
     moveXY(TD_FROM, TD_TO);
     if (humanMove()) {
-        if (CheckIsPeaceThere()) {
+        if (!CheckIsPeaceThere()) {
             $(ev.target).append($('#' + TD_FROM).find('img'));
             UpdateStatus();
         }
