@@ -19,24 +19,21 @@ function matrix(rows, cols) {
 
         for (var j = 0; j < cols; j++) {
             // Initializes:
-            if((i%2==0 && j%2!=0 && i<3) || (i%2!=0 && j%2==0 && i<3))
-            {
-            arr[i][j] = 1;
-            }else 
-                if((i%2==0 && j%2!=0 && i>4) || (i%2!=0 && j%2==0 && i>4))
-                {
+            if ((i % 2 == 0 && j % 2 != 0 && i < 3) || (i % 2 != 0 && j % 2 == 0 && i < 3)) {
+                arr[i][j] = 1;
+            } else
+                if ((i % 2 == 0 && j % 2 != 0 && i > 4) || (i % 2 != 0 && j % 2 == 0 && i > 4)) {
                     arr[i][j] = 2;
-                }else
-                    {
-                        arr[i][j] = 0;
-                    }
-        } 
-    }
-    for(var i=0;i<rows;i++)
-        for(var j=0;j<cols;j++)
-        {
-            console.log("arr"+"["+i+']'+'['+j+']:'+arr[i][j]);
+                } else {
+                    arr[i][j] = 0;
+                }
         }
+    }
+    for (var i = 0; i < rows; i++)
+        for (var j = 0; j < cols; j++) {
+            console.log("arr" + "[" + i + ']' + '[' + j + ']:' + arr[i][j]);
+        }
+    console.log("Board Print Finish");
     return arr;
 }
 
@@ -84,10 +81,6 @@ function moveXY(from, to) {
     yFrom = Math.floor((parseInt(from)) / 10);
     xTo = parseInt(to) % 10;
     yTo = Math.floor((parseInt(to)) / 10);
-    console.log("X-From: " + xFrom);
-    console.log("Y-From: " + yFrom);
-    console.log("X-To: " + xTo);
-    console.log("Y-To " + yTo);
 }
 
 //This function check if the move of Human is illegal
@@ -95,18 +88,19 @@ function humanMove() {
 
     if ((xFrom + 1 == xTo && yFrom - 1 == yTo) || (xFrom - 1 == xTo && yFrom - 1 == yTo)) {
         return true;
-    } 
+    }
     return false;
 }
 
+//this function Check if there is apeace on the Block.
 function CheckIsPeaceThere() {
 
-    if ((board[yTo][xTo] == 2) || (board[xTo][yTo] == 1)) {
-        console.log("has Image");
+    if ((board[yTo][xTo] == 2) || (board[yTo][xTo] == 1)) {
+        console.log("Block Taken");
         return false;
     }
     else {
-        console.log("Its Empty Image");
+        console.log("Block Free");
         return true;
     }
 }
@@ -116,15 +110,6 @@ function UpdateStatus() {
     board[yFrom][xFrom] = 0;
     board[yTo][xTo] = 2;
     console.log("Status Updated");
-}
-
-//This function print all the object in the board.
-function print() {
-
-    for (var i = 0; i < 8; i++)
-        for (var j = 0; j < 8; j++)
-            console.log(board[i][j]);
-    console.log("Print Finish");
 }
 
 //this function makes all the pieces draggeble.
@@ -155,15 +140,14 @@ function drop(ev) {
             UpdateStatus();
         }
         else
-            console.log("Illigal Move Block Taken");
+            console.log("Illigal Move: Block Taken");
     }
     else
-        console.log("Illigal Move Check Your Drop");
+        console.log("Illigal Move: Check Your Drop");
 }
 
 //this is the MAIN function.
 $(document).ready(function () {
     board = matrix(8, 8);
-    //print();
     init();
 });
