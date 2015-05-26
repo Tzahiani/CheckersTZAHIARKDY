@@ -19,10 +19,24 @@ function matrix(rows, cols) {
 
         for (var j = 0; j < cols; j++) {
             // Initializes:
-            arr[i][j] = $('#' + i + j);
-        }
+            if((i%2==0 && j%2!=0 && i<3) || (i%2!=0 && j%2==0 && i<3))
+            {
+            arr[i][j] = 1;
+            }else 
+                if((i%2==0 && j%2!=0 && i>4) || (i%2!=0 && j%2==0 && i>4))
+                {
+                    arr[i][j] = 2;
+                }else
+                    {
+                        arr[i][j] = 0;
+                    }
+        } 
     }
-
+    for(var i=0;i<rows;i++)
+        for(var j=0;j<cols;j++)
+        {
+            console.log("arr"+"["+i+']'+'['+j+']:'+arr[i][j]);
+        }
     return arr;
 }
 
@@ -130,15 +144,15 @@ function drop(ev) {
     var TD_FROM = ev.dataTransfer.getData("text");
     var TD_TO = $(ev.target).attr('id');
 
-    if(humanMove(ev,TD_FROM,TD_TO))
-    {
+    //if(humanMove(ev,TD_FROM,TD_TO))
+    //{
        //if (CheckIsPeaceThere(TD_TO)) {
-           $(ev.target).append($('#' + TD_FROM).find('img'));
-           console.log("This where i am FROM " + TD_FROM);
-          console.log("This where i am NOW " + TD_TO);
+       //    $(ev.target).append($('#' + TD_FROM).find('img'));
+       //    console.log("This where i am FROM " + TD_FROM);
+       //   console.log("This where i am NOW " + TD_TO);
        //}
         //console.log("Illigal Move Check Your Drop")
-  }
+  //}
 }
 
 //this is the MAIN function.
