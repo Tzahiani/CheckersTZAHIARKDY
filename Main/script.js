@@ -148,7 +148,6 @@ function drop(ev) {
     ev.preventDefault();
     var TD_FROM = ev.dataTransfer.getData("text");
     var TD_TO = $(ev.target).attr('id');
-<<<<<<< HEAD
     moveXY(TD_FROM, TD_TO);
     if (humanMove()) {
         if (CheckIsPeaceThere()) {
@@ -160,18 +159,6 @@ function drop(ev) {
     }
     else
         console.log("Illigal Move Check Your Drop");
-=======
-
-    //if(humanMove(ev,TD_FROM,TD_TO))
-    //{
-       //if (CheckIsPeaceThere(TD_TO)) {
-       //    $(ev.target).append($('#' + TD_FROM).find('img'));
-       //    console.log("This where i am FROM " + TD_FROM);
-       //   console.log("This where i am NOW " + TD_TO);
-       //}
-        //console.log("Illigal Move Check Your Drop")
-  //}
->>>>>>> origin/master
 }
 
 //this is the MAIN function.
