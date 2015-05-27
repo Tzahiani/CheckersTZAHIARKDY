@@ -1,7 +1,8 @@
 var playerScore = 0;
 var AIScore = 0;
 var board;
-
+var xFrom,yFrom;  
+var xTo,yTo; 
 
 //This function MAPS the board to JavaScript Code.
 function matrix(rows, cols) {
@@ -29,6 +30,7 @@ function matrix(rows, cols) {
                 }
         }
     }
+    //Print
     for (var i = 0; i < rows; i++)
         for (var j = 0; j < cols; j++) {
             console.log("arr" + "[" + i + ']' + '[' + j + ']:' + arr[i][j]);
