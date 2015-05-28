@@ -1,7 +1,7 @@
 var playerScore = 0;
 var AIScore = 0;
 var board;
-var xFrom,yFrom;  
+var xFrom, yFrom;
 var xTo, yTo;
 var way; // gets the way of the move (right = 2 / left = 1)
 
@@ -112,13 +112,10 @@ function CheckIsPeaceThere() {
 
 //this function make only eat possible.
 function MustEat() {
-    for(var i=0;i<8;i++){
-        for(var j=0;j<8;j++)
-        {
-            if(board[i][j]+1==board[i+1][j+1])
-                return true;
-            if(board[i][j]-1==board[i-1][j+1])
-                return true;
+    for (var i = 0; i < 8; i++) {
+        for (var j = 0; j < 8; j++) {
+            // if(board[i][j] == 2 && board[i-1][j-1] == 1 || board[i-1][j+1] == 1)
+            //return true;
         }
         return false;
     }
@@ -144,75 +141,75 @@ function eatMove() {
 }
 
 //this function check if the move to cords is OK.
-    function eat() {
-        if ((xFrom - 2 == xTo && yFrom - 2 == yTo) && way == 1 && CheckIsPeaceThere())
-            return true;
-        else if ((xFrom + 2 == xTo && yFrom - 2 == yTo) && way == 2 && CheckIsPeaceThere())
-            return true;
-        else
-            return false;
+function eat() {
+    if ((xFrom - 2 == xTo && yFrom - 2 == yTo) && way == 1 && CheckIsPeaceThere())
+        return true;
+    else if ((xFrom + 2 == xTo && yFrom - 2 == yTo) && way == 2 && CheckIsPeaceThere())
+        return true;
+    else
+        return false;
+}
+
+//this function delete the pieace from board and HTML.
+function deletePieace() {
+    switch (way) {
+        case 1:
+            board[yFrom - 1][xFrom - 1] = 0;
+            $('#' + (yFrom - 1) + (xFrom - 1)).find('img').attr('src') = undefined;
+            break;
+        case 2:
+            board[yFrom - 1][xFrom + 1] = 0;
+            $('#' + (yFrom - 1) + (xFrom + 1)).find('img').attr('src') = undefined;
+        default:
+            break;
     }
+}
 
-    //this function delete the pieace from board and HTML.
-    function deletePieace() {
-        switch (way) {
-            case 1:
-                board[yFrom - 1][xFrom - 1] = 0;
-                $('#' + (yFrom - 1) + (xFrom - 1)).find('img').attr('src') = undefined;
-                break;
-            case 2:
-                board[yFrom - 1][xFrom + 1] = 0;
-                $('#' + (yFrom - 1) + (xFrom + 1)).find('img').attr('src') = undefined;
-            default:
-                break;
-        }
+//This function Updates the Board with Taken Blocks.
+function UpdateStatus(whoPlay) {
+    board[yFrom][xFrom] = 0;
+    board[yTo][xTo] = whoPlay;
+    console.log("Status Updated");
+}
+
+//this function makes all the pieces draggeble.
+function init() {
+    $('img').draggable();
+}
+
+//this function allows to drop in the cell
+function allowDrop(ev) {
+    ev.preventDefault();
+
+}
+
+//this function makes the dtag start and take the img with it.
+function drag(ev) {
+    ev.dataTransfer.setData("text", $(ev.target).parent().attr('id'));
+}
+
+//this function make the drop in the new cell.
+function drop(ev) {
+    ev.preventDefault();
+    var TD_FROM = ev.dataTransfer.getData("text");
+    var TD_TO = $(ev.target).attr('id');
+    moveXY(TD_FROM, TD_TO);
+
+    if (eatMove()) {
+        $(ev.target).append($('#' + TD_FROM).find('img'));
+        deletePieace();
+        UpdateStatus();
     }
-
-    //This function Updates the Board with Taken Blocks.
-    function UpdateStatus(whoPlay) {
-        board[yFrom][xFrom] = 0;
-        board[yTo][xTo] = whoPlay;
-        console.log("Status Updated");
+    else if (humanMove() && !MustEat()) {
+        $(ev.target).append($('#' + TD_FROM).find('img'));
+        UpdateStatus();
     }
+    else
+        console.log("Illigal Move: Block Taken");
+}
 
-    //this function makes all the pieces draggeble.
-    function init() {
-        $('img').draggable();
-    }
-
-    //this function allows to drop in the cell
-    function allowDrop(ev) {
-        ev.preventDefault();
-
-    }
-
-    //this function makes the dtag start and take the img with it.
-    function drag(ev) {
-        ev.dataTransfer.setData("text", $(ev.target).parent().attr('id'));
-    }
-
-    //this function make the drop in the new cell.
-    function drop(ev) {
-        ev.preventDefault();
-        var TD_FROM = ev.dataTransfer.getData("text");
-        var TD_TO = $(ev.target).attr('id');
-        moveXY(TD_FROM, TD_TO);
-
-        if (eatMove()) {
-            $(ev.target).append($('#' + TD_FROM).find('img'));
-            deletePieace();
-            UpdateStatus();
-        }
-        else if (humanMove() && !MustEat()) {
-                $(ev.target).append($('#' + TD_FROM).find('img'));
-                UpdateStatus();
-            }
-            else
-                console.log("Illigal Move: Block Taken");
-        }
-
-    //this is the MAIN function.
-    $(document).ready(function () {
-        board = matrix(8, 8);
-        init();
-    });
+//this is the MAIN function.
+$(document).ready(function () {
+    board = matrix(8, 8);
+    init();
+});
