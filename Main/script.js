@@ -109,7 +109,6 @@ function CheckIsPeaceThere() {
     }
 }
 
-<<<<<<< HEAD
 function eatCheck(num){
 
     if (num==1){
@@ -136,15 +135,25 @@ function eatCheck(num){
 }
 
 
+function eat(num){
 
-=======
+    if (num==2){
+         if ((xFrom + 2 == xTo && yFrom - 2 == yTo) || (xFrom - 2 == xTo && yFrom - 2 == yTo))
+            return true;
+    }
+    else if(num==1){
+
+        if ((xFrom + 2 == xTo && yFrom + 2 == yTo) || (xFrom - 2 == xTo && yFrom + 2 == yTo))
+        return true;
+    }
+    return false;
+}
 //this function delete the pieace from board and HTML.
 function deletePieace(x,y) {
     board[y][x] = 0;
     $('#' + y + x).find('img').attr('src') = undefined;
 }
 
->>>>>>> origin/master
 //This function Updates the Board with Taken Blocks.
 function UpdateStatus(whoPlay) {
     board[yFrom][xFrom] = 0;
@@ -174,7 +183,8 @@ function drop(ev) {
     var TD_FROM = ev.dataTransfer.getData("text");
     var TD_TO = $(ev.target).attr('id');
     moveXY(TD_FROM, TD_TO);
-    if (humanMove()) {
+    if (eatCheck(num)){
+         if (eat(num)) {
         if (CheckIsPeaceThere()) {
             $(ev.target).append($('#' + TD_FROM).find('img'));
             UpdateStatus();
@@ -184,6 +194,17 @@ function drop(ev) {
     }
     else
         console.log("Illigal Move: Check Your Drop");
+    }else
+        if (humanMove()) {
+            if (CheckIsPeaceThere()) {
+                $(ev.target).append($('#' + TD_FROM).find('img'));
+                UpdateStatus();
+            }
+            else
+             console.log("Illigal Move: Block Taken");
+        }
+        else
+            console.log("Illigal Move: Check Your Drop");
 }
 
 //this is the MAIN function.
