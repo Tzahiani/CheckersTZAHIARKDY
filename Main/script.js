@@ -110,6 +110,7 @@ function CheckIsPeaceThere() {
     }
 }
 
+//this function make only eat possible.
 function MustEat() {
     for(var i=0;i<8;i++){
         for(var j=0;j<8;j++)
@@ -123,6 +124,7 @@ function MustEat() {
     }
 }
 
+//this function checks if the eat move is ok.
 function eatMove() {
 
     if (board[yFrom - 1][xFrom - 1] == 2)
@@ -141,7 +143,7 @@ function eatMove() {
     }
 }
 
-
+//this function check if the move to cords is OK.
     function eat() {
         if ((xFrom - 2 == xTo && yFrom - 2 == yTo) && way == 1 && CheckIsPeaceThere())
             return true;
