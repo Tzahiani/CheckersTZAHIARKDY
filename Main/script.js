@@ -107,6 +107,33 @@ function CheckIsPeaceThere() {
     }
 }
 
+function eatCheck(num){
+
+    if (num==1){
+        for(var i=0;i<8;i++){
+            for(var j=0;j<8;j++)
+            {
+                if(bord[i][j]-1==bord[i+1][j-1])
+                    return true;
+                if(bord[i][j]-1==bord[i-1][j-1])
+                    return true;
+            }
+        }
+    }else{
+        for(var i=0;i<8;i++){
+            for(var j=0;j<8;j++)
+                {
+                if(bord[i][j]+1==bord[i+1][j+1])
+                    return true;
+                if(bord[i][j]-1==bord[i-1][j+1])
+                    return true;
+                }
+            }
+      }
+}
+
+
+
 //This function Updates the Board with Taken Blocks.
 function UpdateStatus() {
     board[yFrom][xFrom] = 0;
