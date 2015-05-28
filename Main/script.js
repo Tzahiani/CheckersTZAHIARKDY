@@ -124,19 +124,17 @@ function MustEat() {
 //this function checks if the eat move is ok.
 function eatMove() {
 
-    if (board[yFrom - 1][xFrom - 1] == 2)
+    if (board[yFrom - 1][xFrom - 1] == 2) {
         way = 1;
-    if (eat()) {
-        return true;
+        if (eat()) {
+            return true;
+        }
     }
-    else {
-        return false;
-    }
-    if (board[yFrom - 1][xFrom + 1] == 2)
+    else if (board[yFrom - 1][xFrom + 1] == 2) {
         way = 2;
-    if (eat()) {
-        return true;
-        return true;
+        if (eat()) {
+            return true;
+        }
     }
 }
 
