@@ -41,35 +41,37 @@ function matrix(rows, cols) {
 
 //This function updates the Score Board.
 //Add +1 to the score after each game.
-// 1 - Human
-// 2 - Computer
+// 2 - Human
+// 1 - Computer
 function UpdateScoreBoard(winner) {
     switch (winner) {
         case 1:
+            AIScore++;
+            document.getElementById('AISscore').firstChild.data = AIScore;
+            break;
+        case 2:
             playerScore++;
             document.getElementById('playerScore').firstChild.data = playerScore;
             break;
-        case 2:
-            AIScore++;
-            document.getElementById('AISscore').firstChild.data = AIScore;
         default:
             break;
     }
 }
 
 // This Function Updates the Score Board With the winner
-// 1 - Human
-// 2 - Computer
+// 2 - Human
+// 1 - Computer
 // 0 - Reset to "Score Board"
 function GameFinish(winner) {
     switch (winner) {
         case 0:
             document.getElementById('ScoreTitle').firstChild.data = "Score Board";
+            break;
         case 1:
-            document.getElementById('ScoreTitle').firstChild.data = "You Win";
+            document.getElementById('ScoreTitle').firstChild.data = "Computer Wins";
             break;
         case 2:
-            document.getElementById('ScoreTitle').firstChild.data = "Computer Wins";
+            document.getElementById('ScoreTitle').firstChild.data = "You Win";
             break;
         default:
             break;
@@ -107,10 +109,16 @@ function CheckIsPeaceThere() {
     }
 }
 
+//this function delete the pieace from board and HTML.
+function deletePieace(x,y) {
+    board[y][x] = 0;
+    $('#' + y + x).find('img').attr('src') = undefined;
+}
+
 //This function Updates the Board with Taken Blocks.
-function UpdateStatus() {
+function UpdateStatus(whoPlay) {
     board[yFrom][xFrom] = 0;
-    board[yTo][xTo] = 2;
+    board[yTo][xTo] = whoPlay;
     console.log("Status Updated");
 }
 
