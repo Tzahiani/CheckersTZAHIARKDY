@@ -90,7 +90,6 @@ function moveXY(from, to) {
 
 //This function check if the move of Human is illegal
 function humanMove() {
-
     if ((xFrom + 1 == xTo && yFrom - 1 == yTo) || (xFrom - 1 == xTo && yFrom - 1 == yTo) && CheckIsPeaceThere()) {
         return true;
     }
@@ -114,8 +113,8 @@ function CheckIsPeaceThere() {
 function MustEat() {
     for (var i = 0; i < 8; i++) {
         for (var j = 0; j < 8; j++) {
-            // if(board[i][j] == 2 && board[i-1][j-1] == 1 || board[i-1][j+1] == 1)
-            //return true;
+            if(board[i][j]-1 == board[i-1][j-1] ||  board[i][j]-1 == board[i-1][j+1])
+            return true;
         }
         return false;
     }
@@ -136,6 +135,7 @@ function eatMove() {
             return true;
         }
     }
+    return false;
 }
 
 //this function check if the move to cords is OK.
@@ -196,14 +196,14 @@ function drop(ev) {
     if (eatMove()) {
         $(ev.target).append($('#' + TD_FROM).find('img'));
         deletePieace();
-        UpdateStatus();
+        UpdateStatus(2);
     }
     else if (humanMove() && !MustEat()) {
         $(ev.target).append($('#' + TD_FROM).find('img'));
-        UpdateStatus();
+        UpdateStatus(2);
     }
     else
-        console.log("Illigal Move: Block Taken");
+        console.log("Illegal Move: Block Taken");
 }
 
 //this is the MAIN function.
