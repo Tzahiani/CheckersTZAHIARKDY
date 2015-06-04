@@ -128,20 +128,20 @@ function MustEat() {
             if(board[i][j]-1 == board[i-1][j-1] ||  board[i][j]-1 == board[i-1][j+1])
                 return true;
         }
-        return false;
     }
+    return false;
 }
 
 //this function checks if the eat move is ok.
 function eatMove() {
 
-    if (board[yFrom - 1][xFrom - 1] == 2) {
+    if (board[yFrom - 1][xFrom - 1] == 1) {
         way = 1;
         if (eat()) {
             return true;
         }
     }
-    else if (board[yFrom - 1][xFrom + 1] == 2) {
+    else if (board[yFrom - 1][xFrom + 1] == 1) {
         way = 2;
         if (eat()) {
             return true;
@@ -165,11 +165,11 @@ function deletePieace() {
     switch (way) {
         case 1:
         board[yFrom - 1][xFrom - 1] = 0;
-        $('#' + (yFrom - 1) + (xFrom - 1)).find('img').attr('src') = undefined;
+        //$('#' + (yFrom - 1) + (xFrom - 1)).find('img').attr('src') = undefined;
         break;
         case 2:
         board[yFrom - 1][xFrom + 1] = 0;
-        $('#' + (yFrom - 1) + (xFrom + 1)).find('img').attr('src') = undefined;
+        //$('#' + (yFrom - 1) + (xFrom + 1)).find('img').attr('src') = undefined;
         default:
         break;
     }
@@ -222,4 +222,5 @@ function drop(ev) {
 $(document).ready(function () {
     board = matrix(8, 8);
     init();
+    board[4][3] = 1;
 });
