@@ -24,11 +24,11 @@ function matrix(rows, cols) {
             if ((i % 2 == 0 && j % 2 != 0 && i < 3) || (i % 2 != 0 && j % 2 == 0 && i < 3)) {
                 arr[i][j] = 1;
             } else
-            if ((i % 2 == 0 && j % 2 != 0 && i > 4) || (i % 2 != 0 && j % 2 == 0 && i > 4)) {
-                arr[i][j] = 2;
-            } else {
-                arr[i][j] = 0;
-            }
+                if ((i % 2 == 0 && j % 2 != 0 && i > 4) || (i % 2 != 0 && j % 2 == 0 && i > 4)) {
+                    arr[i][j] = 2;
+                } else {
+                    arr[i][j] = 0;
+                }
         }
     }
     //Print
@@ -36,9 +36,9 @@ function matrix(rows, cols) {
         for (var j = 0; j < cols; j++) {
             console.log("arr" + "[" + i + ']' + '[' + j + ']:' + arr[i][j]);
         }
-        console.log("Board Print Finish");
-        return arr;
-    }
+    console.log("Board Print Finish");
+    return arr;
+}
 
 //This function updates the Score Board.
 //Add +1 to the score after each game.
@@ -47,15 +47,15 @@ function matrix(rows, cols) {
 function UpdateScoreBoard(winner) {
     switch (winner) {
         case 1:
-        AIScore++;
-        document.getElementById('AISscore').firstChild.data = AIScore;
-        break;
+            AIScore++;
+            document.getElementById('AISscore').firstChild.data = AIScore;
+            break;
         case 2:
-        playerScore++;
-        document.getElementById('playerScore').firstChild.data = playerScore;
-        break;
+            playerScore++;
+            document.getElementById('playerScore').firstChild.data = playerScore;
+            break;
         default:
-        break;
+            break;
     }
 }
 
@@ -66,16 +66,16 @@ function UpdateScoreBoard(winner) {
 function GameFinish(winner) {
     switch (winner) {
         case 0:
-        document.getElementById('ScoreTitle').firstChild.data = "Score Board";
-        break;
+            document.getElementById('ScoreTitle').firstChild.data = "Score Board";
+            break;
         case 1:
-        document.getElementById('ScoreTitle').firstChild.data = "Computer Wins";
-        break;
+            document.getElementById('ScoreTitle').firstChild.data = "Computer Wins";
+            break;
         case 2:
-        document.getElementById('ScoreTitle').firstChild.data = "You Win";
-        break;
+            document.getElementById('ScoreTitle').firstChild.data = "You Win";
+            break;
         default:
-        break;
+            break;
     }
 }
 
@@ -90,18 +90,18 @@ function moveXY(from, to) {
 
 //This function check if the move of Human is illegal
 function humanMove() {
-    if (xFrom + 1 == xTo && yFrom - 1 == yTo){
-        
-        if (CheckIsPeaceThere()){
-            way=2;
+    if (xFrom + 1 == xTo && yFrom - 1 == yTo) {
+
+        if (CheckIsPeaceThere()) {
+            way = 2;
             return true;
         }
     }
 
-    if (xFrom - 1 == xTo && yFrom - 1 == yTo){
-     
-        if (CheckIsPeaceThere()){
-            way=1;
+    if (xFrom - 1 == xTo && yFrom - 1 == yTo) {
+
+        if (CheckIsPeaceThere()) {
+            way = 1;
             return true;
         }
     }
@@ -124,17 +124,21 @@ function CheckIsPeaceThere() {
 //this function make only eat possible.
 function MustEat() {
     for (var i = 7; i > 0; i--) {
-        for (var j = 7; j >0; j--) {
-            if(board[i][j]-1 == board[i-1][j-1] ||  board[i][j]-1 == board[i-1][j+1])
-                if(board[i-1][j+1]==0 && board[i+1][j-1]==1){
+        for (var j = 7; j > 0; j--) {
+            if (board[i][j] - 1 == board[i - 1][j - 1] || board[i][j] - 1 == board[i - 1][j + 1]) {
+                if (board[i - 1][j - 1] == 1 && board[i - 2][j - 2] == 0) {
+                    console.log("Must Eat Left Side");
                     return true;
-                }else if(board[i-1][j-1]==0 && board[i+1][j+1]==1){
+                }
+                else if (board[i - 1][j + 2] == 1 && board[i - 2][j + 2] == 0) {
+                    console.log("Must Eat Right Side");
                     return true;
                 }
             }
         }
-        return false;
     }
+    return false;
+}
 
 //this function checks if the eat move is ok.
 function eatMove() {
@@ -178,7 +182,7 @@ function deletePieace() {
             console.log("Piace Deleted");
             break;
         default:
-        break;
+            break;
     }
 }
 
@@ -223,13 +227,15 @@ function drop(ev) {
     else if (humanMove() && !MustEat()) {
         $(ev.target).append($('#' + TD_FROM).find('img'));
         UpdateStatus(2);
+        AI_turn_start();
     }
     else
         console.log("Illegal Move");
 }
 
+//This function Starts the AI move.
 function AI_turn_start() {
-    console.log("AIplay");
+    console.log("AI-play");
 }
 
 //this is the MAIN function.
