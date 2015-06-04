@@ -164,12 +164,13 @@ function eat() {
 function deletePieace() {
     switch (way) {
         case 1:
-        board[yFrom - 1][xFrom - 1] = 0;
-        //$('#' + (yFrom - 1) + (xFrom - 1)).find('img').attr('src') = undefined;
-        break;
+            board[yFrom - 1][xFrom - 1] = 0;
+            $('#' + (yFrom - 1) + (xFrom - 1)).find('img').remove();
+            break;
         case 2:
-        board[yFrom - 1][xFrom + 1] = 0;
-        //$('#' + (yFrom - 1) + (xFrom + 1)).find('img').attr('src') = undefined;
+            board[yFrom - 1][xFrom + 1] = 0;
+            $('#' + (yFrom - 1) + (xFrom + 1)).find('img').remove();
+            break;
         default:
         break;
     }
