@@ -93,20 +93,20 @@ function humanMove() {
     if (xFrom + 1 == xTo && yFrom - 1 == yTo){
         
         if (CheckIsPeaceThere()){
-                way=2;
-                return true;
-            }
+            way=2;
+            return true;
         }
-
-     if (xFrom - 1 == xTo && yFrom - 1 == yTo){
-           
-            if (CheckIsPeaceThere()){
-                way=1;
-                return true;
-            }
-        }
-                return false;
     }
+
+    if (xFrom - 1 == xTo && yFrom - 1 == yTo){
+     
+        if (CheckIsPeaceThere()){
+            way=1;
+            return true;
+        }
+    }
+    return false;
+}
 
 //this function Check if there is apeace on the Block.
 function CheckIsPeaceThere() {
@@ -126,11 +126,15 @@ function MustEat() {
     for (var i = 7; i > 0; i--) {
         for (var j = 7; j >0; j--) {
             if(board[i][j]-1 == board[i-1][j-1] ||  board[i][j]-1 == board[i-1][j+1])
-                return true;
+                if(board[i-1][j+1]==0 && board[i+1][j-1]==1){
+                    return true;
+                }else if(board[i-1][j-1]==0 && board[i+1][j+1]==1){
+                    return true;
+                }
+            }
         }
+        return false;
     }
-    return false;
-}
 
 //this function checks if the eat move is ok.
 function eatMove() {
