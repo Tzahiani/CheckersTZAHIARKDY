@@ -170,10 +170,12 @@ function deletePieace() {
         case 1:
             board[yFrom - 1][xFrom - 1] = 0;
             $('#' + (yFrom - 1) + (xFrom - 1)).find('img').remove();
+            console.log("Piace Deleted");
             break;
         case 2:
             board[yFrom - 1][xFrom + 1] = 0;
             $('#' + (yFrom - 1) + (xFrom + 1)).find('img').remove();
+            console.log("Piace Deleted");
             break;
         default:
         break;
@@ -214,6 +216,9 @@ function drop(ev) {
         $(ev.target).append($('#' + TD_FROM).find('img'));
         deletePieace();
         UpdateStatus(2);
+        if (!MustEat()) {
+            AI_turn_start();
+        }
     }
     else if (humanMove() && !MustEat()) {
         $(ev.target).append($('#' + TD_FROM).find('img'));
@@ -221,6 +226,10 @@ function drop(ev) {
     }
     else
         console.log("Illegal Move");
+}
+
+function AI_turn_start() {
+    console.log("AIplay");
 }
 
 //this is the MAIN function.
