@@ -1,8 +1,8 @@
-var playerScore = 0;
-var AIScore = 0;
-var board;
-var xFrom, yFrom;
-var xTo, yTo;
+var playerScore = 0; // Player score for update
+var AIScore = 0; // AI score for update
+var board; // holds all the board status
+var xFrom, yFrom; // gets the cords for the old block
+var xTo, yTo; // gets the cords for the new block
 var way; // gets the way of the move (right = 2 / left = 1)
 
 //This function MAPS the board to JavaScript Code.
@@ -31,6 +31,7 @@ function matrix(rows, cols) {
                 }
         }
     }
+
     //Print
     for (var i = 0; i < rows; i++)
         for (var j = 0; j < cols; j++) {
@@ -140,6 +141,23 @@ function MustEat() {
     return false;
 }
 
+//This Function checks if you can eat one more peace before the computers turn
+function eatAgain() {
+    if (board[yTo - 1][xTo - 1] == 1) {
+        if (board[yTo - 2][xTo - 2] == 0) {
+            console.log("One More Eat Left Side");
+            return true;
+        }
+    }
+    else if (board[yTo - 1][xTo + 1] == 1) {
+        if (board[yTo - 2][xTo + 2] == 0) {
+            console.log("One More Eat Right Side");
+            return true;
+        }
+    }
+    return false;
+}
+
 //this function checks if the eat move is ok.
 function eatMove() {
 
@@ -220,7 +238,7 @@ function drop(ev) {
         $(ev.target).append($('#' + TD_FROM).find('img'));
         deletePieace();
         UpdateStatus(2);
-        if (!MustEat()) {
+        if (!eatAgain()) {
             AI_turn_start();
         }
     }

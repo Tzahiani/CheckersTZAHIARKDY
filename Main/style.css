@@ -36,7 +36,7 @@ table {
 }
 
 body {
-    background: url(pattern.gif);
+    background: url(res/pattern.gif);
     background-repeat: repeat;
 }
 
