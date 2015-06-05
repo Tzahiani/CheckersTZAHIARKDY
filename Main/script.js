@@ -5,7 +5,7 @@ var xFrom, yFrom; // gets the cords for the old block
 var xTo, yTo; // gets the cords for the new block
 var way; // gets the way of the move (right = 2 / left = 1)
 
-//This function MAPS the board to JavaScript Code.
+//This Function MAPS the board to JavaScript Code.
 function matrix(rows, cols) {
 
     var arr = [];
@@ -41,7 +41,7 @@ function matrix(rows, cols) {
     return arr;
 }
 
-//This function updates the Score Board.
+//This Function updates the Score Board.
 //Add +1 to the score after each game.
 // 2 - Human
 // 1 - Computer
@@ -80,7 +80,7 @@ function GameFinish(winner) {
     }
 }
 
-//This function divides the coordinates of points
+//This Function divides the coordinates of points
 function moveXY(from, to) {
 
     xFrom = parseInt(from) % 10;
@@ -89,7 +89,7 @@ function moveXY(from, to) {
     yTo = Math.floor((parseInt(to)) / 10);
 }
 
-//This function check if the move of Human is illegal
+//This Function check if the move of Human is illegal
 function humanMove() {
     if (xFrom + 1 == xTo && yFrom - 1 == yTo) {
 
@@ -109,7 +109,7 @@ function humanMove() {
     return false;
 }
 
-//this function Check if there is apeace on the Block.
+//This Function Check if there is apeace on the Block.
 function CheckIsPeaceThere() {
 
     if ((board[yTo][xTo] == 2) || (board[yTo][xTo] == 1)) {
@@ -122,7 +122,7 @@ function CheckIsPeaceThere() {
     }
 }
 
-//this function make only eat possible.
+//This Function make only eat possible.
 function MustEat() {
     for (var i = 7; i > 0; i--) {
         for (var j = 7; j > 0; j--) {
@@ -158,7 +158,7 @@ function eatAgain() {
     return false;
 }
 
-//this function checks if the eat move is ok.
+//This Function checks if the eat move is ok.
 function eatMove() {
 
     if (board[yFrom - 1][xFrom - 1] == 1) {
@@ -176,7 +176,7 @@ function eatMove() {
     return false;
 }
 
-//this function check if the move to cords is OK.
+//This Function check if the move to cords is OK.
 function eat() {
     if ((xFrom - 2 == xTo && yFrom - 2 == yTo) && way == 1 && CheckIsPeaceThere())
         return true;
@@ -186,7 +186,7 @@ function eat() {
         return false;
 }
 
-//this function delete the pieace from board and HTML.
+//This Function delete the pieace from board.
 function deletePieace() {
     switch (way) {
         case 1:
@@ -204,30 +204,30 @@ function deletePieace() {
     }
 }
 
-//This function Updates the Board with Taken Blocks.
+//This Function Updates the Board with Taken Blocks.
 function UpdateStatus(whoPlay) {
     board[yFrom][xFrom] = 0;
     board[yTo][xTo] = whoPlay;
     console.log("Status Updated");
 }
 
-//this function makes all the pieces draggeble.
+//This Function makes all the pieces draggeble.
 function init() {
     $('img').draggable();
 }
 
-//this function allows to drop in the cell
+//This Function allows to drop in the cell
 function allowDrop(ev) {
     ev.preventDefault();
 
 }
 
-//this function makes the dtag start and take the img with it.
+//This Function makes the dtag start and take the img with it.
 function drag(ev) {
     ev.dataTransfer.setData("text", $(ev.target).parent().attr('id'));
 }
 
-//this function make the drop in the new cell.
+//This Function make the drop in the new cell.
 function drop(ev) {
     ev.preventDefault();
     var TD_FROM = ev.dataTransfer.getData("text");
@@ -251,12 +251,12 @@ function drop(ev) {
         console.log("Illegal Move");
 }
 
-//This function Starts the AI move.
+//This Function Starts the AI move.
 function AI_turn_start() {
     console.log("AI-play");
 }
 
-//this is the MAIN function.
+//This is the MAIN function.
 $(document).ready(function () {
     board = matrix(8, 8);
     init();

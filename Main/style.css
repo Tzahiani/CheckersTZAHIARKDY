@@ -46,3 +46,10 @@ body {
     background: url(res/background.jpg);
     background-repeat: repeat;
 }
+
+#logo {
+    margin-left: auto;
+    margin-right: auto;
+    pointer-events: none;
+    display: block;
+}
