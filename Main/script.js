@@ -142,6 +142,8 @@ function MustEat() {
     }
     return false;
 }
+
+//This Function Check for AI if eat is possible
 function AICheckEatFirst(){
     for (var i = 0; i <8; i++) {
         for (var j = 0; j<8; j++) {
@@ -151,8 +153,8 @@ function AICheckEatFirst(){
                     way=1;
                     AIXfrom=i;
                     AIYfrom=j;
-                    AIXfrom=i+2;
-                    AIYfrom=j-2;
+                    AIXto=i+2;
+                    AIYto=j-2;
                     return true;
                 }
                 else if (board[i + 1][j + 1] == 2 && board[i + 2][j + 2] == 0) {
@@ -160,8 +162,8 @@ function AICheckEatFirst(){
                     way=2;
                     AIXfrom=i;
                     AIYfrom=j;
-                    AIXfrom=i+2;
-                    AIYfrom=j+2;
+                    AIXto=i+2;
+                    AIYto=j+2;
                     return true;
                 }
             }
@@ -283,8 +285,14 @@ function drop(ev) {
 function AI_turn_start() {
 
     console.log("AI-play");
+    
+    if (AICheckEatFirst()) {
+        console.log("AI-Eat");
+        AI_Eat_Move();
+    }
 }
 
+//This Function Delete and update the board after AI eat move
 function AI_Eat_Move() {
 
     switch (way) {
@@ -292,19 +300,21 @@ function AI_Eat_Move() {
         case 1: {
             $('#' + AIXfrom + AIYfrom).find('img').remove();
             $('#' + (AIXfrom + 1) + (AIYfrom - 1)).find('img').remove();
-            $('#' + AIXto + AIYto).find('img').attr('src', "1.png");
+            $('#' + AIXto + AIYto).find('img').attr("src", "res/1.png");
             board[AIXfrom][AIYfrom] = 0;
             board[AIXfrom + 1][AIYfrom - 1] = 0;
             board[AIXto][AIYto] = 1
+            console.log("Status Updated + AI-eat-Done(Left)");
             break;
         }
         case 2: {
             $('#' + AIXfrom + AIYfrom).find('img').remove();
             $('#' + (AIXfrom + 1) + (AIYfrom + 1)).find('img').remove();
-            $('#' + AIXto + AIYto).find('img').attr('src', "1.png");
+            $('#' + AIXto + AIYto).find('img').attr("src", "res/1.png");
             board[AIXfrom][AIYfrom] = 0;
             board[AIXfrom + 1][AIYfrom + 1] = 0;
             board[AIXto][AIYto] = 1
+            console.log("Status Updated + AI-eat-Done(Right)");
             break;
         }
         default:
