@@ -4,6 +4,8 @@ var board; // holds all the board status
 var xFrom, yFrom; // gets the cords for the old block
 var xTo, yTo; // gets the cords for the new block
 var way; // gets the way of the move (right = 2 / left = 1)
+var AIXfrom,AIYfrom;
+var AIXto,AIYto;
 
 //This Function MAPS the board to JavaScript Code.
 function matrix(rows, cols) {
@@ -131,7 +133,7 @@ function MustEat() {
                     console.log("Must Eat Left Side");
                     return true;
                 }
-                else if (board[i - 1][j + 2] == 1 && board[i - 2][j + 2] == 0) {
+                else if (board[i - 1][j + 1] == 1 && board[i - 2][j + 2] == 0) {
                     console.log("Must Eat Right Side");
                     return true;
                 }
@@ -140,7 +142,33 @@ function MustEat() {
     }
     return false;
 }
-
+function AICheckEatFirst(){
+    for (var i = 0; i <8; i++) {
+        for (var j = 0; j<8; j++) {
+            if (board[i][j] == board[i + 1][j - 1]+1 || board[i][j] == board[i + 1][j + 1]+1) {
+                if (board[i + 1][j - 1] == 2 && board[i + 2][j - 2] == 0) {
+                    console.log("AI Must Eat Left Side");
+                    way=1;
+                    AIXfrom=i;
+                    AIYfrom=j;
+                    AIXfrom=i+2;
+                    AIYfrom=j-2;
+                    return true;
+                }
+                else if (board[i + 1][j + 1] == 2 && board[i + 2][j + 2] == 0) {
+                    console.log("AI Must Eat Right Side");
+                    way=2;
+                    AIXfrom=i;
+                    AIYfrom=j;
+                    AIXfrom=i+2;
+                    AIYfrom=j+2;
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}
 //This Function checks if you can eat one more peace before the computers turn
 function eatAgain() {
     if (board[yTo - 1][xTo - 1] == 1) {
@@ -253,6 +281,7 @@ function drop(ev) {
 
 //This Function Starts the AI move.
 function AI_turn_start() {
+
     console.log("AI-play");
 }
 
