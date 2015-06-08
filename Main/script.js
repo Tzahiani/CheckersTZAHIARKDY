@@ -256,6 +256,33 @@ function AI_turn_start() {
     console.log("AI-play");
 }
 
+function AI_Eat_Move() {
+
+    switch (way) {
+
+        case 1: {
+            $('#' + AIXfrom + AIYfrom).find('img').remove();
+            $('#' + (AIXfrom + 1) + (AIYfrom - 1)).find('img').remove();
+            $('#' + AIXto + AIYto).find('img').attr('src', "1.png");
+            board[AIXfrom][AIYfrom] = 0;
+            board[AIXfrom + 1][AIYfrom - 1] = 0;
+            board[AIXto][AIYto] = 1
+            break;
+        }
+        case 2: {
+            $('#' + AIXfrom + AIYfrom).find('img').remove();
+            $('#' + (AIXfrom + 1) + (AIYfrom + 1)).find('img').remove();
+            $('#' + AIXto + AIYto).find('img').attr('src', "1.png");
+            board[AIXfrom][AIYfrom] = 0;
+            board[AIXfrom + 1][AIYfrom + 1] = 0;
+            board[AIXto][AIYto] = 1
+            break;
+        }
+        default:
+            break;
+    }
+}
+
 //This is the MAIN function.
 $(document).ready(function () {
     board = matrix(8, 8);
