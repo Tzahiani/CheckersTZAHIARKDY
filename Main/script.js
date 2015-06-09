@@ -300,20 +300,20 @@ function AI_Eat_Move() {
         case 1: {
             $('#' + AIXfrom + AIYfrom).find('img').remove();
             $('#' + (AIXfrom + 1) + (AIYfrom - 1)).find('img').remove();
-            $('#' + AIXto + AIYto).find('img').attr("src", "res/1.png");
+            $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1.png" />')
             board[AIXfrom][AIYfrom] = 0;
             board[AIXfrom + 1][AIYfrom - 1] = 0;
-            board[AIXto][AIYto] = 1
+            board[AIXto][AIYto] = 1;
             console.log("Status Updated + AI-eat-Done(Left)");
             break;
         }
         case 2: {
             $('#' + AIXfrom + AIYfrom).find('img').remove();
             $('#' + (AIXfrom + 1) + (AIYfrom + 1)).find('img').remove();
-            $('#' + AIXto + AIYto).find('img').attr("src", "res/1.png");
+            $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1.png" />')
             board[AIXfrom][AIYfrom] = 0;
             board[AIXfrom + 1][AIYfrom + 1] = 0;
-            board[AIXto][AIYto] = 1
+            board[AIXto][AIYto] = 1;
             console.log("Status Updated + AI-eat-Done(Right)");
             break;
         }
