@@ -4,8 +4,8 @@ var board; // holds all the board status
 var xFrom, yFrom; // gets the cords for the old block
 var xTo, yTo; // gets the cords for the new block
 var way; // gets the way of the move (right = 2 / left = 1)
-var AIXfrom,AIYfrom;
-var AIXto,AIYto;
+var AIXfrom, AIYfrom;
+var AIXto, AIYto;
 
 //This Function MAPS the board to JavaScript Code.
 function matrix(rows, cols) {
@@ -144,26 +144,26 @@ function MustEat() {
 }
 
 //This Function Check for AI if eat is possible
-function AICheckEatFirst(){
-    for (var i = 0; i <8; i++) {
-        for (var j = 0; j<8; j++) {
-            if (board[i][j] == board[i + 1][j - 1]+1 || board[i][j] == board[i + 1][j + 1]+1) {
+function AICheckEatFirst() {
+    for (var i = 0; i < 8; i++) {
+        for (var j = 0; j < 8; j++) {
+            if (board[i][j] == board[i + 1][j - 1] + 1 || board[i][j] == board[i + 1][j + 1] + 1) {
                 if (board[i + 1][j - 1] == 2 && board[i + 2][j - 2] == 0) {
                     console.log("AI Must Eat Left Side");
-                    way=1;
-                    AIXfrom=i;
-                    AIYfrom=j;
-                    AIXto=i+2;
-                    AIYto=j-2;
+                    way = 1;
+                    AIXfrom = i;
+                    AIYfrom = j;
+                    AIXto = i + 2;
+                    AIYto = j - 2;
                     return true;
                 }
                 else if (board[i + 1][j + 1] == 2 && board[i + 2][j + 2] == 0) {
                     console.log("AI Must Eat Right Side");
-                    way=2;
-                    AIXfrom=i;
-                    AIYfrom=j;
-                    AIXto=i+2;
-                    AIYto=j+2;
+                    way = 2;
+                    AIXfrom = i;
+                    AIYfrom = j;
+                    AIXto = i + 2;
+                    AIYto = j + 2;
                     return true;
                 }
             }
@@ -285,12 +285,13 @@ function drop(ev) {
 function AI_turn_start() {
 
     console.log("AI-play");
-    
-    if (AICheckEatFirst()) {
+
+    while (AICheckEatFirst()) {
         console.log("AI-Eat");
         AI_Eat_Move();
     }
 }
+
 
 //This Function Delete and update the board after AI eat move
 function AI_Eat_Move() {
@@ -320,6 +321,16 @@ function AI_Eat_Move() {
         default:
             break;
     }
+}
+
+function AI_Move() {
+
+    $('#' + AIXfrom + AIYfrom).find('img').remove();
+    $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1.png" />')
+    board[AIXfrom][AIYfrom] = 0;
+    board[AIXto][AIYto] = 1;
+    console.log("Status Updated + AI-Move-Done");
+
 }
 
 //This is the MAIN function.
