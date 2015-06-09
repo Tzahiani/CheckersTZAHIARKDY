@@ -145,7 +145,7 @@ function MustEat() {
 
 //This Function Check for AI if eat is possible
 function AICheckEatFirst() {
-    for (var i = 0; i < 8; i++) {
+    for (var i = 0; i < 6; i++) {
         for (var j = 0; j < 8; j++) {
             if (board[i][j] == board[i + 1][j - 1] + 1 || board[i][j] == board[i + 1][j + 1] + 1) {
                 if (board[i + 1][j - 1] == 2 && board[i + 2][j - 2] == 0) {
@@ -324,7 +324,7 @@ function drop(ev) {
 function AI_turn_start() {
 
     console.log("AI-play");
-    flag = true;
+    var flag = true;
    
        while (AICheckEatFirst()) {
             console.log("AI-Eat");
