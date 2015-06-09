@@ -171,6 +171,47 @@ function AICheckEatFirst() {
     }
     return false;
 }
+
+function AISimpleMove(){
+    for (var i = 0; i <8; i++) {
+        for (var j = 0; j<8; j++) {
+            if (board[i][j] == board[i + 1][j - 1]+1 || board[i][j] == board[i + 1][j + 1]+1){
+                if(bord[i+1][j-1]==0 && bord[i+2][j-2]==0){
+                    way=1;
+                    AIXfrom=i;
+                    AIYfrom=j;
+                    AIXto=i+1;
+                    AIYto=j-1;
+                    return true;
+                }else if(bord[i+1][j+1]==0 && bord[i+2][j+2]==0){
+                    way=2;
+                    AIXfrom=i;
+                    AIYfrom=j;
+                    AIXto=i+1;
+                    AIYto=j+1;
+                    return true;
+                }else if(bord[i+1][j-1]==0){
+                    way=1;
+                    AIXfrom=i;
+                    AIYfrom=j;
+                    AIXto=i+1;
+                    AIYto=j-1;
+                    return true;
+                }else if(bord[i+1][j+1]==0){
+                    way=2;
+                    AIXfrom=i;
+                    AIYfrom=j;
+                    AIXto=i+1;
+                    AIYto=j+1;
+                    return true;
+                }else 
+                    return false;
+            }
+
+
+
+}
+
 //This Function checks if you can eat one more peace before the computers turn
 function eatAgain() {
     if (board[yTo - 1][xTo - 1] == 1) {
