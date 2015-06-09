@@ -172,46 +172,44 @@ function AICheckEatFirst() {
     return false;
 }
 
-function AISimpleMove(){
-    for (var i = 0; i <8; i++) {
-        for (var j = 0; j<8; j++) {
-            if (board[i][j] == board[i + 1][j - 1]+1 || board[i][j] == board[i + 1][j + 1]+1){
-                if(bord[i+1][j-1]==0 && bord[i+2][j-2]==0){
-                    way=1;
-                    AIXfrom=i;
-                    AIYfrom=j;
-                    AIXto=i+1;
-                    AIYto=j-1;
+function AISimpleMove() {
+    for (var i = 0; i < 8; i++) {
+        for (var j = 0; j < 8; j++) {
+            if (board[i][j] == board[i + 1][j - 1] + 1 || board[i][j] == board[i + 1][j + 1] + 1) {
+                if (bord[i + 1][j - 1] == 0 && bord[i + 2][j - 2] == 0) {
+                    way = 1;
+                    AIXfrom = i;
+                    AIYfrom = j;
+                    AIXto = i + 1;
+                    AIYto = j - 1;
                     return true;
-                }else if(bord[i+1][j+1]==0 && bord[i+2][j+2]==0){
-                    way=2;
-                    AIXfrom=i;
-                    AIYfrom=j;
-                    AIXto=i+1;
-                    AIYto=j+1;
+                } else if (bord[i + 1][j + 1] == 0 && bord[i + 2][j + 2] == 0) {
+                    way = 2;
+                    AIXfrom = i;
+                    AIYfrom = j;
+                    AIXto = i + 1;
+                    AIYto = j + 1;
                     return true;
-                }else if(bord[i+1][j-1]==0){
-                    way=1;
-                    AIXfrom=i;
-                    AIYfrom=j;
-                    AIXto=i+1;
-                    AIYto=j-1;
+                } else if (bord[i + 1][j - 1] == 0) {
+                    way = 1;
+                    AIXfrom = i;
+                    AIYfrom = j;
+                    AIXto = i + 1;
+                    AIYto = j - 1;
                     return true;
-                }else if(bord[i+1][j+1]==0){
-                    way=2;
-                    AIXfrom=i;
-                    AIYfrom=j;
-                    AIXto=i+1;
-                    AIYto=j+1;
+                } else if (bord[i + 1][j + 1] == 0) {
+                    way = 2;
+                    AIXfrom = i;
+                    AIYfrom = j;
+                    AIXto = i + 1;
+                    AIYto = j + 1;
                     return true;
-                }else 
+                } else
                     return false;
             }
-
-
-
+        }
+    }
 }
-
 //This Function checks if you can eat one more peace before the computers turn
 function eatAgain() {
     if (board[yTo - 1][xTo - 1] == 1) {
@@ -326,11 +324,18 @@ function drop(ev) {
 function AI_turn_start() {
 
     console.log("AI-play");
-
-    while (AICheckEatFirst()) {
-        console.log("AI-Eat");
-        AI_Eat_Move();
-    }
+    flag = true;
+   
+       while (AICheckEatFirst()) {
+            console.log("AI-Eat");
+            AI_Eat_Move();
+            flag = false;
+       }
+       if (flag) {
+           console.log("AI-MOVE");
+           AISimpleMove();
+           AI_Move();
+       }
 }
 
 
