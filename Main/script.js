@@ -8,6 +8,8 @@ var AIXfrom, AIYfrom; // gets the cords for the old block for AI
 var AIXto, AIYto; // gets the cords for the new block for AI
 
 //This Function MAPS the board to JavaScript Code.
+// 2 - Human
+// 1 - Computer
 function matrix(rows, cols) {
 
     var arr = [];
@@ -62,7 +64,7 @@ function UpdateScoreBoard(winner) {
     }
 }
 
-// This Function Updates the Score Board With the winner
+// This Function Updates the Score Board With the winner.
 // 2 - Human
 // 1 - Computer
 // 0 - Reset to "Score Board"
@@ -82,7 +84,7 @@ function GameFinish(winner) {
     }
 }
 
-//This Function divides the coordinates of points
+//This Function divides the coordinates of points.
 function moveXY(from, to) {
 
     xFrom = parseInt(from) % 10;
@@ -91,7 +93,7 @@ function moveXY(from, to) {
     yTo = Math.floor((parseInt(to)) / 10);
 }
 
-//This Function check if the move of Human is illegal
+//This Function check if the move of Human is illegal.
 function humanMove() {
     if (xFrom + 1 == xTo && yFrom - 1 == yTo) {
 
@@ -111,7 +113,7 @@ function humanMove() {
     return false;
 }
 
-//This Function Check if there is apeace on the Block.
+//This Function Check if there is piece on the Block.
 function CheckIsPeaceThere() {
 
     if ((board[yTo][xTo] == 2) || (board[yTo][xTo] == 1)) {
@@ -143,7 +145,7 @@ function MustEat() {
     return false;
 }
 
-//This Function Check for AI if eat is possible
+//This Function Check for AI if eat is possible.
 function AICheckEatFirst() {
     for (var i = 0; i < 6; i++) {
         for (var j = 0; j < 8; j++) {
@@ -172,7 +174,7 @@ function AICheckEatFirst() {
     return false;
 }
 
-//This function checks the move for AI
+//This Function checks the move for AI.
 function AISimpleMove() {
     for (var i = 0; i < 8; i++) {
         for (var j = 0; j < 8; j++) {
@@ -211,7 +213,8 @@ function AISimpleMove() {
         }
     }
 }
-//This Function checks if you can eat one more peace before the computers turn
+
+//This Function checks if you can eat one more peace before the computers turn.
 function eatAgain() {
     if (board[yTo - 1][xTo - 1] == 1) {
         if (board[yTo - 2][xTo - 2] == 0) {
@@ -228,7 +231,7 @@ function eatAgain() {
     return false;
 }
 
-//This Function checks if the eat move is ok.
+//This Function checks if the eat move is OK.
 function eatMove() {
 
     if (board[yFrom - 1][xFrom - 1] == 1) {
@@ -256,7 +259,7 @@ function eat() {
         return false;
 }
 
-//This Function delete the pieace from board.
+//This Function delete the piece from board.
 function deletePieace() {
     switch (way) {
         case 1:
@@ -281,18 +284,18 @@ function UpdateStatus(whoPlay) {
     console.log("Status Updated");
 }
 
-//This Function makes all the pieces draggeble.
+//This Function makes all the pieces draggable.
 function init() {
     $('img').draggable();
 }
 
-//This Function allows to drop in the cell
+//This Function allows to drop in the cell.
 function allowDrop(ev) {
     ev.preventDefault();
 
 }
 
-//This Function makes the dtag start and take the img with it.
+//This Function makes the drag start and take the IMG with it.
 function drag(ev) {
     ev.dataTransfer.setData("text", $(ev.target).parent().attr('id'));
 }
@@ -339,8 +342,7 @@ function AI_turn_start() {
        }
 }
 
-
-//This Function Delete and update the board after AI eat move
+//This Function Delete and update the board after AI eat move.
 function AI_Eat_Move() {
 
     switch (way) {
@@ -370,7 +372,7 @@ function AI_Eat_Move() {
     }
 }
 
-//This function makes the move and update.
+//This Function makes the move and update.
 function AI_Move() {
 
     $('#' + AIXfrom + AIYfrom).find('img').remove();
