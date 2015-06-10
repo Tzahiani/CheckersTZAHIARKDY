@@ -4,8 +4,8 @@ var board; // holds all the board status
 var xFrom, yFrom; // gets the cords for the old block
 var xTo, yTo; // gets the cords for the new block
 var way; // gets the way of the move (right = 2 / left = 1)
-var AIXfrom, AIYfrom;
-var AIXto, AIYto;
+var AIXfrom, AIYfrom; // gets the cords for the old block for AI
+var AIXto, AIYto; // gets the cords for the new block for AI
 
 //This Function MAPS the board to JavaScript Code.
 function matrix(rows, cols) {
@@ -172,6 +172,7 @@ function AICheckEatFirst() {
     return false;
 }
 
+//This function checks the move for AI
 function AISimpleMove() {
     for (var i = 0; i < 8; i++) {
         for (var j = 0; j < 8; j++) {
@@ -369,6 +370,7 @@ function AI_Eat_Move() {
     }
 }
 
+//This function makes the move and update.
 function AI_Move() {
 
     $('#' + AIXfrom + AIYfrom).find('img').remove();
