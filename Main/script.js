@@ -345,16 +345,42 @@ function AI_turn_start() {
     console.log("AI-play");
     var flag = true;
 
-    while (AICheckEatFirst()) {
+    if (AICheckEatFirst()) {
         console.log("AI-Eat");
         AI_Eat_Move();
         flag = false;
+        while (AI_eat_again()) {
+            console.log("AI-Eat-Again");
+            AI_Eat_Move();
+        }
     }
     if (flag) {
         console.log("AI-MOVE");
         AISimpleMove();
         AI_Move();
     }
+}
+
+function AI_eat_again() {
+    if (AIXto < 6 && board[AIXto + 1][AIYto - 1] == 2 && board[AIXto + 2][AIYto - 2] == 0) {
+        way = 1;
+        AIXfrom = AIXto;
+        AIYfrom = AIYto;
+        AIXto = AIXto + 2;
+        AIYto = AIYto - 2;
+        return true;
+    }
+
+    if (AIXto < 6 && board[AIXto + 1][AIYto + 1] == 2 && board[AIXto + 2][AIYto + 2] == 0) {
+        way = 2;
+        AIXfrom = AIXto;
+        AIYfrom = AIYto;
+        AIXto = AIXto + 2;
+        AIYto = AIYto + 2;
+        return true;
+    }
+
+    return false;
 }
 
 //This Function Delete and update the board after AI eat move.
