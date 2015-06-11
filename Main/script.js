@@ -6,6 +6,8 @@ var xTo, yTo; // gets the cords for the new block
 var way; // gets the way of the move (right = 2 / left = 1)
 var AIXfrom, AIYfrom; // gets the cords for the old block for AI
 var AIXto, AIYto; // gets the cords for the new block for AI
+var TD_FROM;
+var TD_TO;
 
 //This Function MAPS the board to JavaScript Code.
 // 2 - Human
@@ -95,6 +97,7 @@ function moveXY(from, to) {
 
 //This Function check if the move of Human is illegal.
 function humanMove() {
+    if (TD_FROM>07){
     if (xFrom + 1 == xTo && yFrom - 1 == yTo) {
 
         if (CheckIsPeaceThere()) {
@@ -111,11 +114,12 @@ function humanMove() {
         }
     }
     return false;
+    }
 }
 
 //This Function Check if there is piece on the Block.
 function CheckIsPeaceThere() {
-
+    if(TD_FROM>07){
     if ((board[yTo][xTo] == 2) || (board[yTo][xTo] == 1)) {
         console.log("Block Taken");
         return false;
@@ -125,10 +129,11 @@ function CheckIsPeaceThere() {
         return true;
     }
 }
+}
 
 //This Function make only eat possible.
 function MustEat() {
-    for (var i = 7; i > 0; i--) {
+    for (var i = 7; i > 2; i--) {
         for (var j = 7; j > 0; j--) {
             if (board[i][j] - 1 == board[i - 1][j - 1] || board[i][j] - 1 == board[i - 1][j + 1]) {
                 if (board[i - 1][j - 1] == 1 && board[i - 2][j - 2] == 0) {
@@ -149,6 +154,7 @@ function MustEat() {
 function AICheckEatFirst() {
     for (var i = 0; i < 6; i++) {
         for (var j = 0; j < 8; j++) {
+            if(board[i][j]==1){
             if (board[i][j] == board[i + 1][j - 1] + 1 || board[i][j] == board[i + 1][j + 1] + 1) {
                 if (board[i + 1][j - 1] == 2 && board[i + 2][j - 2] == 0) {
                     console.log("AI Must Eat Left Side");
@@ -170,14 +176,16 @@ function AICheckEatFirst() {
                 }
             }
         }
+        }
     }
     return false;
 }
 
 //This Function checks the move for AI.
 function AISimpleMove() {
-    for (var i = 0; i < 8; i++) {
+    for (var i = 0; i < 7; i++) {
         for (var j = 0; j < 8; j++) {
+            if(board[i][j]==1){
             if (board[i][j] == board[i + 1][j - 1] + 1 || board[i][j] == board[i + 1][j + 1] + 1) {
                 if (board[i + 1][j - 1] == 0 && board[i + 2][j - 2] == 0) {
                     way = 1;
@@ -212,10 +220,13 @@ function AISimpleMove() {
             }
         }
     }
+    
+    }
 }
 
 //This Function checks if you can eat one more peace before the computers turn.
 function eatAgain() {
+    if (TD_FROM>37){
     if (board[yTo - 1][xTo - 1] == 1) {
         if (board[yTo - 2][xTo - 2] == 0) {
             console.log("One More Eat Left Side");
@@ -230,10 +241,11 @@ function eatAgain() {
     }
     return false;
 }
+}
 
 //This Function checks if the eat move is OK.
 function eatMove() {
-
+    if (TD_FROM>17){
     if (board[yFrom - 1][xFrom - 1] == 1) {
         way = 1;
         if (eat()) {
@@ -248,15 +260,18 @@ function eatMove() {
     }
     return false;
 }
+}
 
 //This Function check if the move to cords is OK.
 function eat() {
+    if (TD_FROM>17){
     if ((xFrom - 2 == xTo && yFrom - 2 == yTo) && way == 1 && CheckIsPeaceThere())
         return true;
     else if ((xFrom + 2 == xTo && yFrom - 2 == yTo) && way == 2 && CheckIsPeaceThere())
         return true;
     else
         return false;
+}
 }
 
 //This Function delete the piece from board.
@@ -303,8 +318,8 @@ function drag(ev) {
 //This Function make the drop in the new cell.
 function drop(ev) {
     ev.preventDefault();
-    var TD_FROM = ev.dataTransfer.getData("text");
-    var TD_TO = $(ev.target).attr('id');
+    TD_FROM = ev.dataTransfer.getData("text");
+    TD_TO = $(ev.target).attr('id');
     moveXY(TD_FROM, TD_TO);
 
     if (eatMove()) {
