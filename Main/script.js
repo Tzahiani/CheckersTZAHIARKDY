@@ -89,16 +89,16 @@ function GameFinish(winner) {
 //This Function divides the coordinates of points.
 function moveXY(from, to) {
 
-    xFrom = parseInt(from) % 10;
-    yFrom = Math.floor((parseInt(from)) / 10);
-    xTo = parseInt(to) % 10;
-    yTo = Math.floor((parseInt(to)) / 10);
+    yFrom = parseInt(from) % 10;
+    xFrom = Math.floor((parseInt(from)) / 10);
+    yTo = parseInt(to) % 10;
+    xTo = Math.floor((parseInt(to)) / 10);
 }
 
 //This Function check if the move of Human is illegal.
 function humanMove() {
     if (TD_FROM > 07) {
-        if (xFrom + 1 == xTo && yFrom - 1 == yTo) {
+        if (xFrom - 1 == xTo && yFrom + 1 == yTo) {
 
             if (CheckIsPeaceThere()) {
                 way = 2;
@@ -120,7 +120,7 @@ function humanMove() {
 //This Function Check if there is piece on the Block.
 function CheckIsPeaceThere() {
     if (TD_FROM > 07) {
-        if ((board[yTo][xTo] == 2) || (board[yTo][xTo] == 1)) {
+        if ((board[xTo][yTo] == 2) || (board[xTo][yTo] == 1)) {
             console.log("Block Taken");
             return false;
         }
@@ -133,8 +133,8 @@ function CheckIsPeaceThere() {
 
 //This Function make only eat possible.
 function MustEat() {
-    for (var i = 7; i > 2; i--) {
-        for (var j = 7; j > 0; j--) {
+    for (var i = 7; i > 1; i--) {
+        for (var j = 7; j >= 0; j--) {
             if (board[i][j] == 2) {
                 if (board[i][j] - 1 == board[i - 1][j - 1] || board[i][j] - 1 == board[i - 1][j + 1]) {
                     if (board[i - 1][j - 1] == 1 && board[i - 2][j - 2] == 0) {
@@ -157,7 +157,6 @@ function AICheckEatFirst() {
     for (var i = 0; i < 6; i++) {
         for (var j = 0; j < 8; j++) {
             if (board[i][j] == 1) {
-                if (board[i][j] == board[i + 1][j - 1] + 1 || board[i][j] == board[i + 1][j + 1] + 1) {
                     if (board[i + 1][j - 1] == 2 && board[i + 2][j - 2] == 0) {
                         console.log("AI Must Eat Left Side");
                         way = 1;
@@ -179,7 +178,6 @@ function AICheckEatFirst() {
                 }
             }
         }
-    }
     return false;
 }
 
@@ -229,14 +227,14 @@ function AISimpleMove() {
 //This Function checks if you can eat one more peace before the computers turn.
 function eatAgain() {
     if (TD_FROM > 37) {
-        if (board[yTo - 1][xTo - 1] == 1) {
-            if (board[yTo - 2][xTo - 2] == 0) {
+        if (board[xTo - 1][yTo - 1] == 1) {
+            if (board[xTo - 2][yTo - 2] == 0) {
                 console.log("One More Eat Left Side");
                 return true;
             }
         }
-        else if (board[yTo - 1][xTo + 1] == 1) {
-            if (board[yTo - 2][xTo + 2] == 0) {
+        else if (board[xTo - 1][yTo + 1] == 1) {
+            if (board[xTo - 2][yTo + 2] == 0) {
                 console.log("One More Eat Right Side");
                 return true;
             }
@@ -248,13 +246,13 @@ function eatAgain() {
 //This Function checks if the eat move is OK.
 function eatMove() {
     if (TD_FROM > 17) {
-        if (board[yFrom - 1][xFrom - 1] == 1) {
+        if (board[xFrom - 1][yFrom - 1] == 1) {
             way = 1;
             if (eat()) {
                 return true;
             }
         }
-        else if (board[yFrom - 1][xFrom + 1] == 1) {
+        if (board[xFrom - 1][yFrom + 1] == 1) {
             way = 2;
             if (eat()) {
                 return true;
@@ -269,7 +267,7 @@ function eat() {
     if (TD_FROM > 17) {
         if ((xFrom - 2 == xTo && yFrom - 2 == yTo) && way == 1 && CheckIsPeaceThere())
             return true;
-        else if ((xFrom + 2 == xTo && yFrom - 2 == yTo) && way == 2 && CheckIsPeaceThere())
+        else if ((xFrom - 2 == xTo && yFrom + 2 == yTo) && way == 2 && CheckIsPeaceThere())
             return true;
         else
             return false;
@@ -280,15 +278,13 @@ function eat() {
 function deletePieace() {
     switch (way) {
         case 1:
-            board[yFrom - 1][xFrom - 1] = 0;
-            $('#' + (yFrom - 1) + (xFrom - 1)).find('img').remove();
-            console.log("Delete" + "[" + (yFrom - 1) + ']' + '[' + (xFrom - 1) + ']:' + board[yFrom - 1][xFrom - 1]);
+            board[xFrom - 1][yFrom - 1] = 0;
+            $('#' + (xFrom - 1) + (yFrom - 1)).find('img').remove();
             console.log("Piace Deleted");
             break;
         case 2:
-            board[yFrom - 1][xFrom + 1] = 0;
-            $('#' + (yFrom - 1) + (xFrom + 1)).find('img').remove();
-            console.log("Delete" + "[" + (yFrom - 1) + ']' + '[' + (xFrom + 1) + ']:' + board[yFrom - 1][xFrom + 1]);
+            board[xFrom - 1][yFrom + 1] = 0;
+            $('#' + (xFrom - 1) + (yFrom + 1)).find('img').remove();
             console.log("Piace Deleted");
             break;
         default:
@@ -298,10 +294,8 @@ function deletePieace() {
 
 //This Function Updates the Board with Taken Blocks.
 function UpdateStatus(whoPlay) {
-    board[yFrom][xFrom] = 0;
-    console.log("FROM" + "[" + yFrom + ']' + '[' + xFrom + ']:' + board[yFrom][xFrom]);
-    board[yTo][xTo] = whoPlay;
-    console.log("TO" + "[" + yTo + ']' + '[' + xTo + ']:' + board[yTo][xTo]);
+    board[xFrom][yFrom] = 0;
+    board[xTo][yTo] = whoPlay;
     console.log("Status Updated");
 }
 
