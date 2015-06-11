@@ -405,11 +405,8 @@ function AI_Eat_Move() {
             $('#' + (AIXfrom + 1) + (AIYfrom - 1)).find('img').remove();
             $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1.png" />')
             board[AIXfrom][AIYfrom] = 0;
-            console.log("FROM" + "[" + AIXfrom + ']' + '[' + AIYfrom + ']:' + board[AIXfrom][AIYfrom]);
             board[AIXfrom + 1][AIYfrom - 1] = 0;
-            console.log("Delete" + "[" + (AIXfrom + 1) + ']' + '[' + (AIYfrom - 1) + ']:' + board[AIXfrom + 1][AIYfrom - 1]);
             board[AIXto][AIYto] = 1;
-            console.log("TO" + "[" + AIXto + ']' + '[' + AIYto + ']:' + board[AIXto][AIYto]);
             console.log("Status Updated + AI-eat-Done(Left)");
             GameCounter(2);
             break;
@@ -419,11 +416,9 @@ function AI_Eat_Move() {
             $('#' + (AIXfrom + 1) + (AIYfrom + 1)).find('img').remove();
             $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1.png" />')
             board[AIXfrom][AIYfrom] = 0;
-            console.log("FROM" + "[" + AIXfrom + ']' + '[' + AIYfrom + ']:' + board[AIXfrom][AIYfrom]);
             board[AIXfrom + 1][AIYfrom + 1] = 0;
             console.log("Delete" + "[" + (AIXfrom + 1) + ']' + '[' + (AIYfrom + 1) + ']:' + board[AIXfrom + 1][AIYfrom - 1]);
             board[AIXto][AIYto] = 1;
-            console.log("TO" + "[" + AIXto + ']' + '[' + AIYto + ']:' + board[AIXto][AIYto]);
             console.log("Status Updated + AI-eat-Done(Right)");
             GameCounter(2);
             break;
@@ -439,13 +434,12 @@ function AI_Move() {
     $('#' + AIXfrom + AIYfrom).find('img').remove();
     $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1.png" />')
     board[AIXfrom][AIYfrom] = 0;
-    console.log("FROM" + "[" + AIXfrom + ']' + '[' + AIYfrom + ']:' + board[AIXfrom][AIYfrom]);
     board[AIXto][AIYto] = 1;
-    console.log("TO" + "[" + AIXto + ']' + '[' + AIYto + ']:' + board[AIXto][AIYto]);
     console.log("Status Updated + AI-Move-Done");
 
 }
 
+//This Function Counts the eat move on all players
 function GameCounter(whoEat) {
     switch (whoEat) {
         case 1:
