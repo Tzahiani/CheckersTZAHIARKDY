@@ -6,8 +6,11 @@ var xTo, yTo; // gets the cords for the new block
 var way; // gets the way of the move (right = 2 / left = 1)
 var AIXfrom, AIYfrom; // gets the cords for the old block for AI
 var AIXto, AIYto; // gets the cords for the new block for AI
-var TD_FROM;
-var TD_TO;
+var TD_FROM; // gets the block from the player move
+var TD_TO; // gets the block to the player move
+var AICounter = 0; // Holds the AI eat Counter
+var PlayerCounter = 0; // Holds the Player Counter
+var EndGame = true // Check If Game Ended
 
 //This Function MAPS the board to JavaScript Code.
 // 2 - Human
@@ -77,9 +80,11 @@ function GameFinish(winner) {
             break;
         case 1:
             document.getElementById('ScoreTitle').firstChild.data = "Computer Wins";
+            EndGame = false;
             break;
         case 2:
             document.getElementById('ScoreTitle').firstChild.data = "You Win";
+            EndGame = false;
             break;
         default:
             break;
@@ -157,27 +162,27 @@ function AICheckEatFirst() {
     for (var i = 0; i < 6; i++) {
         for (var j = 0; j < 8; j++) {
             if (board[i][j] == 1) {
-                    if (board[i + 1][j - 1] == 2 && board[i + 2][j - 2] == 0) {
-                        console.log("AI Must Eat Left Side");
-                        way = 1;
-                        AIXfrom = i;
-                        AIYfrom = j;
-                        AIXto = i + 2;
-                        AIYto = j - 2;
-                        return true;
-                    }
-                    else if (board[i + 1][j + 1] == 2 && board[i + 2][j + 2] == 0) {
-                        console.log("AI Must Eat Right Side");
-                        way = 2;
-                        AIXfrom = i;
-                        AIYfrom = j;
-                        AIXto = i + 2;
-                        AIYto = j + 2;
-                        return true;
-                    }
+                if (board[i + 1][j - 1] == 2 && board[i + 2][j - 2] == 0) {
+                    console.log("AI Must Eat Left Side");
+                    way = 1;
+                    AIXfrom = i;
+                    AIYfrom = j;
+                    AIXto = i + 2;
+                    AIYto = j - 2;
+                    return true;
+                }
+                else if (board[i + 1][j + 1] == 2 && board[i + 2][j + 2] == 0) {
+                    console.log("AI Must Eat Right Side");
+                    way = 2;
+                    AIXfrom = i;
+                    AIYfrom = j;
+                    AIXto = i + 2;
+                    AIYto = j + 2;
+                    return true;
                 }
             }
         }
+    }
     return false;
 }
 
@@ -281,11 +286,13 @@ function deletePieace() {
             board[xFrom - 1][yFrom - 1] = 0;
             $('#' + (xFrom - 1) + (yFrom - 1)).find('img').remove();
             console.log("Piace Deleted");
+            GameCounter(1);
             break;
         case 2:
             board[xFrom - 1][yFrom + 1] = 0;
             $('#' + (xFrom - 1) + (yFrom + 1)).find('img').remove();
             console.log("Piace Deleted");
+            GameCounter(1);
             break;
         default:
             break;
@@ -322,42 +329,47 @@ function drop(ev) {
     TD_TO = $(ev.target).attr('id');
     moveXY(TD_FROM, TD_TO);
 
-    if (eatMove()) {
-        $(ev.target).append($('#' + TD_FROM).find('img'));
-        deletePieace();
-        UpdateStatus(2);
-        if (!eatAgain()) {
+    if (EndGame) {
+        if (eatMove()) {
+            $(ev.target).append($('#' + TD_FROM).find('img'));
+            deletePieace();
+            UpdateStatus(2);
+            if (!eatAgain()) {
+                AI_turn_start();
+            }
+        }
+        else if (humanMove() && !MustEat()) {
+            $(ev.target).append($('#' + TD_FROM).find('img'));
+            UpdateStatus(2);
             AI_turn_start();
         }
+        else
+            console.log("Illegal Move");
     }
-    else if (humanMove() && !MustEat()) {
-        $(ev.target).append($('#' + TD_FROM).find('img'));
-        UpdateStatus(2);
-        AI_turn_start();
-    }
-    else
-        console.log("Illegal Move");
 }
 
 //This Function Starts the AI move.
 function AI_turn_start() {
+    if (EndGame) {
 
-    console.log("AI-play");
-    var flag = true;
 
-    if (AICheckEatFirst()) {
-        console.log("AI-Eat");
-        AI_Eat_Move();
-        flag = false;
-        while (AI_eat_again()) {
-            console.log("AI-Eat-Again");
+        console.log("AI-play");
+        var flag = true;
+
+        if (AICheckEatFirst()) {
+            console.log("AI-Eat");
             AI_Eat_Move();
+            flag = false;
+            while (AI_eat_again()) {
+                console.log("AI-Eat-Again");
+                AI_Eat_Move();
+            }
         }
-    }
-    if (flag) {
-        console.log("AI-MOVE");
-        AISimpleMove();
-        AI_Move();
+        if (flag) {
+            console.log("AI-MOVE");
+            AISimpleMove();
+            AI_Move();
+        }
     }
 }
 
@@ -399,6 +411,7 @@ function AI_Eat_Move() {
             board[AIXto][AIYto] = 1;
             console.log("TO" + "[" + AIXto + ']' + '[' + AIYto + ']:' + board[AIXto][AIYto]);
             console.log("Status Updated + AI-eat-Done(Left)");
+            GameCounter(2);
             break;
         }
         case 2: {
@@ -412,6 +425,7 @@ function AI_Eat_Move() {
             board[AIXto][AIYto] = 1;
             console.log("TO" + "[" + AIXto + ']' + '[' + AIYto + ']:' + board[AIXto][AIYto]);
             console.log("Status Updated + AI-eat-Done(Right)");
+            GameCounter(2);
             break;
         }
         default:
@@ -430,6 +444,23 @@ function AI_Move() {
     console.log("TO" + "[" + AIXto + ']' + '[' + AIYto + ']:' + board[AIXto][AIYto]);
     console.log("Status Updated + AI-Move-Done");
 
+}
+
+function GameCounter(whoEat) {
+    switch (whoEat) {
+        case 1:
+            if ((++PlayerCounter) == 12) {
+                GameFinish(2);
+            }
+            break;
+        case 2:
+            if ((++AICounter) == 12) {
+                GameFinish(1);
+            }
+            break;
+        default:
+            break;
+    }
 }
 
 //This is the MAIN function.
