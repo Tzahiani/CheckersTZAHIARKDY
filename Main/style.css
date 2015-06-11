@@ -16,12 +16,12 @@ table {
 
 .black {
     background-color: #3A2A1D;
-    border:1px solid black;
+    border: 1px solid black;
 }
 
 .white {
     background-color: #CFBD8B;
-    border:1px solid black;
+    border: 1px solid black;
 }
 
 #ScoreBoard {
@@ -34,14 +34,14 @@ table {
 }
 
 #ScoreTitle {
-    font-family:  'Hoefler Text', Georgia, 'Times New Roman', serif;
-	font-weight: normal;
+    font-family: 'Hoefler Text', Georgia, 'Times New Roman', serif;
+    font-weight: normal;
     font-size: medium;
-	letter-spacing: .2em;
-	line-height: 1.1em;
-	margin:0px;
-	text-align: center;
-	text-transform: uppercase;
+    letter-spacing: .2em;
+    line-height: 1.1em;
+    margin: 0px;
+    text-align: center;
+    text-transform: uppercase;
 }
 
 body {

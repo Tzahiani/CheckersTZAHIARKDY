@@ -3,22 +3,22 @@
 <head>
     <title>Tzahi And Arkady Checkers</title>
     <meta charset="utf-8">
-	<!--Load Style-->
+    <!--Load Style-->
     <link rel="stylesheet" href="style.css" />
     <!--Load Jquery-->
-	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
-	<!--Load Script-->
+    <!--Load Script-->
     <script src='script.js'></script>
-	<!--Load Tab Icon-->
+    <!--Load Tab Icon-->
     <link rel="icon" type="image/png" href="res/favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="res/favicon-16x16.png" sizes="16x16" />
 </head>
 <body>
     <!--Logo-->
-    <img src ="res/HeadText.png" alt="LogoText" id ="logo" />
+    <img src="res/HeadText.png" alt="LogoText" id="logo" />
     <!--Board-->
-    <table id ="board">
+    <table id="board">
         <tr>
             <td class="white" id="00"></td>
             <td class="black" ondrop="drop(event)" ondragover="allowDrop(event)" id="01">
@@ -75,9 +75,7 @@
             <td class="white" id="40"></td>
             <td class="black" ondrop="drop(event)" ondragover="allowDrop(event)" id="41"></td>
             <td class="white" id="42"></td>
-            <td class="black" ondrop="drop(event)" ondragover="allowDrop(event)" id="43">
-                 <img ondragstart="drag(event)" data-player="1" src="res/1_king.png">
-            </td>
+            <td class="black" ondrop="drop(event)" ondragover="allowDrop(event)" id="43"></td>
             <td class="white" id="44"></td>
             <td class="black" ondrop="drop(event)" ondragover="allowDrop(event)" id="45"></td>
             <td class="white" id="46"></td>
@@ -140,5 +138,5 @@
             <td id="AISscore">0</td>
         </tr>
     </table>
-    </body>
+</body>
 </html>
