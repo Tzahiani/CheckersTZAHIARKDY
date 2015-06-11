@@ -3,6 +3,8 @@ td {
     height: 50px;
     width: 50px;
     padding: 0;
+    min-height: 50px;
+    min-width: 50px;
 }
 
 table {
@@ -14,12 +16,12 @@ table {
 
 .black {
     background-color: #3A2A1D;
-    border:1px solid black; 
+    border:1px solid black;
 }
 
 .white {
     background-color: #CFBD8B;
-    border:1px solid black; 
+    border:1px solid black;
 }
 
 #ScoreBoard {
