@@ -445,11 +445,13 @@ function GameCounter(whoEat) {
         case 1:
             if ((++PlayerCounter) == 12) {
                 GameFinish(2);
+				UpdateScoreBoard(2);
             }
             break;
         case 2:
             if ((++AICounter) == 12) {
                 GameFinish(1);
+				UpdateScoreBoard(1);
             }
             break;
         default:
