@@ -7,6 +7,14 @@
     padding: .5em;
 }
 
+#reset{
+    position: absolute;
+    right: 105px;
+    top: 150px;
+
+
+}
+
 td {
     border: none;
     height: 50px;
