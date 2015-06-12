@@ -306,11 +306,6 @@ function UpdateStatus(whoPlay) {
     console.log("Status Updated");
 }
 
-//This Function makes all the pieces draggable.
-function init() {
-    $('img').draggable();
-}
-
 //This Function allows to drop in the cell.
 function allowDrop(ev) {
     ev.preventDefault();
@@ -461,6 +456,5 @@ function GameCounter(whoEat) {
 
 //This is the MAIN function.
 $(document).ready(function () {
-    board = matrix(8, 8);
-    init();
+    board = matrix(8, 8); 
 });
