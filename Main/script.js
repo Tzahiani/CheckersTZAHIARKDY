@@ -68,6 +68,10 @@ function UpdateScoreBoard(winner) {
             break;
     }
 }
+function showImage() {
+    var img = document.getElementById('myImageId');
+    img.style.visibility = 'visible';
+}
 
 // This Function Updates the Score Board With the winner.
 // 2 - Human
@@ -77,13 +81,16 @@ function GameFinish(winner) {
     switch (winner) {
         case 0:
             document.getElementById('ScoreTitle').firstChild.data = "Score Board";
+            showImage()
             break;
         case 1:
             document.getElementById('ScoreTitle').firstChild.data = "Computer Wins";
+            showImage()
             EndGame = false;
             break;
         case 2:
             document.getElementById('ScoreTitle').firstChild.data = "You Win";
+            showImage()
             EndGame = false;
             break;
         default:
@@ -452,6 +459,18 @@ function GameCounter(whoEat) {
         default:
             break;
     }
+}
+
+function reset(){
+    $('#restart').click(function(){
+        board = matrix(8, 8);
+        playerScore = 0;
+        AIScore = 0;
+        EndGame = true; 
+
+    })
+
+
 }
 
 //This is the MAIN function.
