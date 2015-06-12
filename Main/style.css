@@ -1,3 +1,12 @@
+#tableBoard{
+    margin-left: auto;         
+    margin-right: auto;
+    max-width: 36em;
+}
+#hader{
+    padding: .5em;
+}
+
 td {
     border: none;
     height: 50px;
@@ -34,14 +43,15 @@ table {
 }
 
 #ScoreBoard {
-    background: url(res/background3.jpg);
-    text-align: center;
-    color: black;
-    text-shadow: 0px 2px 3px #666;
-    margin-right: auto;
-    margin-left: auto;
-    margin-top: 20px;
+    background: rgba(0, 0, 0, 0) url("res/background3.jpg") repeat scroll 0 0;
     border: 3px groove black;
+    color: black;
+    text-align: center;
+    text-shadow: 0 2px 3px #666;
+    position: absolute;
+    left: 105px;
+    top: 150px;
+}
 }
 
 #ScoreTitle {
