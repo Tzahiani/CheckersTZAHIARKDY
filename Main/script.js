@@ -286,13 +286,13 @@ function deletePieace() {
             board[xFrom - 1][yFrom - 1] = 0;
             $('#' + (xFrom - 1) + (yFrom - 1)).find('img').remove();
             console.log("Piace Deleted");
-            GameCounter(1);
+            GameCounter(2);
             break;
         case 2:
             board[xFrom - 1][yFrom + 1] = 0;
             $('#' + (xFrom - 1) + (yFrom + 1)).find('img').remove();
             console.log("Piace Deleted");
-            GameCounter(1);
+            GameCounter(2);
             break;
         default:
             break;
@@ -408,7 +408,7 @@ function AI_Eat_Move() {
             board[AIXfrom + 1][AIYfrom - 1] = 0;
             board[AIXto][AIYto] = 1;
             console.log("Status Updated + AI-eat-Done(Left)");
-            GameCounter(2);
+            GameCounter(1);
             break;
         }
         case 2: {
@@ -420,7 +420,7 @@ function AI_Eat_Move() {
             console.log("Delete" + "[" + (AIXfrom + 1) + ']' + '[' + (AIYfrom + 1) + ']:' + board[AIXfrom + 1][AIYfrom - 1]);
             board[AIXto][AIYto] = 1;
             console.log("Status Updated + AI-eat-Done(Right)");
-            GameCounter(2);
+            GameCounter(1);
             break;
         }
         default:
@@ -443,15 +443,15 @@ function AI_Move() {
 function GameCounter(whoEat) {
     switch (whoEat) {
         case 1:
-            if ((++PlayerCounter) == 12) {
-                GameFinish(2);
-				UpdateScoreBoard(2);
-            }
-            break;
-        case 2:
             if ((++AICounter) == 12) {
                 GameFinish(1);
 				UpdateScoreBoard(1);
+            }
+            break;
+        case 2:
+            if ((++PlayerCounter) == 12) {
+                GameFinish(2);
+				UpdateScoreBoard(2);
             }
             break;
         default:
