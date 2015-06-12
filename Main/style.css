@@ -11,8 +11,6 @@
     position: absolute;
     right: 105px;
     top: 150px;
-
-
 }
 
 td {
@@ -83,4 +81,8 @@ body {
     margin-right: auto;
     pointer-events: none;
     display: block;
+}
+
+#restart {
+    visibility: hidden;
 }

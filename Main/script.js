@@ -68,10 +68,22 @@ function UpdateScoreBoard(winner) {
             break;
     }
 }
-function showImage() {
-    var img = document.getElementById('myImageId');
-    img.style.visibility = 'visible';
-}
+
+//This function makes the reset button hidden
+(function ($) {
+    $.fn.invisible = function () {
+        return this.each(function () {
+            $(this).css("visibility", "hidden");
+        });
+    };
+
+    //This function makes the reset button visible
+    $.fn.visible = function () {
+        return this.each(function () {
+            $(this).css("visibility", "visible");
+        });
+    };
+}(jQuery));
 
 // This Function Updates the Score Board With the winner.
 // 2 - Human
@@ -81,17 +93,16 @@ function GameFinish(winner) {
     switch (winner) {
         case 0:
             document.getElementById('ScoreTitle').firstChild.data = "Score Board";
-            showImage()
             break;
         case 1:
             document.getElementById('ScoreTitle').firstChild.data = "Computer Wins";
-            showImage()
             EndGame = false;
+            $('#restart').visible();
             break;
         case 2:
             document.getElementById('ScoreTitle').firstChild.data = "You Win";
-            showImage()
             EndGame = false;
+            $('#restart').visible();
             break;
         default:
             break;
@@ -461,17 +472,14 @@ function GameCounter(whoEat) {
     }
 }
 
-function reset(){
-    $('#restart').click(function(){
+function ResetGame() {
         board = matrix(8, 8);
-        playerScore = 0;
-        AIScore = 0;
+        PlayerCounter = 0;
+        AICounter = 0;
         EndGame = true; 
-
-    })
-
-
-}
+        $('#restart').invisible();
+        //ResetImgs();
+    }
 
 //This is the MAIN function.
 $(document).ready(function () {
