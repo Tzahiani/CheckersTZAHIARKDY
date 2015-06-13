@@ -13,7 +13,6 @@ var AICounter = 0; // Holds the AI eat Counter
 var PlayerCounter = 0; // Holds the Player Counter
 var EndGame = true // Check If Game Ended
 
-
 //******************
 //* Empty = 0      *
 //* Human = 1      *
@@ -22,17 +21,14 @@ var EndGame = true // Check If Game Ended
 //* King Human = 4 *
 //******************
 
-
 //This Function MAPS the board to JavaScript Code.
 // 2 - Human
 // 1 - Computer
 function matrix(rows, cols) {
-
     var arr = [];
 
     // Creates all lines:
     for (var i = 0; i < rows; i++) {
-
         // Creates an empty line
         arr.push([]);
 
@@ -51,7 +47,7 @@ function matrix(rows, cols) {
                 }
         }
     }
-        return arr;
+    return arr;
 }
 
 //This Function updates the Score Board.
@@ -103,12 +99,12 @@ function GameFinish(winner) {
         case 1:
             document.getElementById('ScoreTitle').firstChild.data = "Computer Wins";
             EndGame = false;
-            //$('#restart').visible();
+            $('#restart').visible();
             break;
         case 2:
             document.getElementById('ScoreTitle').firstChild.data = "You Win";
             EndGame = false;
-            //$('#restart').visible();
+            $('#restart').visible();
             break;
         default:
             break;
@@ -117,7 +113,6 @@ function GameFinish(winner) {
 
 //This Function divides the coordinates of points.
 function moveXY(from, to) {
-
     yFrom = parseInt(from) % 10;
     xFrom = Math.floor((parseInt(from)) / 10);
     yTo = parseInt(to) % 10;
@@ -128,7 +123,6 @@ function moveXY(from, to) {
 function humanMove() {
     if (TD_FROM > 07) {
         if (xFrom - 1 == xTo && yFrom + 1 == yTo) {
-
             if (CheckIsPeaceThere()) {
                 way = 2;
                 return true;
@@ -136,7 +130,6 @@ function humanMove() {
         }
 
         if (xFrom - 1 == xTo && yFrom - 1 == yTo) {
-
             if (CheckIsPeaceThere()) {
                 way = 1;
                 return true;
@@ -249,7 +242,6 @@ function AISimpleMove() {
                 }
             }
         }
-
     }
 }
 
@@ -333,12 +325,10 @@ function UpdateStatus(whoPlay) {
 //This Function allows to drop in the cell.
 function allowDrop(ev) {
     ev.preventDefault();
-
 }
 
 //This Function makes the drag start and take the IMG with it.
 function drag(ev) {
-
     ev.dataTransfer.setData("text", $(ev.target).parent().attr('id'));
 }
 
@@ -416,9 +406,7 @@ function AI_eat_again() {
 
 //This Function Delete and update the board after AI eat move.
 function AI_Eat_Move() {
-
     switch (way) {
-
         case 1: {
             $('#' + AIXfrom + AIYfrom).find('img').remove();
             $('#' + (AIXfrom + 1) + (AIYfrom - 1)).find('img').remove();
@@ -448,13 +436,11 @@ function AI_Eat_Move() {
 
 //This Function makes the move and update.
 function AI_Move() {
-
     $('#' + AIXfrom + AIYfrom).find('img').remove();
     $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1.png" />')
     board[AIXfrom][AIYfrom] = 0;
     board[AIXto][AIYto] = 1;
     console.log("Status Updated + AI-Move-Done");
-
 }
 
 //This Function Counts the eat move on all players
@@ -510,9 +496,8 @@ function ResetGame() {
     console.log("Reset Game Done");
 }
 
-
 //This Function Prints the Board
-function Print(arr,rows,cols) {
+function Print(arr, rows, cols) {
     for (var i = 0; i < rows; i++)
         for (var j = 0; j < cols; j++) {
             console.log("arr" + "[" + i + ']' + '[' + j + ']:' + arr[i][j]);
