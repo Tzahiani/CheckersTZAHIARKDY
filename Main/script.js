@@ -480,6 +480,8 @@ function ResetImgs(){
             if ((i % 2 == 0 && j % 2 != 0 && i < 3) || (i % 2 != 0 && j % 2 == 0 && i < 3)) {
                 $('#' + i + j).find('img').remove();
             }
+        }
+       }
 
     for (var i = 0; i < rows; i++) {
         for (var j = 0; j < cols; j++) {
@@ -499,10 +501,11 @@ function ResetGame() {
         AICounter = 0;
         EndGame = true; 
         $('#restart').invisible();
-        ResetImgs();
+        //ResetImgs();
     }
 
 //This is the MAIN function.
-$(document).ready(function () {
-    board = matrix(8, 8); 
-});
+$(document).ready(function () {board = matrix(8, 8);});
+
+
+
