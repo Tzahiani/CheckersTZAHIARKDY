@@ -387,6 +387,7 @@ function AI_turn_start() {
     }
 }
 
+//This Function checks if the AI can eat again.
 function AI_eat_again() {
     if (AIXto < 6 && board[AIXto + 1][AIYto - 1] == 2 && board[AIXto + 2][AIYto - 2] == 0) {
         way = 1;
@@ -459,13 +460,13 @@ function GameCounter(whoEat) {
         case 1:
             if ((++AICounter) == 12) {
                 GameFinish(1);
-				UpdateScoreBoard(1);
+                UpdateScoreBoard(1);
             }
             break;
         case 2:
             if ((++PlayerCounter) == 12) {
                 GameFinish(2);
-				UpdateScoreBoard(2);
+                UpdateScoreBoard(2);
             }
             break;
         default:
@@ -473,14 +474,13 @@ function GameCounter(whoEat) {
     }
 }
 
-function ResetImgs(rows,cols){
-
-
+// This Function resets all the images
+function ResetImgs(rows, cols) {
     for (var i = 0; i < rows; i++) {
         for (var j = 0; j < cols; j++) {
-                $('#' + i + j).find('img').remove();
+            $('#' + i + j).find('img').remove();
         }
-       }
+    }
 
     for (var i = 0; i < rows; i++) {
         for (var j = 0; j < cols; j++) {
@@ -489,23 +489,20 @@ function ResetImgs(rows,cols){
             } else
                 if ((i % 2 == 0 && j % 2 != 0 && i > 4) || (i % 2 != 0 && j % 2 == 0 && i > 4)) {
                     $('#' + i + j).append('<img ondragstart="drag(event)" data-player="1" src="res/2.png" />');
-                } 
+                }
         }
     }
 }
 
+// This Function Resets the game data.
 function ResetGame() {
-        board = matrix(8, 8);
-        PlayerCounter = 0;
-        AICounter = 0;
-        EndGame = true; 
-        //$('#restart').invisible();
-        ResetImgs(8,8);
-    }
+    board = matrix(8, 8);
+    PlayerCounter = 0;
+    AICounter = 0;
+    EndGame = true;
+    //$('#restart').invisible();
+    ResetImgs(8, 8);
+}
 
 //This is the MAIN function.
-$(document).ready(function () {board = matrix(8, 8);});
-
-
-
-
+$(document).ready(function () { board = matrix(8, 8); });

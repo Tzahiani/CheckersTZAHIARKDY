@@ -1,13 +1,14 @@
-#tableBoard{
-    margin-left: auto;         
+#tableBoard {
+    margin-left: auto;
     margin-right: auto;
     max-width: 36em;
 }
-#hader{
+
+#hader {
     padding: .5em;
 }
 
-#reset{
+#reset {
     position: absolute;
     right: 105px;
     top: 150px;
@@ -58,7 +59,6 @@ table {
     left: 105px;
     top: 150px;
 }
-}
 
 #ScoreTitle {
     font-family: 'Hoefler Text', Georgia, 'Times New Roman', serif;
@@ -82,6 +82,7 @@ body {
     pointer-events: none;
     display: block;
 }
+
 /*
 #restart {
     visibility: hidden;
