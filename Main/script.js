@@ -1,3 +1,4 @@
+//All The Variables:
 var playerScore = 0; // Player score for update
 var AIScore = 0; // AI score for update
 var board; // holds all the board status
@@ -11,6 +12,16 @@ var TD_TO; // gets the block to the player move
 var AICounter = 0; // Holds the AI eat Counter
 var PlayerCounter = 0; // Holds the Player Counter
 var EndGame = true // Check If Game Ended
+
+
+//******************
+//* Empty = 0      *
+//* Human = 1      *
+//* AI = 2         *
+//* King AI = 3    *
+//* King Human = 4 *
+//******************
+
 
 //This Function MAPS the board to JavaScript Code.
 // 2 - Human
@@ -40,14 +51,7 @@ function matrix(rows, cols) {
                 }
         }
     }
-
-    //Print
-    for (var i = 0; i < rows; i++)
-        for (var j = 0; j < cols; j++) {
-            console.log("arr" + "[" + i + ']' + '[' + j + ']:' + arr[i][j]);
-        }
-    console.log("Board Print Finish");
-    return arr;
+        return arr;
 }
 
 //This Function updates the Score Board.
@@ -55,6 +59,7 @@ function matrix(rows, cols) {
 // 2 - Human
 // 1 - Computer
 function UpdateScoreBoard(winner) {
+    console.log("Score Board Updated");
     switch (winner) {
         case 1:
             AIScore++;
@@ -70,7 +75,7 @@ function UpdateScoreBoard(winner) {
 }
 
 //This function makes the reset button hidden
-/*(function ($) {
+(function ($) {
     $.fn.invisible = function () {
         return this.each(function () {
             $(this).css("visibility", "hidden");
@@ -83,13 +88,14 @@ function UpdateScoreBoard(winner) {
             $(this).css("visibility", "visible");
         });
     };
-}(jQuery));*/
+}(jQuery));
 
 // This Function Updates the Score Board With the winner.
 // 2 - Human
 // 1 - Computer
 // 0 - Reset to "Score Board"
 function GameFinish(winner) {
+    console.log("Game Finish");
     switch (winner) {
         case 0:
             document.getElementById('ScoreTitle').firstChild.data = "Score Board";
@@ -365,8 +371,6 @@ function drop(ev) {
 //This Function Starts the AI move.
 function AI_turn_start() {
     if (EndGame) {
-
-
         console.log("AI-play");
         var flag = true;
 
@@ -380,7 +384,7 @@ function AI_turn_start() {
             }
         }
         if (flag) {
-            console.log("AI-MOVE");
+            console.log("AI-Move");
             AISimpleMove();
             AI_Move();
         }
@@ -432,7 +436,6 @@ function AI_Eat_Move() {
             $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1.png" />')
             board[AIXfrom][AIYfrom] = 0;
             board[AIXfrom + 1][AIYfrom + 1] = 0;
-            console.log("Delete" + "[" + (AIXfrom + 1) + ']' + '[' + (AIYfrom + 1) + ']:' + board[AIXfrom + 1][AIYfrom - 1]);
             board[AIXto][AIYto] = 1;
             console.log("Status Updated + AI-eat-Done(Right)");
             GameCounter(1);
@@ -492,6 +495,7 @@ function ResetImgs(rows, cols) {
                 }
         }
     }
+    console.log("Reset Images Done")
 }
 
 // This Function Resets the game data.
@@ -499,10 +503,22 @@ function ResetGame() {
     board = matrix(8, 8);
     PlayerCounter = 0;
     AICounter = 0;
+    GameFinish(0);
     EndGame = true;
-    //$('#restart').invisible();
+    $('#restart').invisible();
     ResetImgs(8, 8);
+    console.log("Reset Game Done");
+}
+
+
+//This Function Prints the Board
+function Print(arr,rows,cols) {
+    for (var i = 0; i < rows; i++)
+        for (var j = 0; j < cols; j++) {
+            console.log("arr" + "[" + i + ']' + '[' + j + ']:' + arr[i][j]);
+        }
+    console.log("Board Print Finish");
 }
 
 //This is the MAIN function.
-$(document).ready(function () { board = matrix(8, 8); });
+$(document).ready(function () { board = matrix(8, 8); console.log("Init Complete.") });
