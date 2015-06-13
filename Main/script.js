@@ -70,7 +70,7 @@ function UpdateScoreBoard(winner) {
 }
 
 //This function makes the reset button hidden
-(function ($) {
+/*(function ($) {
     $.fn.invisible = function () {
         return this.each(function () {
             $(this).css("visibility", "hidden");
@@ -83,7 +83,7 @@ function UpdateScoreBoard(winner) {
             $(this).css("visibility", "visible");
         });
     };
-}(jQuery));
+}(jQuery));*/
 
 // This Function Updates the Score Board With the winner.
 // 2 - Human
@@ -97,12 +97,12 @@ function GameFinish(winner) {
         case 1:
             document.getElementById('ScoreTitle').firstChild.data = "Computer Wins";
             EndGame = false;
-            $('#restart').visible();
+            //$('#restart').visible();
             break;
         case 2:
             document.getElementById('ScoreTitle').firstChild.data = "You Win";
             EndGame = false;
-            $('#restart').visible();
+            //$('#restart').visible();
             break;
         default:
             break;
@@ -332,6 +332,7 @@ function allowDrop(ev) {
 
 //This Function makes the drag start and take the IMG with it.
 function drag(ev) {
+
     ev.dataTransfer.setData("text", $(ev.target).parent().attr('id'));
 }
 
@@ -472,24 +473,22 @@ function GameCounter(whoEat) {
     }
 }
 
-function ResetImgs(){
+function ResetImgs(rows,cols){
 
 
     for (var i = 0; i < rows; i++) {
         for (var j = 0; j < cols; j++) {
-            if ((i % 2 == 0 && j % 2 != 0 && i < 3) || (i % 2 != 0 && j % 2 == 0 && i < 3)) {
                 $('#' + i + j).find('img').remove();
-            }
         }
        }
 
     for (var i = 0; i < rows; i++) {
         for (var j = 0; j < cols; j++) {
             if ((i % 2 == 0 && j % 2 != 0 && i < 3) || (i % 2 != 0 && j % 2 == 0 && i < 3)) {
-                $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1.png" />');
+                $('#' + i + j).append('<img ondragstart="drag(event)" data-player="1" src="res/1.png" />');
             } else
                 if ((i % 2 == 0 && j % 2 != 0 && i > 4) || (i % 2 != 0 && j % 2 == 0 && i > 4)) {
-                    $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/2.png" />');
+                    $('#' + i + j).append('<img ondragstart="drag(event)" data-player="1" src="res/2.png" />');
                 } 
         }
     }
@@ -500,12 +499,13 @@ function ResetGame() {
         PlayerCounter = 0;
         AICounter = 0;
         EndGame = true; 
-        $('#restart').invisible();
-        //ResetImgs();
+        //$('#restart').invisible();
+        ResetImgs(8,8);
     }
 
 //This is the MAIN function.
 $(document).ready(function () {board = matrix(8, 8);});
+
 
 
 
