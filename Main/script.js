@@ -472,13 +472,34 @@ function GameCounter(whoEat) {
     }
 }
 
+function ResetImgs(){
+
+
+    for (var i = 0; i < rows; i++) {
+        for (var j = 0; j < cols; j++) {
+            if ((i % 2 == 0 && j % 2 != 0 && i < 3) || (i % 2 != 0 && j % 2 == 0 && i < 3)) {
+                $('#' + i + j).find('img').remove();
+            }
+
+    for (var i = 0; i < rows; i++) {
+        for (var j = 0; j < cols; j++) {
+            if ((i % 2 == 0 && j % 2 != 0 && i < 3) || (i % 2 != 0 && j % 2 == 0 && i < 3)) {
+                $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1.png" />');
+            } else
+                if ((i % 2 == 0 && j % 2 != 0 && i > 4) || (i % 2 != 0 && j % 2 == 0 && i > 4)) {
+                    $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/2.png" />');
+                } 
+        }
+    }
+}
+
 function ResetGame() {
         board = matrix(8, 8);
         PlayerCounter = 0;
         AICounter = 0;
         EndGame = true; 
         $('#restart').invisible();
-        //ResetImgs();
+        ResetImgs();
     }
 
 //This is the MAIN function.
