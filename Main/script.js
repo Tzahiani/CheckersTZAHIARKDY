@@ -121,27 +121,46 @@ function moveXY(from, to) {
 
 //This Function check if the move of Human is illegal.
 function humanMove() {
-    if (TD_FROM > 07) {
-        if (xFrom - 1 == xTo && yFrom + 1 == yTo) {
-            if (CheckIsPeaceThere()) {
-                way = 2;
-                return true;
+    if (board[xFrom][yFrom] == 2) {
+        if (TD_FROM > 07) {
+            if (xFrom - 1 == xTo && yFrom + 1 == yTo) {
+                if (CheckIsPeaceThere()) {
+                    way = 2;
+                    return true;
+                }
             }
-        }
 
-        if (xFrom - 1 == xTo && yFrom - 1 == yTo) {
-            if (CheckIsPeaceThere()) {
-                way = 1;
-                return true;
+            if (xFrom - 1 == xTo && yFrom - 1 == yTo) {
+                if (CheckIsPeaceThere()) {
+                    way = 1;
+                    return true;
+                }
             }
+            return false;
         }
-        return false;
+    }
+    if (board[xFrom][yFrom] == 4) {
+        if (TD_FROM < 70) {
+            if (xFrom + 1 == xTo && yFrom + 1 == yTo) {
+                if (CheckIsPeaceThere()) {
+                    way = 2;
+                    return true;
+                }
+            }
+
+            if (xFrom + 1 == xTo && yFrom - 1 == yTo) {
+                if (CheckIsPeaceThere()) {
+                    way = 1;
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }
 
 //This Function Check if there is piece on the Block.
 function CheckIsPeaceThere() {
-    if (TD_FROM > 07) {
         if ((board[xTo][yTo] == 2) || (board[xTo][yTo] == 1)) {
             console.log("Block Taken");
             return false;
@@ -151,7 +170,6 @@ function CheckIsPeaceThere() {
             return true;
         }
     }
-}
 
 //This Function make only eat possible.
 function MustEat() {
@@ -316,15 +334,22 @@ function deletePieace() {
 }
 
 //This Function Updates the Board with Taken Blocks.
-function UpdateStatus(whoPlay) {
-    board[xFrom][yFrom] = 0;
-    board[xTo][yTo] = whoPlay;
-    console.log("Status Updated");
-
-    if (xTo == 0) {
+function UpdateStatus() {
+    if (board[xFrom][yFrom] == 2) {
+        board[xFrom][yFrom] = 0;
+        board[xTo][yTo] = 2;
+        console.log("Status Updated");
+    }
+    if (board[xFrom][yFrom] == 4) {
+        board[xFrom][yFrom] = 0;
+        board[xTo][yTo] = 4;
+        console.log("Status Updated");
+    }
+    if (xTo == 0 && board[xFrom][yFrom] != 4) {
         board[xTo][yTo] = 4;
         $('#' + xTo + yTo).find('img').remove();
         $('#' + xTo + yTo).append('<img ondragstart="drag(event)" data-player="4" src="res/2_king.png" />');
+        console.log("King Created");
     }
 }
 
@@ -349,14 +374,14 @@ function drop(ev) {
         if (eatMove()) {
             $(ev.target).append($('#' + TD_FROM).find('img'));
             deletePieace();
-            UpdateStatus(2);
+            UpdateStatus();
             if (!eatAgain()) {
                 AI_turn_start();
             }
         }
         else if (humanMove() && !MustEat()) {
             $(ev.target).append($('#' + TD_FROM).find('img'));
-            UpdateStatus(2);
+            UpdateStatus();
             AI_turn_start();
         }
         else
