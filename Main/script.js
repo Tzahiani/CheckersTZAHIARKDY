@@ -320,6 +320,12 @@ function UpdateStatus(whoPlay) {
     board[xFrom][yFrom] = 0;
     board[xTo][yTo] = whoPlay;
     console.log("Status Updated");
+
+    if (xTo == 0) {
+        board[xTo][yTo] = 4;
+        $('#' + xTo + yTo).find('img').remove();
+        $('#' + xTo + yTo).append('<img ondragstart="drag(event)" data-player="4" src="res/2_king.png" />');
+    }
 }
 
 //This Function allows to drop in the cell.
