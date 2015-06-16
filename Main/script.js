@@ -70,7 +70,7 @@ function UpdateScoreBoard(winner) {
     }
 }
 
-//This function makes the reset button hidden
+//This function makes the reset button hidden\visible.
 (function ($) {
     $.fn.invisible = function () {
         return this.each(function () {
@@ -162,15 +162,15 @@ function humanMove() {
 
 //This Function Check if there is piece on the Block.
 function CheckIsPeaceThere() {
-        if ((board[xTo][yTo] == 2) || (board[xTo][yTo] == 1)) {
-            console.log("Block Taken");
-            return false;
-        }
-        else {
-            console.log("Block Free");
-            return true;
-        }
+    if (board[xTo][yTo] != 0) {
+        console.log("Block Taken");
+        return false;
     }
+    else {
+        console.log("Block Free");
+        return true;
+    }
+}
 
 //This Function make only eat possible.
 function MustEat() {
@@ -188,6 +188,22 @@ function MustEat() {
                         alert('Must Eat Right Side');
                         return true;
                     }
+                }
+            }
+        }
+    }
+    for (var i = 0; i < 6; i++) {
+        for (var j = 0; j < 8; j++) {
+            if (board[i][j] == 4) {
+                if ((board[i + 1][j - 1] == 1 || board[i + 1][j - 1] == 3) && board[i + 2][j - 2] == 0) {
+                    console.log("Must Eat Left Side");
+                    alert('Must Eat Left Side');
+                    return true;
+                }
+                if ((board[i + 1][j + 1] == 1 || board[i + 1][j + 1] == 3) && board[i + 2][j + 2] == 0) {
+                    console.log("Must Eat Right Side");
+                    alert('Must Eat Right Side');
+                    return true;
                 }
             }
         }
@@ -268,21 +284,40 @@ function AISimpleMove() {
 
 //This Function checks if you can eat one more peace before the computers turn.
 function eatAgain() {
-    if (TD_FROM > 37) {
-        if (board[xTo - 1][yTo - 1] == 1) {
-            if (board[xTo - 2][yTo - 2] == 0) {
-                console.log("One More Eat Left Side");
-                return true;
+    if (board[xTo][yTo] == 2) {
+        if (TD_FROM > 37) {
+            if (board[xTo - 1][yTo - 1] == 1 || board[xTo - 1][yTo - 1] == 3) {
+                if (board[xTo - 2][yTo - 2] == 0) {
+                    console.log("One More Eat Left Side");
+                    return true;
+                }
+            }
+            else if (board[xTo - 1][yTo + 1] == 1 || board[xTo - 1][yTo + 1] == 3) {
+                if (board[xTo - 2][yTo + 2] == 0) {
+                    console.log("One More Eat Right Side");
+                    return true;
+                }
             }
         }
-        else if (board[xTo - 1][yTo + 1] == 1) {
-            if (board[xTo - 2][yTo + 2] == 0) {
-                console.log("One More Eat Right Side");
-                return true;
-            }
-        }
-        return false;
+
     }
+    if (board[xTo][yTo] == 4) {
+        if (TD_FROM < 67) {
+            if (board[xTo + 1][yTo - 1] == 1 || board[xTo + 1][yTo - 1] == 3) {
+                if (board[xTo + 2][yTo - 2] == 0) {
+                    console.log("One More Eat Left Side");
+                    return true;
+                }
+                else if (board[xTo + 1][yTo + 1] == 1 || board[xTo + 1][yTo + 1] == 3) {
+                    if (board[xTo + 2][yTo + 2] == 0) {
+                        console.log("One More Eat Right Side");
+                        return true;
+                    }
+                }
+            }
+        }
+    }
+    return false;
 }
 
 //This Function checks if the eat move is OK.
