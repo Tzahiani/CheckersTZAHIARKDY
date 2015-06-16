@@ -92,6 +92,7 @@ function UpdateScoreBoard(winner) {
 // 0 - Reset to "Score Board"
 function GameFinish(winner) {
     console.log("Game Finish");
+    alert('Game Finish');
     switch (winner) {
         case 0:
             document.getElementById('ScoreTitle').firstChild.data = "Score Board";
@@ -179,10 +180,12 @@ function MustEat() {
                 if (board[i][j] - 1 == board[i - 1][j - 1] || board[i][j] - 1 == board[i - 1][j + 1]) {
                     if (board[i - 1][j - 1] == 1 && board[i - 2][j - 2] == 0) {
                         console.log("Must Eat Left Side");
+                        alert('Must Eat Left Side');
                         return true;
                     }
                     else if (board[i - 1][j + 1] == 1 && board[i - 2][j + 2] == 0) {
                         console.log("Must Eat Right Side");
+                        alert('Must Eat Right Side');
                         return true;
                     }
                 }
@@ -525,6 +528,7 @@ function ResetGame() {
     $('#restart').invisible();
     ResetImgs(8, 8);
     console.log("Reset Game Done");
+    alert('Game Reset');
 }
 
 //This Function Prints the Board
