@@ -357,13 +357,13 @@ function deletePieace() {
         case 1:
             board[xFrom - 1][yFrom - 1] = 0;
             $('#' + (xFrom - 1) + (yFrom - 1)).find('img').remove();
-            console.log("Piace Deleted");
+            console.log("Pieace Deleted");
             GameCounter(2);
             break;
         case 2:
             board[xFrom - 1][yFrom + 1] = 0;
             $('#' + (xFrom - 1) + (yFrom + 1)).find('img').remove();
-            console.log("Piace Deleted");
+            console.log("Pieace Deleted");
             GameCounter(2);
             break;
         default:
@@ -550,7 +550,7 @@ function ResetImgs(rows, cols) {
                 }
         }
     }
-    console.log("Reset Images Done")
+    console.log("Reset Images Done");
 }
 
 // This Function Resets the game data.
