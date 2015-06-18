@@ -437,7 +437,12 @@ function deletePieace() {
         switch (way) {
             case 1:
                 board[xFrom - 1][yFrom - 1] = 0;
-                $('#' + (xFrom - 1) + (yFrom - 1)).find('img').remove();
+                //Test
+                $('#' + (xFrom - 1) + (yFrom - 1)).find('img').hide(1000).promise().done(function () {
+                    $(this).remove();
+                });
+                //End Test
+                //$('#' + (xFrom - 1) + (yFrom - 1)).find('img').remove();
                 console.log("Pieace Deleted");
                 GameCounter(2);
                 break;
@@ -625,8 +630,15 @@ function AI_Eat_Move() {
 
 //This Function makes the move and update.
 function AI_Move() {
-    $('#' + AIXfrom + AIYfrom).find('img').remove();
-    $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1.png" />')
+    //Test
+    $('#' + AIXfrom + AIYfrom).find('img').hide(1000).promise().done(function () {
+        $(this).remove();
+    });
+    //End Test
+
+    //$('#' + AIXfrom + AIYfrom).find('img').remove();
+
+   $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1.png" />')
     board[AIXfrom][AIYfrom] = 0;
     board[AIXto][AIYto] = 1;
     console.log("Status Updated + AI-Move-Done");
