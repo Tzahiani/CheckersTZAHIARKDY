@@ -91,8 +91,6 @@ function UpdateScoreBoard(winner) {
 // 1 - Computer
 // 0 - Reset to "Score Board"
 function GameFinish(winner) {
-    console.log("Game Finish");
-    alert('Game Finish');
     switch (winner) {
         case 0:
             document.getElementById('ScoreTitle').firstChild.data = "Score Board";
@@ -101,11 +99,15 @@ function GameFinish(winner) {
             document.getElementById('ScoreTitle').firstChild.data = "Computer Wins";
             EndGame = false;
             $('#restart').visible();
+            console.log("Game Finish");
+            alert('Game Finish');
             break;
         case 2:
             document.getElementById('ScoreTitle').firstChild.data = "You Win";
             EndGame = false;
             $('#restart').visible();
+            console.log("Game Finish");
+            alert('Game Finish');
             break;
         default:
             break;
@@ -155,8 +157,23 @@ function humanMove() {
                     return true;
                 }
             }
-            return false;
+            if (TD_FROM > 07) {
+                if (xFrom - 1 == xTo && yFrom + 1 == yTo) {
+                    if (CheckIsPeaceThere()) {
+                        way = 2;
+                        return true;
+                    }
+                }
+
+                if (xFrom - 1 == xTo && yFrom - 1 == yTo) {
+                    if (CheckIsPeaceThere()) {
+                        way = 1;
+                        return true;
+                    }
+                }
+            }
         }
+        return false;
     }
 }
 
@@ -176,18 +193,16 @@ function CheckIsPeaceThere() {
 function MustEat() {
     for (var i = 7; i > 1; i--) {
         for (var j = 7; j >= 0; j--) {
-            if (board[i][j] == 2) {
-                if (board[i][j] - 1 == board[i - 1][j - 1] || board[i][j] - 1 == board[i - 1][j + 1]) {
-                    if (board[i - 1][j - 1] == 1 && board[i - 2][j - 2] == 0) {
-                        console.log("Must Eat Left Side");
-                        alert('Must Eat Left Side');
-                        return true;
-                    }
-                    else if (board[i - 1][j + 1] == 1 && board[i - 2][j + 2] == 0) {
-                        console.log("Must Eat Right Side");
-                        alert('Must Eat Right Side');
-                        return true;
-                    }
+            if (board[i][j] == 2 || board[i][j] == 4) {
+                if ((board[i - 1][j - 1] == 1 || board[i - 1][j - 1] == 3) && board[i - 2][j - 2] == 0) {
+                    console.log("Must Eat Left Side");
+                    alert('Must Eat Left Side');
+                    return true;
+                }
+                else if ((board[i - 1][j + 1] == 1 || board[i - 1][j + 1] == 3) && board[i - 2][j + 2] == 0) {
+                    console.log("Must Eat Right Side");
+                    alert('Must Eat Right Side');
+                    return true;
                 }
             }
         }
@@ -302,17 +317,31 @@ function eatAgain() {
 
     }
     if (board[xTo][yTo] == 4) {
-        if (TD_FROM < 67) {
+        if (TD_FROM < 60) {
             if (board[xTo + 1][yTo - 1] == 1 || board[xTo + 1][yTo - 1] == 3) {
                 if (board[xTo + 2][yTo - 2] == 0) {
                     console.log("One More Eat Left Side");
                     return true;
                 }
-                else if (board[xTo + 1][yTo + 1] == 1 || board[xTo + 1][yTo + 1] == 3) {
-                    if (board[xTo + 2][yTo + 2] == 0) {
-                        console.log("One More Eat Right Side");
-                        return true;
-                    }
+            }
+            if (board[xTo + 1][yTo + 1] == 1 || board[xTo + 1][yTo + 1] == 3) {
+                if (board[xTo + 2][yTo + 2] == 0) {
+                    console.log("One More Eat Right Side");
+                    return true;
+                }
+            }
+        }
+        if (TD_FROM > 37) {
+            if (board[xTo - 1][yTo - 1] == 1 || board[xTo - 1][yTo - 1] == 3) {
+                if (board[xTo - 2][yTo - 2] == 0) {
+                    console.log("One More Eat Left Side");
+                    return true;
+                }
+            }
+            else if (board[xTo - 1][yTo + 1] == 1 || board[xTo - 1][yTo + 1] == 3) {
+                if (board[xTo - 2][yTo + 2] == 0) {
+                    console.log("One More Eat Right Side");
+                    return true;
                 }
             }
         }
@@ -322,52 +351,146 @@ function eatAgain() {
 
 //This Function checks if the eat move is OK.
 function eatMove() {
-    if (TD_FROM > 17) {
-        if (board[xFrom - 1][yFrom - 1] == 1) {
-            way = 1;
-            if (eat()) {
-                return true;
+    if (board[xFrom][yFrom] == 2) {
+        if (TD_FROM > 17) {
+            if (board[xFrom - 1][yFrom - 1] == 1 || board[xFrom - 1][yFrom - 1] == 3) {
+                way = 1;
+                if (eat(2)) {
+                    return true;
+                }
             }
-        }
-        if (board[xFrom - 1][yFrom + 1] == 1) {
-            way = 2;
-            if (eat()) {
-                return true;
+            if (board[xFrom - 1][yFrom + 1] == 1 || board[xFrom - 1][yFrom + 1] == 3) {
+                way = 2;
+                if (eat(2)) {
+                    return true;
+                }
             }
+
         }
-        return false;
     }
+    if (board[xFrom][yFrom] == 4) {
+        if (TD_FROM < 60) {
+            if (board[xFrom + 1][yFrom - 1] == 1 || board[xFrom + 1][yFrom - 1] == 3) {
+                way = 1;
+                if (eat(4)) {
+                    return true;
+                }
+            }
+            if (board[xFrom + 1][yFrom + 1] == 1 || board[xFrom + 1][yFrom + 1] == 3) {
+                way = 2;
+                if (eat(4)) {
+                    return true;
+                }
+            }
+        }
+        if (TD_FROM > 17) {
+            if (board[xFrom - 1][yFrom - 1] == 1 || board[xFrom - 1][yFrom - 1] == 3) {
+                way = 1;
+                if (eat(4)) {
+                    return true;
+                }
+            }
+            if (board[xFrom - 1][yFrom + 1] == 1 || board[xFrom - 1][yFrom + 1] == 3) {
+                way = 2;
+                if (eat(4)) {
+                    return true;
+                }
+            }
+
+        }
+    }
+    return false;
 }
 
 //This Function check if the move to cords is OK.
-function eat() {
-    if (TD_FROM > 17) {
-        if ((xFrom - 2 == xTo && yFrom - 2 == yTo) && way == 1 && CheckIsPeaceThere())
-            return true;
-        else if ((xFrom - 2 == xTo && yFrom + 2 == yTo) && way == 2 && CheckIsPeaceThere())
-            return true;
-        else
-            return false;
+function eat(Who) {
+    switch (Who) {
+        case 2:
+            if (TD_FROM > 17) {
+                if ((xFrom - 2 == xTo && yFrom - 2 == yTo) && way == 1 && CheckIsPeaceThere())
+                    return true;
+                else if ((xFrom - 2 == xTo && yFrom + 2 == yTo) && way == 2 && CheckIsPeaceThere())
+                    return true;
+                else
+                    return false;
+            }
+            break;
+        case 4:
+            if (TD_FROM < 60) {
+                if ((xFrom + 2 == xTo && yFrom - 2 == yTo) && way == 1 && CheckIsPeaceThere())
+                    return true;
+                else if ((xFrom + 2 == xTo && yFrom + 2 == yTo) && way == 2 && CheckIsPeaceThere())
+                    return true;
+                else if ((xFrom - 2 == xTo && yFrom - 2 == yTo) && way == 1 && CheckIsPeaceThere())
+                    return true;
+                else if ((xFrom - 2 == xTo && yFrom + 2 == yTo) && way == 2 && CheckIsPeaceThere())
+                    return true;
+                else
+                    return false;
+            }
+            break;
+        default:
+            break;
     }
 }
 
 //This Function delete the piece from board.
 function deletePieace() {
-    switch (way) {
-        case 1:
-            board[xFrom - 1][yFrom - 1] = 0;
-            $('#' + (xFrom - 1) + (yFrom - 1)).find('img').remove();
-            console.log("Pieace Deleted");
-            GameCounter(2);
-            break;
-        case 2:
-            board[xFrom - 1][yFrom + 1] = 0;
-            $('#' + (xFrom - 1) + (yFrom + 1)).find('img').remove();
-            console.log("Pieace Deleted");
-            GameCounter(2);
-            break;
-        default:
-            break;
+    if (board[xFrom][yFrom] == 2) {
+        switch (way) {
+            case 1:
+                board[xFrom - 1][yFrom - 1] = 0;
+                $('#' + (xFrom - 1) + (yFrom - 1)).find('img').remove();
+                console.log("Pieace Deleted");
+                GameCounter(2);
+                break;
+            case 2:
+                board[xFrom - 1][yFrom + 1] = 0;
+                $('#' + (xFrom - 1) + (yFrom + 1)).find('img').remove();
+                console.log("Pieace Deleted");
+                GameCounter(2);
+                break;
+            default:
+                break;
+        }
+    }
+    if (board[xFrom][yFrom] == 4) {
+        if (xFrom + 2 == xTo) {
+            switch (way) {
+                case 1:
+                    board[xFrom + 1][yFrom - 1] = 0;
+                    $('#' + (xFrom + 1) + (yFrom - 1)).find('img').remove();
+                    console.log("Pieace Deleted");
+                    GameCounter(2);
+                    break;
+                case 2:
+                    board[xFrom + 1][yFrom + 1] = 0;
+                    $('#' + (xFrom + 1) + (yFrom + 1)).find('img').remove();
+                    console.log("Pieace Deleted");
+                    GameCounter(2);
+                    break;
+                default:
+                    break;
+            }
+        }
+        if (xFrom - 2 == xTo) {
+            switch (way) {
+                case 1:
+                    board[xFrom - 1][yFrom - 1] = 0;
+                    $('#' + (xFrom - 1) + (yFrom - 1)).find('img').remove();
+                    console.log("Pieace Deleted");
+                    GameCounter(2);
+                    break;
+                case 2:
+                    board[xFrom - 1][yFrom + 1] = 0;
+                    $('#' + (xFrom - 1) + (yFrom + 1)).find('img').remove();
+                    console.log("Pieace Deleted");
+                    GameCounter(2);
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }
 
