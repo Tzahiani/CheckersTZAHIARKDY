@@ -10,7 +10,7 @@
 
 #reset {
     position: absolute;
-    visibility: visible;
+    visibility: hidden;
     top: 20%;
     right: 10%;
 }
