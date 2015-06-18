@@ -84,128 +84,112 @@ body {
     display: block;
 }
 
-/* line 22, ../sass/screen.scss */
 .cool_btn1 {
-  width: 190px;
-  height: 190px;
-  margin: 15px 15px 15px 15px;
-  position: relative;
-  -webkit-border-radius: 200px;
-  -moz-border-radius: 200px;
-  -ms-border-radius: 200px;
-  -o-border-radius: 200px;
-  border-radius: 200px;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #fafafa), color-stop(50%, #e3e3e3), color-stop(50%, #888888), color-stop(100%, #666666));
-  background-image: -webkit-linear-gradient(#fafafa, #e3e3e3 50%, #888888 50%, #666666);
-  background-image: -moz-linear-gradient(#fafafa, #e3e3e3 50%, #888888 50%, #666666);
-  background-image: -o-linear-gradient(#fafafa, #e3e3e3 50%, #888888 50%, #666666);
-  background-image: linear-gradient(#fafafa, #e3e3e3 50%, #888888 50%, #666666);
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3), inset 0px 2px 5px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3), inset 0px 2px 5px rgba(0, 0, 0, 0.3);
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3), inset 0px 2px 5px rgba(0, 0, 0, 0.3);
-  display: inline-block;
-}
-/* line 31, ../sass/screen.scss */
-.cool_btn1 h1 {
-  text-align: center;
-  font-size: 50px;
-  margin: 20px 0 0 0;
-  color: #333;
-  text-shadow: 0 1px 0 white, 0 -1px 0 rgba(0, 0, 0, 0.5);
-  font-family: 'Lobster', cursive;
-  font-weight: normal;
-  line-height: 2;
-}
-/* line 40, ../sass/screen.scss */
-.cool_btn1 h1 i {
-  display: block;
-  font-style: normal;
-  font-size: 12px;
-  font-weight: bold;
-  font-family: helvetica, arial, sans-serif;
-  text-shadow: none;
-}
-/* line 49, ../sass/screen.scss */
-.cool_btn1 h2 {
-  font-family: 'ModernPictogramsNormal', Arial, sans-serif;
-  font-weight: normal;
-  text-align: center;
-  font-size: 50px;
-  line-height: 0;
-  margin: 15px 0 0 0;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4), 0 -1px 0px rgba(0, 0, 0, 0.8);
-  color: #fafafa;
+    width: 190px;
+    height: 190px;
+    margin: 15px 15px 15px 15px;
+    position: relative;
+    -webkit-border-radius: 200px;
+    -moz-border-radius: 200px;
+    -ms-border-radius: 200px;
+    -o-border-radius: 200px;
+    border-radius: 200px;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #fafafa), color-stop(50%, #e3e3e3), color-stop(50%, #888888), color-stop(100%, #666666));
+    background-image: -webkit-linear-gradient(#fafafa, #e3e3e3 50%, #888888 50%, #666666);
+    background-image: -moz-linear-gradient(#fafafa, #e3e3e3 50%, #888888 50%, #666666);
+    background-image: -o-linear-gradient(#fafafa, #e3e3e3 50%, #888888 50%, #666666);
+    background-image: linear-gradient(#fafafa, #e3e3e3 50%, #888888 50%, #666666);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3), inset 0px 2px 5px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3), inset 0px 2px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3), inset 0px 2px 5px rgba(0, 0, 0, 0.3);
+    display: inline-block;
 }
 
-/* line 60, ../sass/screen.scss */
-.cool_btn1:after {
-  content: "";
-  width: 200px;
-  height: 200px;
-  display: block;
-  position: absolute;
-  left: -5px;
-  top: -5px;
-  z-index: -1;
-  -webkit-border-radius: 200px;
-  -moz-border-radius: 200px;
-  -ms-border-radius: 200px;
-  -o-border-radius: 200px;
-  border-radius: 200px;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #cecece), color-stop(100%, #e7e7e7));
-  background-image: -webkit-linear-gradient(#cecece, #e7e7e7);
-  background-image: -moz-linear-gradient(#cecece, #e7e7e7);
-  background-image: -o-linear-gradient(#cecece, #e7e7e7);
-  background-image: linear-gradient(#cecece, #e7e7e7);
-   -webkit-box-shadow: 0 1px 0px rgba(255, 255, 255, 0.9);
-  -moz-box-shadow: 0 1px 0px rgba(255, 255, 255, 0.9);
-  box-shadow: 0 1px 0px rgba(255, 255, 255, 0.9);
-}
+    .cool_btn1 h1 {
+        text-align: center;
+        font-size: 50px;
+        margin: 20px 0 0 0;
+        color: #333;
+        text-shadow: 0 1px 0 white, 0 -1px 0 rgba(0, 0, 0, 0.5);
+        font-family: 'Lobster', cursive;
+        font-weight: normal;
+        line-height: 2;
+    }
 
-/* -------------------
-Transitions
--------------------- */
-/* line 76, ../sass/screen.scss */
-.cool_btn1.blue, .cool_btn1.teal, .cool_btn1.orange, .cool_btn1.green {
-  -webkit-transition-property: all;
-  -moz-transition-property: all;
-  -o-transition-property: all;
-  transition-property: all;
-  -webkit-transition-duration: 0.4s;
-  -moz-transition-duration: 0.4s;
-  -o-transition-duration: 0.4s;
-  transition-duration: 0.4s;
-  cursor: pointer;
-}
+        .cool_btn1 h1 i {
+            display: block;
+            font-style: normal;
+            font-size: 12px;
+            font-weight: bold;
+            font-family: helvetica, arial, sans-serif;
+            text-shadow: none;
+        }
 
-/* -------------------
-Colors
--------------------- */
+    .cool_btn1 h2 {
+        font-family: 'ModernPictogramsNormal', Arial, sans-serif;
+        font-weight: normal;
+        text-align: center;
+        font-size: 50px;
+        line-height: 0;
+        margin: 15px 0 0 0;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4), 0 -1px 0px rgba(0, 0, 0, 0.8);
+        color: #fafafa;
+    }
 
-/* line 111, ../sass/screen.scss */
-.cool_btn1.green {
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #d5d5d5), color-stop(50%, #ffffff), color-stop(50%, #2fd51d), color-stop(100%, #00a01e));
-  background-image: -webkit-linear-gradient(#d5d5d5, #ffffff 50%, #2fd51d 50%, #00a01e);
-  background-image: -moz-linear-gradient(#d5d5d5, #ffffff 50%, #2fd51d 50%, #00a01e);
-  background-image: -o-linear-gradient(#d5d5d5, #ffffff 50%, #2fd51d 50%, #00a01e);
-  background-image: linear-gradient(#d5d5d5, #ffffff 50%, #2fd51d 50%, #00a01e);
-}
-/* line 113, ../sass/screen.scss */
-.cool_btn1.green h1 {
-  color: #00a01e;
-}
-/* line 116, ../sass/screen.scss */
-.cool_btn1.green h2 {
-  color: #006312;
-}
+    .cool_btn1:after {
+        content: "";
+        width: 200px;
+        height: 200px;
+        display: block;
+        position: absolute;
+        left: -5px;
+        top: -5px;
+        z-index: -1;
+        -webkit-border-radius: 200px;
+        -moz-border-radius: 200px;
+        -ms-border-radius: 200px;
+        -o-border-radius: 200px;
+        border-radius: 200px;
+        background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #cecece), color-stop(100%, #e7e7e7));
+        background-image: -webkit-linear-gradient(#cecece, #e7e7e7);
+        background-image: -moz-linear-gradient(#cecece, #e7e7e7);
+        background-image: -o-linear-gradient(#cecece, #e7e7e7);
+        background-image: linear-gradient(#cecece, #e7e7e7);
+        -webkit-box-shadow: 0 1px 0px rgba(255, 255, 255, 0.9);
+        -moz-box-shadow: 0 1px 0px rgba(255, 255, 255, 0.9);
+        box-shadow: 0 1px 0px rgba(255, 255, 255, 0.9);
+    }
 
-/* -------------------
-Hover States
--------------------- */
+    .cool_btn1.blue, .cool_btn1.teal, .cool_btn1.orange, .cool_btn1.green {
+        -webkit-transition-property: all;
+        -moz-transition-property: all;
+        -o-transition-property: all;
+        transition-property: all;
+        -webkit-transition-duration: 0.4s;
+        -moz-transition-duration: 0.4s;
+        -o-transition-duration: 0.4s;
+        transition-duration: 0.4s;
+        cursor: pointer;
+    }
 
-/* line 138, ../sass/screen.scss */
-.cool_btn1.green:hover {
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3), inset 0px 2px 5px rgba(0, 0, 0, 0.3), 0 0 28px 6px rgba(47, 217, 29, 0.8);
-  -moz-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3), inset 0px 2px 5px rgba(0, 0, 0, 0.3), 0 0 28px 6px rgba(47, 217, 29, 0.8);
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3), inset 0px 2px 5px rgba(0, 0, 0, 0.3), 0 0 28px 6px rgba(47, 217, 29, 0.8);
-}
+    .cool_btn1.green {
+        background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #d5d5d5), color-stop(50%, #ffffff), color-stop(50%, #2fd51d), color-stop(100%, #00a01e));
+        background-image: -webkit-linear-gradient(#d5d5d5, #ffffff 50%, #2fd51d 50%, #00a01e);
+        background-image: -moz-linear-gradient(#d5d5d5, #ffffff 50%, #2fd51d 50%, #00a01e);
+        background-image: -o-linear-gradient(#d5d5d5, #ffffff 50%, #2fd51d 50%, #00a01e);
+        background-image: linear-gradient(#d5d5d5, #ffffff 50%, #2fd51d 50%, #00a01e);
+    }
+
+        .cool_btn1.green h1 {
+            color: #00a01e;
+        }
+
+        .cool_btn1.green h2 {
+            color: #006312;
+        }
+
+        .cool_btn1.green:hover {
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3), inset 0px 2px 5px rgba(0, 0, 0, 0.3), 0 0 28px 6px rgba(47, 217, 29, 0.8);
+            -moz-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3), inset 0px 2px 5px rgba(0, 0, 0, 0.3), 0 0 28px 6px rgba(47, 217, 29, 0.8);
+            box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3), inset 0px 2px 5px rgba(0, 0, 0, 0.3), 0 0 28px 6px rgba(47, 217, 29, 0.8);
+        }

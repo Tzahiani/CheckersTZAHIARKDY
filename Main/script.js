@@ -314,7 +314,6 @@ function eatAgain() {
                 }
             }
         }
-
     }
     if (board[xTo][yTo] == 4) {
         if (TD_FROM < 60) {
@@ -365,7 +364,6 @@ function eatMove() {
                     return true;
                 }
             }
-
         }
     }
     if (board[xFrom][yFrom] == 4) {
@@ -396,7 +394,6 @@ function eatMove() {
                     return true;
                 }
             }
-
         }
     }
     return false;
