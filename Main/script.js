@@ -98,14 +98,14 @@ function GameFinish(winner) {
         case 1:
             document.getElementById('ScoreTitle').firstChild.data = "Computer Wins";
             EndGame = false;
-            $('#restart').visible();
+            $('#reset').visible();
             console.log("Game Finish");
             alert('Game Finish');
             break;
         case 2:
             document.getElementById('ScoreTitle').firstChild.data = "You Win";
             EndGame = false;
-            $('#restart').visible();
+            $('#reset').visible();
             console.log("Game Finish");
             alert('Game Finish');
             break;
@@ -683,7 +683,7 @@ function ResetGame() {
     AICounter = 0;
     GameFinish(0);
     EndGame = true;
-    $('#restart').invisible();
+    $('#reset').invisible();
     ResetImgs(8, 8);
     console.log("Reset Game Done");
     alert('Game Reset');
