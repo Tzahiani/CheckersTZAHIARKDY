@@ -10,9 +10,9 @@
 
 #reset {
     position: absolute;
-    right: 105px;
-    top: 150px;
-    visibility: hidden;
+    visibility: visible;
+    top: 20%;
+    right: 10%;
 }
 
 td {
