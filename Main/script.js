@@ -437,18 +437,17 @@ function deletePieace() {
         switch (way) {
             case 1:
                 board[xFrom - 1][yFrom - 1] = 0;
-                //Test
                 $('#' + (xFrom - 1) + (yFrom - 1)).find('img').hide(1000).promise().done(function () {
                     $(this).remove();
                 });
-                //End Test
-                //$('#' + (xFrom - 1) + (yFrom - 1)).find('img').remove();
                 console.log("Pieace Deleted");
                 GameCounter(2);
                 break;
             case 2:
                 board[xFrom - 1][yFrom + 1] = 0;
-                $('#' + (xFrom - 1) + (yFrom + 1)).find('img').remove();
+                $('#' + (xFrom - 1) + (yFrom + 1)).find('img').hide(1000).promise().done(function () {
+                    $(this).remove();
+                });
                 console.log("Pieace Deleted");
                 GameCounter(2);
                 break;
@@ -461,13 +460,17 @@ function deletePieace() {
             switch (way) {
                 case 1:
                     board[xFrom + 1][yFrom - 1] = 0;
-                    $('#' + (xFrom + 1) + (yFrom - 1)).find('img').remove();
+                    $('#' + (xFrom + 1) + (yFrom - 1)).find('img').hide(1000).promise().done(function () {
+                        $(this).remove();
+                    });
                     console.log("Pieace Deleted");
                     GameCounter(2);
                     break;
                 case 2:
                     board[xFrom + 1][yFrom + 1] = 0;
-                    $('#' + (xFrom + 1) + (yFrom + 1)).find('img').remove();
+                    $('#' + (xFrom + 1) + (yFrom + 1)).find('img').hide(1000).promise().done(function () {
+                        $(this).remove();
+                    });
                     console.log("Pieace Deleted");
                     GameCounter(2);
                     break;
@@ -479,13 +482,17 @@ function deletePieace() {
             switch (way) {
                 case 1:
                     board[xFrom - 1][yFrom - 1] = 0;
-                    $('#' + (xFrom - 1) + (yFrom - 1)).find('img').remove();
+                    $('#' + (xFrom - 1) + (yFrom - 1)).find('img').hide(1000).promise().done(function () {
+                        $(this).remove();
+                    });
                     console.log("Pieace Deleted");
                     GameCounter(2);
                     break;
                 case 2:
                     board[xFrom - 1][yFrom + 1] = 0;
-                    $('#' + (xFrom - 1) + (yFrom + 1)).find('img').remove();
+                    $('#' + (xFrom - 1) + (yFrom + 1)).find('img').hide(1000).promise().done(function () {
+                        $(this).remove();
+                    });
                     console.log("Pieace Deleted");
                     GameCounter(2);
                     break;
@@ -602,9 +609,13 @@ function AI_eat_again() {
 function AI_Eat_Move() {
     switch (way) {
         case 1: {
-            $('#' + AIXfrom + AIYfrom).find('img').remove();
-            $('#' + (AIXfrom + 1) + (AIYfrom - 1)).find('img').remove();
-            $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1.png" />')
+            $('#' + AIXfrom + AIYfrom).find('img').hide(1000).promise().done(function () {
+                $(this).remove();
+            });
+            $('#' + (AIXfrom + 1) + (AIYfrom - 1)).hide(1000).promise().done(function () {
+                $(this).remove();
+            });
+            $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1.png" />').hide().show(1000);
             board[AIXfrom][AIYfrom] = 0;
             board[AIXfrom + 1][AIYfrom - 1] = 0;
             board[AIXto][AIYto] = 1;
@@ -613,9 +624,13 @@ function AI_Eat_Move() {
             break;
         }
         case 2: {
-            $('#' + AIXfrom + AIYfrom).find('img').remove();
-            $('#' + (AIXfrom + 1) + (AIYfrom + 1)).find('img').remove();
-            $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1.png" />')
+            $('#' + AIXfrom + AIYfrom).find('img').hide(1000).promise().done(function () {
+                $(this).remove();
+            });
+            $('#' + (AIXfrom + 1) + (AIYfrom + 1)).find('img').hide(1000).promise().done(function () {
+                $(this).remove();
+            });
+            $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1.png" />').hide().show(1000);
             board[AIXfrom][AIYfrom] = 0;
             board[AIXfrom + 1][AIYfrom + 1] = 0;
             board[AIXto][AIYto] = 1;
@@ -630,15 +645,10 @@ function AI_Eat_Move() {
 
 //This Function makes the move and update.
 function AI_Move() {
-    //Test
     $('#' + AIXfrom + AIYfrom).find('img').hide(1000).promise().done(function () {
         $(this).remove();
     });
-    //End Test
-
-    //$('#' + AIXfrom + AIYfrom).find('img').remove();
-
-   $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1.png" />')
+    $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1.png" />').find('img').hide().show(1000);
     board[AIXfrom][AIYfrom] = 0;
     board[AIXto][AIYto] = 1;
     console.log("Status Updated + AI-Move-Done");
