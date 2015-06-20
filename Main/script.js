@@ -230,8 +230,8 @@ function MustEat() {
 function AICheckEatFirst() {
     for (var i = 0; i < 6; i++) {
         for (var j = 0; j < 8; j++) {
-            if (board[i][j] == 1) {
-                if (board[i + 1][j - 1] == 2 && board[i + 2][j - 2] == 0) {
+            if (board[i][j] == 1 || board[i][j] == 3) {
+                if ((board[i + 1][j - 1] == 2 || board[i + 1][j - 1] == 4) && board[i + 2][j - 2] == 0) {
                     console.log("AI Must Eat Left Side");
                     way = 1;
                     AIXfrom = i;
@@ -240,8 +240,32 @@ function AICheckEatFirst() {
                     AIYto = j - 2;
                     return true;
                 }
-                else if (board[i + 1][j + 1] == 2 && board[i + 2][j + 2] == 0) {
+                else if ((board[i + 1][j + 1] == 2 || board[i + 1][j + 1] == 4) && board[i + 2][j + 2] == 0) {
                     console.log("AI Must Eat Right Side");
+                    way = 2;
+                    AIXfrom = i;
+                    AIYfrom = j;
+                    AIXto = i + 2;
+                    AIYto = j + 2;
+                    return true;
+                }
+            }
+        }
+    }
+    for (var i = 7; i > 1; i--) {
+        for (var j = 7; j >= 0; j--) {
+            if (board[i][j] == 3) {
+                if ((board[i - 1][j - 1] == 2 || board[i - 1][j - 1] == 4) && board[i - 2][j - 2] == 0) {
+                    console.log("AI King Must Eat Left Side");
+                    way = 1;
+                    AIXfrom = i;
+                    AIYfrom = j;
+                    AIXto = i + 2;
+                    AIYto = j - 2;
+                    return true;
+                }
+               else if ((board[i - 1][j + 1] == 2 || board[i - 1][j + 1] == 4) && board[i - 2][j + 2] == 0) {
+                    console.log("AI King Must Eat Right Side");
                     way = 2;
                     AIXfrom = i;
                     AIYfrom = j;
@@ -259,42 +283,76 @@ function AICheckEatFirst() {
 function AISimpleMove() {
     for (var i = 0; i < 7; i++) {
         for (var j = 0; j < 8; j++) {
-            if (board[i][j] == 1) {
-                if (board[i][j] == board[i + 1][j - 1] + 1 || board[i][j] == board[i + 1][j + 1] + 1) {
-                    if (board[i + 1][j - 1] == 0 && i <= 5 && board[i + 2][j - 2] == 0) {
-                        way = 1;
-                        AIXfrom = i;
-                        AIYfrom = j;
-                        AIXto = i + 1;
-                        AIYto = j - 1;
-                        return true;
-                    } else if (board[i + 1][j + 1] == 0 && i <= 5 && board[i + 2][j + 2] == 0) {
-                        way = 2;
-                        AIXfrom = i;
-                        AIYfrom = j;
-                        AIXto = i + 1;
-                        AIYto = j + 1;
-                        return true;
-                    } else if (board[i + 1][j - 1] == 0) {
-                        way = 1;
-                        AIXfrom = i;
-                        AIYfrom = j;
-                        AIXto = i + 1;
-                        AIYto = j - 1;
-                        return true;
-                    } else if (board[i + 1][j + 1] == 0) {
-                        way = 2;
-                        AIXfrom = i;
-                        AIYfrom = j;
-                        AIXto = i + 1;
-                        AIYto = j + 1;
-                        return true;
-                    } else
-                        return false;
+            if (board[i][j] == 1 || board[i][j] == 3) {
+                if (board[i + 1][j - 1] == 0 && i <= 5 && board[i + 2][j - 2] == 0) {
+                    way = 1;
+                    AIXfrom = i;
+                    AIYfrom = j;
+                    AIXto = i + 1;
+                    AIYto = j - 1;
+                    return true;
+                } else if (board[i + 1][j + 1] == 0 && i <= 5 && board[i + 2][j + 2] == 0) {
+                    way = 2;
+                    AIXfrom = i;
+                    AIYfrom = j;
+                    AIXto = i + 1;
+                    AIYto = j + 1;
+                    return true;
+                } else if (board[i + 1][j - 1] == 0) {
+                    way = 1;
+                    AIXfrom = i;
+                    AIYfrom = j;
+                    AIXto = i + 1;
+                    AIYto = j - 1;
+                    return true;
+                } else if (board[i + 1][j + 1] == 0) {
+                    way = 2;
+                    AIXfrom = i;
+                    AIYfrom = j;
+                    AIXto = i + 1;
+                    AIYto = j + 1;
+                    return true;
                 }
             }
         }
     }
+
+    for (var i = 7; i > 1; i--) {
+        for (var j = 7; j >= 0; j--) {
+            if (board[i][j] == 3) {
+                if (board[i - 1][j - 1] == 0 && i >= 2 && board[i - 2][j - 2] == 0) {
+                    way = 1;
+                    AIXfrom = i;
+                    AIYfrom = j;
+                    AIXto = i - 1;
+                    AIYto = j - 1;
+                    return true;
+                } else if (board[i - 1][j + 1] == 0 && i <= 2 && board[i - 2][j + 2] == 0) {
+                    way = 2;
+                    AIXfrom = i;
+                    AIYfrom = j;
+                    AIXto = i - 1;
+                    AIYto = j + 1;
+                    return true;
+                } else if (board[i - 1][j - 1] == 0) {
+                    way = 1;
+                    AIXfrom = i;
+                    AIYfrom = j;
+                    AIXto = i - 1;
+                    AIYto = j - 1;
+                    return true;
+                } else if (board[i - 1][j + 1] == 0) {
+                    way = 2;
+                    AIXfrom = i;
+                    AIYfrom = j;
+                    AIXto = i - 1;
+                    AIYto = j + 1;
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
 }
 
 //This Function checks if you can eat one more peace before the computers turn.
@@ -584,67 +642,175 @@ function AI_turn_start() {
 
 //This Function checks if the AI can eat again.
 function AI_eat_again() {
-    if (AIXto < 6 && board[AIXto + 1][AIYto - 1] == 2 && board[AIXto + 2][AIYto - 2] == 0) {
-        way = 1;
-        AIXfrom = AIXto;
-        AIYfrom = AIYto;
-        AIXto = AIXto + 2;
-        AIYto = AIYto - 2;
-        return true;
-    }
+    if (board[AIXto][AIYto] == 1 || board[AIXto][AIYto] == 3) {
+        if (AIXto < 6 && (board[AIXto + 1][AIYto - 1] == 2 || board[AIXto + 1][AIYto - 1] == 4) && board[AIXto + 2][AIYto - 2] == 0) {
+            way = 1;
+            AIXfrom = AIXto;
+            AIYfrom = AIYto;
+            AIXto = AIXto + 2;
+            AIYto = AIYto - 2;
+            return true;
+        }
 
-    if (AIXto < 6 && board[AIXto + 1][AIYto + 1] == 2 && board[AIXto + 2][AIYto + 2] == 0) {
-        way = 2;
-        AIXfrom = AIXto;
-        AIYfrom = AIYto;
-        AIXto = AIXto + 2;
-        AIYto = AIYto + 2;
-        return true;
+        if (AIXto < 6 && (board[AIXto + 1][AIYto + 1] == 2 || board[AIXto + 1][AIYto + 1] == 4) && board[AIXto + 2][AIYto + 2] == 0) {
+            way = 2;
+            AIXfrom = AIXto;
+            AIYfrom = AIYto;
+            AIXto = AIXto + 2;
+            AIYto = AIYto + 2;
+            return true;
+        }
     }
+    if (board[AIXto][AIYto] == 3) {
+        if (AIXto > 1 && (board[AIXto - 1][AIYto - 1] == 2 || board[AIXto - 1][AIYto - 1] == 4) && board[AIXto - 2][AIYto - 2] == 0) {
+            way = 1;
+            AIXfrom = AIXto;
+            AIYfrom = AIYto;
+            AIXto = AIXto - 2;
+            AIYto = AIYto - 2;
+            return true;
+        }
 
+        if (AIXto > 1 && (board[AIXto - 1][AIYto + 1] == 2 || board[AIXto - 1][AIYto + 1] == 4) && board[AIXto - 2][AIYto + 2] == 0) {
+            way = 2;
+            AIXfrom = AIXto;
+            AIYfrom = AIYto;
+            AIXto = AIXto - 2;
+            AIYto = AIYto + 2;
+            return true;
+        }
+    }
     return false;
 }
 
 //This Function Delete and update the board after AI eat move.
 function AI_Eat_Move() {
-    switch (way) {
-        case 1: {
-            $('#' + AIXfrom + AIYfrom).find('img').hide(1000).promise().done(function () {
-                $(this).remove();
-            });
-            $('#' + (AIXfrom + 1) + (AIYfrom - 1)).hide(1000).promise().done(function () {
-                $(this).remove();
-            });
-            $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1.png" />').hide().show(1000);
-            board[AIXfrom][AIYfrom] = 0;
-            board[AIXfrom + 1][AIYfrom - 1] = 0;
-            board[AIXto][AIYto] = 1;
-            console.log("Status Updated + AI-eat-Done(Left)");
-            GameCounter(1);
-            break;
+    if (board[AIXfrom][AIYfrom] == 1) {
+        switch (way) {
+            case 1: {
+                $('#' + AIXfrom + AIYfrom).find('img').hide(1000).promise().done(function () {
+                    $(this).remove();
+                });
+                $('#' + (AIXfrom + 1) + (AIYfrom - 1)).find('img').hide(1000).promise().done(function () {
+                    $(this).remove();
+                });
+                $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1.png" />').find('img').hide().show(1000);
+                board[AIXfrom][AIYfrom] = 0;
+                board[AIXfrom + 1][AIYfrom - 1] = 0;
+                board[AIXto][AIYto] = 1;
+                console.log("Status Updated + AI-eat-Done(Left)");
+                GameCounter(1);
+                if (AIXto == 7) {
+                    $('#' + AIXto + AIYto).find('img').remove();
+                    $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1_king.png" />');
+                    board[AIXto][AIYto] = 3;
+                }
+                break;
+            }
+            case 2: {
+                $('#' + AIXfrom + AIYfrom).find('img').hide(1000).promise().done(function () {
+                    $(this).remove();
+                });
+                $('#' + (AIXfrom + 1) + (AIYfrom + 1)).find('img').hide(1000).promise().done(function () {
+                    $(this).remove();
+                });
+                $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1.png" />').find('img').hide().show(1000);
+                board[AIXfrom][AIYfrom] = 0;
+                board[AIXfrom + 1][AIYfrom + 1] = 0;
+                board[AIXto][AIYto] = 1;
+                console.log("Status Updated + AI-eat-Done(Right)");
+                GameCounter(1);
+                if (AIXto == 7) {
+                    $('#' + AIXto + AIYto).find('img').remove();
+                    $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1_king.png" />');
+                    board[AIXto][AIYto] = 3;
+                }
+                break;
+            }
+            default:
+                break;
         }
-        case 2: {
-            $('#' + AIXfrom + AIYfrom).find('img').hide(1000).promise().done(function () {
-                $(this).remove();
-            });
-            $('#' + (AIXfrom + 1) + (AIYfrom + 1)).find('img').hide(1000).promise().done(function () {
-                $(this).remove();
-            });
-            $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1.png" />').hide().show(1000);
-            board[AIXfrom][AIYfrom] = 0;
-            board[AIXfrom + 1][AIYfrom + 1] = 0;
-            board[AIXto][AIYto] = 1;
-            console.log("Status Updated + AI-eat-Done(Right)");
-            GameCounter(1);
-            break;
-        }
-        default:
-            break;
     }
+    if (board[AIXfrom][AIYfrom] == 3) {
+        if(AIXfrom + 2  == AIYto){
+            switch (way) {
+                case 1: {
+                    $('#' + AIXfrom + AIYfrom).find('img').hide(1000).promise().done(function () {
+                        $(this).remove();
+                    });
+                    $('#' + (AIXfrom + 1) + (AIYfrom - 1)).find('img').hide(1000).promise().done(function () {
+                        $(this).remove();
+                    });
+                    $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1_king.png" />').hide().show(1000);
+                    board[AIXfrom][AIYfrom] = 0;
+                    board[AIXfrom + 1][AIYfrom - 1] = 0;
+                    board[AIXto][AIYto] = 3;
+                    console.log("Status Updated + AI-eat-Done(Left)");
+                    GameCounter(1);
+                    break;
+                }
+                case 2: {
+                    $('#' + AIXfrom + AIYfrom).find('img').hide(1000).promise().done(function () {
+                        $(this).remove();
+                    });
+                    $('#' + (AIXfrom + 1) + (AIYfrom + 1)).find('img').hide(1000).promise().done(function () {
+                        $(this).remove();
+                    });
+                    $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1_king.png" />').hide().show(1000);
+                    board[AIXfrom][AIYfrom] = 0;
+                    board[AIXfrom + 1][AIYfrom + 1] = 0;
+                    board[AIXto][AIYto] = 3;
+                    console.log("Status Updated + AI-eat-Done(Right)");
+                    GameCounter(1);
+                    break;
+                }
+                default:
+                    break;
+            }
+        }
+        if (xFrom - 2 == AIYto) {
+            switch (way) {
+                case 1: {
+                    $('#' + AIXfrom + AIYfrom).find('img').hide(1000).promise().done(function () {
+                        $(this).remove();
+                    });
+                    $('#' + (AIXfrom - 1) + (AIYfrom - 1)).find('img').hide(1000).promise().done(function () {
+                        $(this).remove();
+                    });
+                    $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1_king.png" />').hide().show(1000);
+                    board[AIXfrom][AIYfrom] = 0;
+                    board[AIXfrom - 1][AIYfrom - 1] = 0;
+                    board[AIXto][AIYto] = 3;
+                    console.log("Status Updated + AI-eat-Done(Left)");
+                    GameCounter(1);
+                    break;
+                }
+                case 2: {
+                    $('#' + AIXfrom + AIYfrom).find('img').hide(1000).promise().done(function () {
+                        $(this).remove();
+                    });
+                    $('#' + (AIXfrom - 1) + (AIYfrom - 1)).find('img').hide(1000).promise().done(function () {
+                        $(this).remove();
+                    });
+                    $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1_king.png" />').hide().show(1000);
+                    board[AIXfrom][AIYfrom] = 0;
+                    board[AIXfrom - 1][AIYfrom - 1] = 0;
+                    board[AIXto][AIYto] = 3;
+                    console.log("Status Updated + AI-eat-Done(Right)");
+                    GameCounter(1);
+                    break;
+                }
+                default:
+                    break;
+            }
+        }
+    }
+
 }
 
 //This Function makes the move and update.
 function AI_Move() {
+    if (board[AIXfrom][AIYfrom] == 1) {
     $('#' + AIXfrom + AIYfrom).find('img').hide(1000).promise().done(function () {
         $(this).remove();
     });
@@ -652,6 +818,23 @@ function AI_Move() {
     board[AIXfrom][AIYfrom] = 0;
     board[AIXto][AIYto] = 1;
     console.log("Status Updated + AI-Move-Done");
+    if (AIXto == 7) {
+        $('#' + AIXto + AIYto).find('img').remove();
+        $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1_king.png" />');
+        board[AIXto][AIYto] = 3;
+    }
+    return;
+    }
+    if (board[AIXfrom][AIYfrom] == 3) {
+        $('#' + AIXfrom + AIYfrom).find('img').hide(1000).promise().done(function () {
+            $(this).remove();
+        });
+        $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1_king.png" />').find('img').hide().show(1000);
+        board[AIXfrom][AIYfrom] = 0;
+        board[AIXto][AIYto] = 3;
+        console.log("Status Updated + AI-Move-Done");
+        return;
+    }
 }
 
 //This Function Counts the eat move on all players
