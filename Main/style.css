@@ -1,5 +1,3 @@
-
-
 #hader {
     padding: .5em;
 }
@@ -22,7 +20,7 @@ td {
     max-width: 50px;
 }
 
-table {
+#board {
     margin-left: auto;
     margin-right: auto;
     border: 10px groove #6A4B36;
@@ -58,9 +56,11 @@ table {
     color: black;
     text-align: center;
     text-shadow: 0 2px 3px #666;
-    
     margin-left:auto;
     margin-right: auto;
+    padding: 0px;
+    width: 20%;
+    height: 20px;
 }
 
 #ScoreTitle {
