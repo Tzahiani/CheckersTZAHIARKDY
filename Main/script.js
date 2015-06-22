@@ -287,7 +287,7 @@ function AICheckEatFirst() {
 function AISimpleMove() {
     for (var i = 0; i < 7; i++) {
         for (var j = 0; j < 8; j++) {
-            if (board[i][j] == 1 || board[i][j] == 3) {
+            if (board[i][j] == 1) {
                 if (i < 7) {
                 if (board[i + 1][j - 1] == 0 && i <= 5 && board[i + 2][j - 2] == 0) {
                     way = 1;
@@ -352,6 +352,37 @@ function AISimpleMove() {
                         AIXfrom = i;
                         AIYfrom = j;
                         AIXto = i - 1;
+                        AIYto = j + 1;
+                        return true;
+                    }
+                }
+                if (i < 7) {
+                    if (board[i + 1][j - 1] == 0 && i <= 5 && board[i + 2][j - 2] == 0) {
+                        way = 1;
+                        AIXfrom = i;
+                        AIYfrom = j;
+                        AIXto = i + 1;
+                        AIYto = j - 1;
+                        return true;
+                    } else if (board[i + 1][j + 1] == 0 && i <= 5 && board[i + 2][j + 2] == 0) {
+                        way = 2;
+                        AIXfrom = i;
+                        AIYfrom = j;
+                        AIXto = i + 1;
+                        AIYto = j + 1;
+                        return true;
+                    } else if (board[i + 1][j - 1] == 0) {
+                        way = 1;
+                        AIXfrom = i;
+                        AIYfrom = j;
+                        AIXto = i + 1;
+                        AIYto = j - 1;
+                        return true;
+                    } else if (board[i + 1][j + 1] == 0) {
+                        way = 2;
+                        AIXfrom = i;
+                        AIYfrom = j;
+                        AIXto = i + 1;
                         AIYto = j + 1;
                         return true;
                     }
