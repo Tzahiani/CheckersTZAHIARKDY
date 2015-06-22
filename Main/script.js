@@ -231,23 +231,25 @@ function AICheckEatFirst() {
     for (var i = 0; i < 6; i++) {
         for (var j = 0; j < 8; j++) {
             if (board[i][j] == 1 || board[i][j] == 3) {
-                if ((board[i + 1][j - 1] == 2 || board[i + 1][j - 1] == 4) && board[i + 2][j - 2] == 0) {
-                    console.log("AI Must Eat Left Side");
-                    way = 1;
-                    AIXfrom = i;
-                    AIYfrom = j;
-                    AIXto = i + 2;
-                    AIYto = j - 2;
-                    return true;
-                }
-                else if ((board[i + 1][j + 1] == 2 || board[i + 1][j + 1] == 4) && board[i + 2][j + 2] == 0) {
-                    console.log("AI Must Eat Right Side");
-                    way = 2;
-                    AIXfrom = i;
-                    AIYfrom = j;
-                    AIXto = i + 2;
-                    AIYto = j + 2;
-                    return true;
+                if (i < 6) {
+                    if ((board[i + 1][j - 1] == 2 || board[i + 1][j - 1] == 4) && board[i + 2][j - 2] == 0) {
+                        console.log("AI Must Eat Left Side");
+                        way = 1;
+                        AIXfrom = i;
+                        AIYfrom = j;
+                        AIXto = i + 2;
+                        AIYto = j - 2;
+                        return true;
+                    }
+                    else if ((board[i + 1][j + 1] == 2 || board[i + 1][j + 1] == 4) && board[i + 2][j + 2] == 0) {
+                        console.log("AI Must Eat Right Side");
+                        way = 2;
+                        AIXfrom = i;
+                        AIYfrom = j;
+                        AIXto = i + 2;
+                        AIYto = j + 2;
+                        return true;
+                    }
                 }
             }
         }
@@ -255,23 +257,25 @@ function AICheckEatFirst() {
     for (var i = 7; i > 1; i--) {
         for (var j = 7; j >= 0; j--) {
             if (board[i][j] == 3) {
-                if ((board[i - 1][j - 1] == 2 || board[i - 1][j - 1] == 4) && board[i - 2][j - 2] == 0) {
-                    console.log("AI King Must Eat Left Side");
-                    way = 1;
-                    AIXfrom = i;
-                    AIYfrom = j;
-                    AIXto = i + 2;
-                    AIYto = j - 2;
-                    return true;
-                }
-               else if ((board[i - 1][j + 1] == 2 || board[i - 1][j + 1] == 4) && board[i - 2][j + 2] == 0) {
-                    console.log("AI King Must Eat Right Side");
-                    way = 2;
-                    AIXfrom = i;
-                    AIYfrom = j;
-                    AIXto = i + 2;
-                    AIYto = j + 2;
-                    return true;
+                if (i > 1) {
+                    if ((board[i - 1][j - 1] == 2 || board[i - 1][j - 1] == 4) && board[i - 2][j - 2] == 0) {
+                        console.log("AI King Must Eat Left Side");
+                        way = 1;
+                        AIXfrom = i;
+                        AIYfrom = j;
+                        AIXto = i - 2;
+                        AIYto = j - 2;
+                        return true;
+                    }
+                    else if ((board[i - 1][j + 1] == 2 || board[i - 1][j + 1] == 4) && board[i - 2][j + 2] == 0) {
+                        console.log("AI King Must Eat Right Side");
+                        way = 2;
+                        AIXfrom = i;
+                        AIYfrom = j;
+                        AIXto = i - 2;
+                        AIYto = j + 2;
+                        return true;
+                    }
                 }
             }
         }
@@ -284,6 +288,7 @@ function AISimpleMove() {
     for (var i = 0; i < 7; i++) {
         for (var j = 0; j < 8; j++) {
             if (board[i][j] == 1 || board[i][j] == 3) {
+                if (i < 7) {
                 if (board[i + 1][j - 1] == 0 && i <= 5 && board[i + 2][j - 2] == 0) {
                     way = 1;
                     AIXfrom = i;
@@ -316,38 +321,40 @@ function AISimpleMove() {
             }
         }
     }
-
-    for (var i = 7; i > 1; i--) {
+    }
+    for (var i = 7; i > 0; i--) {
         for (var j = 7; j >= 0; j--) {
             if (board[i][j] == 3) {
-                if (board[i - 1][j - 1] == 0 && i >= 2 && board[i - 2][j - 2] == 0) {
-                    way = 1;
-                    AIXfrom = i;
-                    AIYfrom = j;
-                    AIXto = i - 1;
-                    AIYto = j - 1;
-                    return true;
-                } else if (board[i - 1][j + 1] == 0 && i <= 2 && board[i - 2][j + 2] == 0) {
-                    way = 2;
-                    AIXfrom = i;
-                    AIYfrom = j;
-                    AIXto = i - 1;
-                    AIYto = j + 1;
-                    return true;
-                } else if (board[i - 1][j - 1] == 0) {
-                    way = 1;
-                    AIXfrom = i;
-                    AIYfrom = j;
-                    AIXto = i - 1;
-                    AIYto = j - 1;
-                    return true;
-                } else if (board[i - 1][j + 1] == 0) {
-                    way = 2;
-                    AIXfrom = i;
-                    AIYfrom = j;
-                    AIXto = i - 1;
-                    AIYto = j + 1;
-                    return true;
+                if (i > 0) {
+                    if (board[i - 1][j - 1] == 0 && i >= 2 && board[i - 2][j - 2] == 0) {
+                        way = 1;
+                        AIXfrom = i;
+                        AIYfrom = j;
+                        AIXto = i - 1;
+                        AIYto = j - 1;
+                        return true;
+                    } else if (board[i - 1][j + 1] == 0 && i <= 2 && board[i - 2][j + 2] == 0) {
+                        way = 2;
+                        AIXfrom = i;
+                        AIYfrom = j;
+                        AIXto = i - 1;
+                        AIYto = j + 1;
+                        return true;
+                    } else if (board[i - 1][j - 1] == 0) {
+                        way = 1;
+                        AIXfrom = i;
+                        AIYfrom = j;
+                        AIXto = i - 1;
+                        AIYto = j - 1;
+                        return true;
+                    } else if (board[i - 1][j + 1] == 0) {
+                        way = 2;
+                        AIXfrom = i;
+                        AIYfrom = j;
+                        AIXto = i - 1;
+                        AIYto = j + 1;
+                        return true;
+                    }
                 }
             }
         }
@@ -643,41 +650,45 @@ function AI_turn_start() {
 //This Function checks if the AI can eat again.
 function AI_eat_again() {
     if (board[AIXto][AIYto] == 1 || board[AIXto][AIYto] == 3) {
-        if (AIXto < 6 && (board[AIXto + 1][AIYto - 1] == 2 || board[AIXto + 1][AIYto - 1] == 4) && board[AIXto + 2][AIYto - 2] == 0) {
-            way = 1;
-            AIXfrom = AIXto;
-            AIYfrom = AIYto;
-            AIXto = AIXto + 2;
-            AIYto = AIYto - 2;
-            return true;
-        }
+        if (AIXto < 6) {
+            if (AIXto < 6 && (board[AIXto + 1][AIYto - 1] == 2 || board[AIXto + 1][AIYto - 1] == 4) && board[AIXto + 2][AIYto - 2] == 0) {
+                way = 1;
+                AIXfrom = AIXto;
+                AIYfrom = AIYto;
+                AIXto = AIXto + 2;
+                AIYto = AIYto - 2;
+                return true;
+            }
 
-        if (AIXto < 6 && (board[AIXto + 1][AIYto + 1] == 2 || board[AIXto + 1][AIYto + 1] == 4) && board[AIXto + 2][AIYto + 2] == 0) {
-            way = 2;
-            AIXfrom = AIXto;
-            AIYfrom = AIYto;
-            AIXto = AIXto + 2;
-            AIYto = AIYto + 2;
-            return true;
+            if (AIXto < 6 && (board[AIXto + 1][AIYto + 1] == 2 || board[AIXto + 1][AIYto + 1] == 4) && board[AIXto + 2][AIYto + 2] == 0) {
+                way = 2;
+                AIXfrom = AIXto;
+                AIYfrom = AIYto;
+                AIXto = AIXto + 2;
+                AIYto = AIYto + 2;
+                return true;
+            }
         }
     }
     if (board[AIXto][AIYto] == 3) {
-        if (AIXto > 1 && (board[AIXto - 1][AIYto - 1] == 2 || board[AIXto - 1][AIYto - 1] == 4) && board[AIXto - 2][AIYto - 2] == 0) {
-            way = 1;
-            AIXfrom = AIXto;
-            AIYfrom = AIYto;
-            AIXto = AIXto - 2;
-            AIYto = AIYto - 2;
-            return true;
-        }
+        if (AIXto > 1) {
+            if (AIXto > 1 && (board[AIXto - 1][AIYto - 1] == 2 || board[AIXto - 1][AIYto - 1] == 4) && board[AIXto - 2][AIYto - 2] == 0) {
+                way = 1;
+                AIXfrom = AIXto;
+                AIYfrom = AIYto;
+                AIXto = AIXto - 2;
+                AIYto = AIYto - 2;
+                return true;
+            }
 
-        if (AIXto > 1 && (board[AIXto - 1][AIYto + 1] == 2 || board[AIXto - 1][AIYto + 1] == 4) && board[AIXto - 2][AIYto + 2] == 0) {
-            way = 2;
-            AIXfrom = AIXto;
-            AIYfrom = AIYto;
-            AIXto = AIXto - 2;
-            AIYto = AIYto + 2;
-            return true;
+            if (AIXto > 1 && (board[AIXto - 1][AIYto + 1] == 2 || board[AIXto - 1][AIYto + 1] == 4) && board[AIXto - 2][AIYto + 2] == 0) {
+                way = 2;
+                AIXfrom = AIXto;
+                AIYfrom = AIYto;
+                AIXto = AIXto - 2;
+                AIYto = AIYto + 2;
+                return true;
+            }
         }
     }
     return false;
@@ -732,7 +743,7 @@ function AI_Eat_Move() {
         }
     }
     if (board[AIXfrom][AIYfrom] == 3) {
-        if(AIXfrom + 2  == AIYto){
+        if(AIXfrom + 2  == AIXto){
             switch (way) {
                 case 1: {
                     $('#' + AIXfrom + AIYfrom).find('img').hide(1000).promise().done(function () {
@@ -768,7 +779,7 @@ function AI_Eat_Move() {
                     break;
             }
         }
-        if (xFrom - 2 == AIYto) {
+        if (AIXfrom - 2 == AIXto) {
             switch (way) {
                 case 1: {
                     $('#' + AIXfrom + AIYfrom).find('img').hide(1000).promise().done(function () {
