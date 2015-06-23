@@ -322,75 +322,103 @@ function AISimpleMove() {
         }
     }
     }
-    for (var i = 7; i > 0; i--) {
-        for (var j = 7; j >= 0; j--) {
-            if (board[i][j] == 3) {
-                if (i > 0) {
-                    if (board[i - 1][j - 1] == 0 && i >= 2 && board[i - 2][j - 2] == 0) {
-                        way = 1;
-                        AIXfrom = i;
-                        AIYfrom = j;
-                        AIXto = i - 1;
-                        AIYto = j - 1;
-                        return true;
-                    } else if (board[i - 1][j + 1] == 0 && i <= 2 && board[i - 2][j + 2] == 0) {
-                        way = 2;
-                        AIXfrom = i;
-                        AIYfrom = j;
-                        AIXto = i - 1;
-                        AIYto = j + 1;
-                        return true;
-                    } else if (board[i - 1][j - 1] == 0) {
-                        way = 1;
-                        AIXfrom = i;
-                        AIYfrom = j;
-                        AIXto = i - 1;
-                        AIYto = j - 1;
-                        return true;
-                    } else if (board[i - 1][j + 1] == 0) {
-                        way = 2;
-                        AIXfrom = i;
-                        AIYfrom = j;
-                        AIXto = i - 1;
-                        AIYto = j + 1;
-                        return true;
-                    }
-                }
-                if (i < 7) {
-                    if (board[i + 1][j - 1] == 0 && i <= 5 && board[i + 2][j - 2] == 0) {
-                        way = 1;
-                        AIXfrom = i;
-                        AIYfrom = j;
-                        AIXto = i + 1;
-                        AIYto = j - 1;
-                        return true;
-                    } else if (board[i + 1][j + 1] == 0 && i <= 5 && board[i + 2][j + 2] == 0) {
-                        way = 2;
-                        AIXfrom = i;
-                        AIYfrom = j;
-                        AIXto = i + 1;
-                        AIYto = j + 1;
-                        return true;
-                    } else if (board[i + 1][j - 1] == 0) {
-                        way = 1;
-                        AIXfrom = i;
-                        AIYfrom = j;
-                        AIXto = i + 1;
-                        AIYto = j - 1;
-                        return true;
-                    } else if (board[i + 1][j + 1] == 0) {
-                        way = 2;
-                        AIXfrom = i;
-                        AIYfrom = j;
-                        AIXto = i + 1;
-                        AIYto = j + 1;
-                        return true;
+
+    var rand = Math.floor((Math.random() * 2) + 1);
+
+    switch (rand) {
+        case 1:
+            for (var i = 7; i > 0; i--) {
+                for (var j = 7; j >= 0; j--) {
+                    if (board[i][j] == 3) {
+                        if (AIsimpleMoveAddOn(i, j)) {
+                            return true;
+                        } 
                     }
                 }
             }
+            break;
+        case 2:
+            for (var i = 0; i < 7; i++) {
+                for (var j = 0; j < 8; j++) {
+                    if (board[i][j] == 3) {
+                        if (AIsimpleMoveAddOn(i, j)) {
+                            return true;
+                        }
+                    }
+                }
+            }
+            break;
+        default:
+            break;
+    }
+
+    
+    return false;
+}
+
+function AIsimpleMoveAddOn(i,j){               
+    if (i > 0) {
+        if (board[i - 1][j - 1] == 0 && i >= 2 && board[i - 2][j - 2] == 0) {
+            way = 1;
+            AIXfrom = i;
+            AIYfrom = j;
+            AIXto = i - 1;
+            AIYto = j - 1;
+            return true;
+        } else if (board[i - 1][j + 1] == 0 && i <= 2 && board[i - 2][j + 2] == 0) {
+            way = 2;
+            AIXfrom = i;
+            AIYfrom = j;
+            AIXto = i - 1;
+            AIYto = j + 1;
+            return true;
+        } else if (board[i - 1][j - 1] == 0) {
+            way = 1;
+            AIXfrom = i;
+            AIYfrom = j;
+            AIXto = i - 1;
+            AIYto = j - 1;
+            return true;
+        } else if (board[i - 1][j + 1] == 0) {
+            way = 2;
+            AIXfrom = i;
+            AIYfrom = j;
+            AIXto = i - 1;
+            AIYto = j + 1;
+            return true;
         }
     }
-    return false;
+    if (i < 7) {
+        if (board[i + 1][j - 1] == 0 && i <= 5 && board[i + 2][j - 2] == 0) {
+            way = 1;
+            AIXfrom = i;
+            AIYfrom = j;
+            AIXto = i + 1;
+            AIYto = j - 1;
+            return true;
+        } else if (board[i + 1][j + 1] == 0 && i <= 5 && board[i + 2][j + 2] == 0) {
+            way = 2;
+            AIXfrom = i;
+            AIYfrom = j;
+            AIXto = i + 1;
+            AIYto = j + 1;
+            return true;
+        } else if (board[i + 1][j - 1] == 0) {
+            way = 1;
+            AIXfrom = i;
+            AIYfrom = j;
+            AIXto = i + 1;
+            AIYto = j - 1;
+            return true;
+        } else if (board[i + 1][j + 1] == 0) {
+            way = 2;
+            AIXfrom = i;
+            AIYfrom = j;
+            AIXto = i + 1;
+            AIYto = j + 1;
+            return true;
+        }
+    }
 }
 
 //This Function checks if you can eat one more peace before the computers turn.
