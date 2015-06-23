@@ -157,6 +157,7 @@ function humanMove() {
                     return true;
                 }
             }
+        }
             if (TD_FROM > 07) {
                 if (xFrom - 1 == xTo && yFrom + 1 == yTo) {
                     if (CheckIsPeaceThere()) {
@@ -171,7 +172,7 @@ function humanMove() {
                         return true;
                     }
                 }
-            }
+            
         }
         return false;
     }
@@ -228,6 +229,7 @@ function MustEat() {
 
 //This Function Check for AI if eat is possible.
 function AICheckEatFirst() {
+    //eat down
     for (var i = 0; i < 6; i++) {
         for (var j = 0; j < 8; j++) {
             if (board[i][j] == 1 || board[i][j] == 3) {
@@ -254,6 +256,7 @@ function AICheckEatFirst() {
             }
         }
     }
+    //eat up
     for (var i = 7; i > 1; i--) {
         for (var j = 7; j >= 0; j--) {
             if (board[i][j] == 3) {
@@ -326,6 +329,7 @@ function AISimpleMove() {
         for (var j = 7; j >= 0; j--) {
             if (board[i][j] == 3) {
                 if (i > 0) {
+                    if(i>1){
                     if (board[i - 1][j - 1] == 0 && i >= 2 && board[i - 2][j - 2] == 0) {
                         way = 1;
                         AIXfrom = i;
@@ -333,13 +337,18 @@ function AISimpleMove() {
                         AIXto = i - 1;
                         AIYto = j - 1;
                         return true;
-                    } else if (board[i - 1][j + 1] == 0 && i <= 2 && board[i - 2][j + 2] == 0) {
+                    }
+
+                    } else
+                    if(i>1){
+                     if (board[i - 1][j + 1] == 0 && i <= 2 && board[i - 2][j + 2] == 0) {
                         way = 2;
                         AIXfrom = i;
                         AIYfrom = j;
                         AIXto = i - 1;
                         AIYto = j + 1;
                         return true;
+                    }
                     } else if (board[i - 1][j - 1] == 0) {
                         way = 1;
                         AIXfrom = i;
@@ -831,12 +840,12 @@ function AI_Eat_Move() {
                     $('#' + AIXfrom + AIYfrom).find('img').hide(1000).promise().done(function () {
                         $(this).remove();
                     });
-                    $('#' + (AIXfrom - 1) + (AIYfrom - 1)).find('img').hide(1000).promise().done(function () {
+                    $('#' + (AIXfrom - 1) + (AIYfrom + 1)).find('img').hide(1000).promise().done(function () {
                         $(this).remove();
                     });
                     $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1_king.png" />').hide().show(1000);
                     board[AIXfrom][AIYfrom] = 0;
-                    board[AIXfrom - 1][AIYfrom - 1] = 0;
+                    board[AIXfrom - 1][AIYfrom + 1] = 0;
                     board[AIXto][AIYto] = 3;
                     console.log("Status Updated + AI-eat-Done(Right)");
                     GameCounter(1);
