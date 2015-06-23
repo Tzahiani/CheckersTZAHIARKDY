@@ -579,7 +579,7 @@ function deletePieace() {
         switch (way) {
             case 1:
                 board[xFrom - 1][yFrom - 1] = 0;
-                $('#' + (xFrom - 1) + (yFrom - 1)).find('img').hide(1000).promise().done(function () {
+                $('#' + (xFrom - 1) + (yFrom - 1)).find('img').hide(500).promise().done(function () {
                     $(this).remove();
                 });
                 console.log("Pieace Deleted");
@@ -587,7 +587,7 @@ function deletePieace() {
                 break;
             case 2:
                 board[xFrom - 1][yFrom + 1] = 0;
-                $('#' + (xFrom - 1) + (yFrom + 1)).find('img').hide(1000).promise().done(function () {
+                $('#' + (xFrom - 1) + (yFrom + 1)).find('img').hide(500).promise().done(function () {
                     $(this).remove();
                 });
                 console.log("Pieace Deleted");
@@ -602,7 +602,7 @@ function deletePieace() {
             switch (way) {
                 case 1:
                     board[xFrom + 1][yFrom - 1] = 0;
-                    $('#' + (xFrom + 1) + (yFrom - 1)).find('img').hide(1000).promise().done(function () {
+                    $('#' + (xFrom + 1) + (yFrom - 1)).find('img').hide(500).promise().done(function () {
                         $(this).remove();
                     });
                     console.log("Pieace Deleted");
@@ -610,7 +610,7 @@ function deletePieace() {
                     break;
                 case 2:
                     board[xFrom + 1][yFrom + 1] = 0;
-                    $('#' + (xFrom + 1) + (yFrom + 1)).find('img').hide(1000).promise().done(function () {
+                    $('#' + (xFrom + 1) + (yFrom + 1)).find('img').hide(500).promise().done(function () {
                         $(this).remove();
                     });
                     console.log("Pieace Deleted");
@@ -624,7 +624,7 @@ function deletePieace() {
             switch (way) {
                 case 1:
                     board[xFrom - 1][yFrom - 1] = 0;
-                    $('#' + (xFrom - 1) + (yFrom - 1)).find('img').hide(1000).promise().done(function () {
+                    $('#' + (xFrom - 1) + (yFrom - 1)).find('img').hide(500).promise().done(function () {
                         $(this).remove();
                     });
                     console.log("Pieace Deleted");
@@ -632,7 +632,7 @@ function deletePieace() {
                     break;
                 case 2:
                     board[xFrom - 1][yFrom + 1] = 0;
-                    $('#' + (xFrom - 1) + (yFrom + 1)).find('img').hide(1000).promise().done(function () {
+                    $('#' + (xFrom - 1) + (yFrom + 1)).find('img').hide(500).promise().done(function () {
                         $(this).remove();
                     });
                     console.log("Pieace Deleted");
@@ -776,13 +776,13 @@ function AI_Eat_Move() {
     if (board[AIXfrom][AIYfrom] == 1) {
         switch (way) {
             case 1: {
-                $('#' + AIXfrom + AIYfrom).find('img').hide(1000).promise().done(function () {
+                $('#' + AIXfrom + AIYfrom).find('img').hide(500).promise().done(function () {
                     $(this).remove();
                 });
-                $('#' + (AIXfrom + 1) + (AIYfrom - 1)).find('img').hide(1000).promise().done(function () {
+                $('#' + (AIXfrom + 1) + (AIYfrom - 1)).find('img').hide(500).promise().done(function () {
                     $(this).remove();
                 });
-                $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1.png" />').find('img').hide().show(1000);
+                $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1.png" />').find('img').hide().show(500);
                 board[AIXfrom][AIYfrom] = 0;
                 board[AIXfrom + 1][AIYfrom - 1] = 0;
                 board[AIXto][AIYto] = 1;
@@ -796,13 +796,13 @@ function AI_Eat_Move() {
                 break;
             }
             case 2: {
-                $('#' + AIXfrom + AIYfrom).find('img').hide(1000).promise().done(function () {
+                $('#' + AIXfrom + AIYfrom).find('img').hide(500).promise().done(function () {
                     $(this).remove();
                 });
-                $('#' + (AIXfrom + 1) + (AIYfrom + 1)).find('img').hide(1000).promise().done(function () {
+                $('#' + (AIXfrom + 1) + (AIYfrom + 1)).find('img').hide(500).promise().done(function () {
                     $(this).remove();
                 });
-                $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1.png" />').find('img').hide().show(1000);
+                $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1.png" />').find('img').hide().show(500);
                 board[AIXfrom][AIYfrom] = 0;
                 board[AIXfrom + 1][AIYfrom + 1] = 0;
                 board[AIXto][AIYto] = 1;
@@ -823,13 +823,13 @@ function AI_Eat_Move() {
         if (AIXfrom + 2 == AIXto) {
             switch (way) {
                 case 1: {
-                    $('#' + AIXfrom + AIYfrom).find('img').hide(1000).promise().done(function () {
+                    $('#' + AIXfrom + AIYfrom).find('img').hide(500).promise().done(function () {
                         $(this).remove();
                     });
-                    $('#' + (AIXfrom + 1) + (AIYfrom - 1)).find('img').hide(1000).promise().done(function () {
+                    $('#' + (AIXfrom + 1) + (AIYfrom - 1)).find('img').hide(500).promise().done(function () {
                         $(this).remove();
                     });
-                    $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1_king.png" />').hide().show(1000);
+                    $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1_king.png" />').hide().show(500);
                     board[AIXfrom][AIYfrom] = 0;
                     board[AIXfrom + 1][AIYfrom - 1] = 0;
                     board[AIXto][AIYto] = 3;
@@ -838,13 +838,13 @@ function AI_Eat_Move() {
                     break;
                 }
                 case 2: {
-                    $('#' + AIXfrom + AIYfrom).find('img').hide(1000).promise().done(function () {
+                    $('#' + AIXfrom + AIYfrom).find('img').hide(500).promise().done(function () {
                         $(this).remove();
                     });
-                    $('#' + (AIXfrom + 1) + (AIYfrom + 1)).find('img').hide(1000).promise().done(function () {
+                    $('#' + (AIXfrom + 1) + (AIYfrom + 1)).find('img').hide(500).promise().done(function () {
                         $(this).remove();
                     });
-                    $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1_king.png" />').hide().show(1000);
+                    $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1_king.png" />').hide().show(500);
                     board[AIXfrom][AIYfrom] = 0;
                     board[AIXfrom + 1][AIYfrom + 1] = 0;
                     board[AIXto][AIYto] = 3;
@@ -859,13 +859,13 @@ function AI_Eat_Move() {
         if (AIXfrom - 2 == AIXto) {
             switch (way) {
                 case 1: {
-                    $('#' + AIXfrom + AIYfrom).find('img').hide(1000).promise().done(function () {
+                    $('#' + AIXfrom + AIYfrom).find('img').hide(500).promise().done(function () {
                         $(this).remove();
                     });
-                    $('#' + (AIXfrom - 1) + (AIYfrom - 1)).find('img').hide(1000).promise().done(function () {
+                    $('#' + (AIXfrom - 1) + (AIYfrom - 1)).find('img').hide(500).promise().done(function () {
                         $(this).remove();
                     });
-                    $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1_king.png" />').hide().show(1000);
+                    $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1_king.png" />').hide().show(500);
                     board[AIXfrom][AIYfrom] = 0;
                     board[AIXfrom - 1][AIYfrom - 1] = 0;
                     board[AIXto][AIYto] = 3;
@@ -874,13 +874,13 @@ function AI_Eat_Move() {
                     break;
                 }
                 case 2: {
-                    $('#' + AIXfrom + AIYfrom).find('img').hide(1000).promise().done(function () {
+                    $('#' + AIXfrom + AIYfrom).find('img').hide(500).promise().done(function () {
                         $(this).remove();
                     });
-                    $('#' + (AIXfrom - 1) + (AIYfrom + 1)).find('img').hide(1000).promise().done(function () {
+                    $('#' + (AIXfrom - 1) + (AIYfrom + 1)).find('img').hide(500).promise().done(function () {
                         $(this).remove();
                     });
-                    $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1_king.png" />').hide().show(1000);
+                    $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1_king.png" />').hide().show(500);
                     board[AIXfrom][AIYfrom] = 0;
                     board[AIXfrom - 1][AIYfrom + 1] = 0;
                     board[AIXto][AIYto] = 3;
@@ -899,10 +899,10 @@ function AI_Eat_Move() {
 //This Function makes the move and update.
 function AI_Move() {
     if (board[AIXfrom][AIYfrom] == 1) {
-        $('#' + AIXfrom + AIYfrom).find('img').hide(1000).promise().done(function () {
+        $('#' + AIXfrom + AIYfrom).find('img').hide(500).promise().done(function () {
             $(this).remove();
         });
-        $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1.png" />').find('img').hide().show(1000);
+        $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1.png" />').find('img').hide().show(500);
         board[AIXfrom][AIYfrom] = 0;
         board[AIXto][AIYto] = 1;
         console.log("Status Updated + AI-Move-Done");
@@ -914,10 +914,10 @@ function AI_Move() {
         return;
     }
     if (board[AIXfrom][AIYfrom] == 3) {
-        $('#' + AIXfrom + AIYfrom).find('img').hide(1000).promise().done(function () {
+        $('#' + AIXfrom + AIYfrom).find('img').hide(500).promise().done(function () {
             $(this).remove();
         });
-        $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1_king.png" />').find('img').hide().show(1000);
+        $('#' + AIXto + AIYto).append('<img ondragstart="drag(event)" data-player="1" src="res/1_king.png" />').find('img').hide().show(500);
         board[AIXfrom][AIYfrom] = 0;
         board[AIXto][AIYto] = 3;
         console.log("Status Updated + AI-Move-Done");
