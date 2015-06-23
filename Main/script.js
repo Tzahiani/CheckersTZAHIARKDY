@@ -441,7 +441,7 @@ function AIsimpleMoveAddOn(i, j) {
 //This Function checks if you can eat one more peace before the computers turn.
 function eatAgain() {
     if (board[xTo][yTo] == 2) {
-        if (TD_FROM > 37) {
+        if (TD_TO > 17) {
             if (board[xTo - 1][yTo - 1] == 1 || board[xTo - 1][yTo - 1] == 3) {
                 if (board[xTo - 2][yTo - 2] == 0) {
                     console.log("One More Eat Left Side");
@@ -457,7 +457,7 @@ function eatAgain() {
         }
     }
     if (board[xTo][yTo] == 4) {
-        if (TD_FROM < 60) {
+        if (TD_TO < 60) {
             if (board[xTo + 1][yTo - 1] == 1 || board[xTo + 1][yTo - 1] == 3) {
                 if (board[xTo + 2][yTo - 2] == 0) {
                     console.log("One More Eat Left Side");
@@ -471,7 +471,7 @@ function eatAgain() {
                 }
             }
         }
-        if (TD_FROM > 37) {
+        if (TD_TO > 37) {
             if (board[xTo - 1][yTo - 1] == 1 || board[xTo - 1][yTo - 1] == 3) {
                 if (board[xTo - 2][yTo - 2] == 0) {
                     console.log("One More Eat Left Side");
