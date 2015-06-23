@@ -325,46 +325,6 @@ function AISimpleMove() {
         }
     }
     }
-<<<<<<< HEAD
-    for (var i = 7; i > 0; i--) {
-        for (var j = 7; j >= 0; j--) {
-            if (board[i][j] == 3) {
-                if (i > 0) {
-                    if(i>1){
-                    if (board[i - 1][j - 1] == 0 && i >= 2 && board[i - 2][j - 2] == 0) {
-                        way = 1;
-                        AIXfrom = i;
-                        AIYfrom = j;
-                        AIXto = i - 1;
-                        AIYto = j - 1;
-                        return true;
-                    }
-
-                    } else
-                    if(i>1){
-                     if (board[i - 1][j + 1] == 0 && i <= 2 && board[i - 2][j + 2] == 0) {
-                        way = 2;
-                        AIXfrom = i;
-                        AIYfrom = j;
-                        AIXto = i - 1;
-                        AIYto = j + 1;
-                        return true;
-                    }
-                    } else if (board[i - 1][j - 1] == 0) {
-                        way = 1;
-                        AIXfrom = i;
-                        AIYfrom = j;
-                        AIXto = i - 1;
-                        AIYto = j - 1;
-                        return true;
-                    } else if (board[i - 1][j + 1] == 0) {
-                        way = 2;
-                        AIXfrom = i;
-                        AIYfrom = j;
-                        AIXto = i - 1;
-                        AIYto = j + 1;
-                        return true;
-=======
 
     var rand = Math.floor((Math.random() * 2) + 1);
 
@@ -376,7 +336,6 @@ function AISimpleMove() {
                         if (AIsimpleMoveAddOn(i, j)) {
                             return true;
                         } 
->>>>>>> origin/master
                     }
                 }
             }
@@ -402,6 +361,7 @@ function AISimpleMove() {
 
 function AIsimpleMoveAddOn(i,j){               
     if (i > 0) {
+        if (i > 1) {
         if (board[i - 1][j - 1] == 0 && i >= 2 && board[i - 2][j - 2] == 0) {
             way = 1;
             AIXfrom = i;
@@ -409,13 +369,16 @@ function AIsimpleMoveAddOn(i,j){
             AIXto = i - 1;
             AIYto = j - 1;
             return true;
-        } else if (board[i - 1][j + 1] == 0 && i <= 2 && board[i - 2][j + 2] == 0) {
+        }
+        } else if (i > 1) {
+            if (board[i - 1][j + 1] == 0 && i <= 2 && board[i - 2][j + 2] == 0) {
             way = 2;
             AIXfrom = i;
             AIYfrom = j;
             AIXto = i - 1;
             AIYto = j + 1;
             return true;
+            }
         } else if (board[i - 1][j - 1] == 0) {
             way = 1;
             AIXfrom = i;
@@ -433,6 +396,7 @@ function AIsimpleMoveAddOn(i,j){
         }
     }
     if (i < 7) {
+        if (i < 6) {
         if (board[i + 1][j - 1] == 0 && i <= 5 && board[i + 2][j - 2] == 0) {
             way = 1;
             AIXfrom = i;
@@ -440,13 +404,16 @@ function AIsimpleMoveAddOn(i,j){
             AIXto = i + 1;
             AIYto = j - 1;
             return true;
-        } else if (board[i + 1][j + 1] == 0 && i <= 5 && board[i + 2][j + 2] == 0) {
+        }
+        } else if (i < 6) {
+            if (board[i + 1][j + 1] == 0 && i <= 5 && board[i + 2][j + 2] == 0) {
             way = 2;
             AIXfrom = i;
             AIYfrom = j;
             AIXto = i + 1;
             AIYto = j + 1;
             return true;
+            }
         } else if (board[i + 1][j - 1] == 0) {
             way = 1;
             AIXfrom = i;
