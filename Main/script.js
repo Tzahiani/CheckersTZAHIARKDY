@@ -13,7 +13,7 @@ var AICounter = 0; // Holds the AI eat Counter
 var PlayerCounter = 0; // Holds the Player Counter
 var EndGame = true // Check If Game Ended
 
-//****En-um Value***
+//******************
 //* Empty = 0      *
 //* Human = 1      *
 //* AI = 2         *
@@ -21,7 +21,9 @@ var EndGame = true // Check If Game Ended
 //* King Human = 4 *
 //******************
 
-//This Function MAPS the board for JavaScript Code.
+//This Function MAPS the board to JavaScript Code.
+// 2 - Human
+// 1 - Computer
 function matrix(rows, cols) {
     var arr = [];
 
@@ -49,6 +51,9 @@ function matrix(rows, cols) {
 }
 
 //This Function updates the Score Board.
+//Add +1 to the score after each game.
+// 2 - Human
+// 1 - Computer
 function UpdateScoreBoard(winner) {
     console.log("Score Board Updated");
     switch (winner) {
@@ -81,7 +86,10 @@ function UpdateScoreBoard(winner) {
     };
 }(jQuery));
 
-// This Function Updates the Score Title With the winner.
+// This Function Updates the Score Board With the winner.
+// 2 - Human
+// 1 - Computer
+// 0 - Reset to "Score Board"
 function GameFinish(winner) {
     switch (winner) {
         case 0:
@@ -351,7 +359,6 @@ function AISimpleMove() {
     return false;
 }
 
-//This Function Is an Add On for the AI move to make the king move at random.
 function AIsimpleMoveAddOn(i, j) {
     if (i > 0) {
         if (i > 1) {
